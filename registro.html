@@ -1,0 +1,106 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>cadastro</title>
+</head>
+
+<style>
+.total{
+    display: flex;
+    width: 45vw;
+    height: 60vh;
+    margin-left: 25vw;
+    margin-top: 20vh;
+}
+
+.conteiner-e {
+    background-color:#B36EEA;
+    height: 70vh;
+    width: 70vw;        
+}
+
+img{
+    width: 30vw;
+    height: 70vh;
+}
+
+form{
+    height:60vh ;
+}
+
+.dentro{ 
+    margin-top: 60px;    
+}
+
+fieldset{
+    margin-top: -5vh;
+    height: 230px;
+    padding-bottom: 15.7vh;
+}
+
+button{
+    height: 30px;
+    width: 100px;
+    margin-top: 15px;
+    margin-right: 100px;
+}
+
+label{
+    display:block;
+    margin-top: 5px;
+    font-size: 130%;
+}
+
+h2{
+    margin-left: 20px;
+    font-family: Arial;
+    font-weight: 200px;
+    font-size: 40px;
+}
+
+a{
+    display:block;
+    font-size: 80%;
+    color:black;
+}
+
+input{
+    color: blanchedalmond;
+    background-color:#1C1C1C ;
+    width: 15vw;
+}
+button{
+    margin-top: 10vh;
+}
+</style>
+
+<body>
+    <div class= "total">
+    <div class="conteiner-d">
+        <img src="images/imgcad.jpeg" /> 
+    </div>
+
+<div class="conteiner-e">
+<div class="dentro">
+    <h2>Cadastro</h2>
+    <form action="php/registro.php">
+        <fieldset>
+            <label > Nome:</label>
+            <input type="text"name="nome" id="nome"> 
+            <label> Sobrenome:</label>
+            <input type="text"name="sobrenome " id="sobrenome"> 
+            <label>Email:</label>
+            <input type="email" name="email" id="email">
+            <label>Senha:</label>
+            <input type="password" name="Senha" id="email">
+            <a  href="login.htm">Já tem conta?Conecte-se</a>
+            <button id="enviar" >Enviar </button>
+        </fieldset>
+    </form>
+</div>
+</div>
+</div>
+
+</body>
+
+</html>
