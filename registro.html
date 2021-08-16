@@ -74,6 +74,9 @@ button{
 }
 </style>
 
+<script>
+
+</script>
 <body>
     <div class= "total">
     <div class="conteiner-d">
@@ -86,15 +89,15 @@ button{
     <form action="php/registro.php">
         <fieldset>
             <label > Nome:</label>
-            <input type="text"name="nome" id="nome"> 
+            <input type="text"name="nome" id="nome" required> 
             <label> Sobrenome:</label>
-            <input type="text"name="sobrenome " id="sobrenome"> 
+            <input type="text"name="sobrenome" id="sobrenome" required> 
             <label>Email:</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" required>
             <label>Senha:</label>
-            <input type="password" name="Senha" id="email">
+            <input type="password" name="Senha" id="Senha" required>
             <a  href="login.htm">Já tem conta?Conecte-se</a>
-            <button id="enviar" >Enviar </button>
+            <button id="enviar">Enviar </button>
         </fieldset>
     </form>
 </div>
