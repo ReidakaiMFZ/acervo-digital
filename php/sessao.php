@@ -14,7 +14,7 @@ if($vReg = mysqli_fetch_assoc($oUsuarios))
 {
 	//echo $vReg['USRNOME'];
 	$_SESSION['USRCODIGO'] = $vReg['USRCODIGO'];
-	header('location: exemplo.php');
+	header('location: ../index.html');
 }
 else
 	//echo 'Usuário ou senha incorretos';
