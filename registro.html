@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>cadastro</title>
+    <title>Acervo - Cadastro</title>
 </head>
 
 <style>
@@ -16,7 +16,8 @@
 .conteiner-e {
     background-color:#B36EEA;
     height: 70vh;
-    width: 70vw;        
+    width: 70vw;   
+    padding-right:4%;     
 }
 
 img{
@@ -29,14 +30,10 @@ form{
 }
 
 .dentro{ 
-    margin-top: 60px;    
+    margin-top: 60px;  
+    margin-left:50px;  
 }
 
-fieldset{
-    margin-top: -5vh;
-    height: 230px;
-    padding-bottom: 15.7vh;
-}
 
 button{
     height: 30px;
@@ -52,7 +49,6 @@ label{
 }
 
 h2{
-    margin-left: 20px;
     font-family: Arial;
     font-weight: 200px;
     font-size: 40px;
@@ -67,7 +63,7 @@ a{
 input{
     color: blanchedalmond;
     background-color:#1C1C1C ;
-    width: 15vw;
+    width: 90%;
 }
 button{
     margin-top: 10vh;
@@ -87,18 +83,18 @@ button{
 <div class="dentro">
     <h2>Cadastro</h2>
     <form action="php/registro.php">
-        <fieldset>
-            <label > Nome:</label>
-            <input type="text"name="nome" id="nome" required> 
-            <label> Sobrenome:</label>
-            <input type="text"name="sobrenome" id="sobrenome" required> 
-            <label>Email:</label>
-            <input type="email" name="email" id="email" required>
-            <label>Senha:</label>
-            <input type="password" name="Senha" id="Senha" required>
-            <a  href="login.htm">Já tem conta?Conecte-se</a>
-            <button id="enviar">Enviar </button>
-        </fieldset>
+    
+        <label > Nome:</label>
+        <input type="text"name="nome" id="nome" required> 
+        <label> Sobrenome:</label>
+        <input type="text"name="sobrenome" id="sobrenome" required> 
+        <label>Email:</label>
+        <input type="email" name="email" id="email" required>
+        <label>Senha:</label>
+        <input type="password" name="Senha" id="Senha" required>
+        <a  href="login.htm">Já tem conta?Conecte-se</a>
+        <button id="enviar">Enviar </button>
+        
     </form>
 </div>
 </div>
