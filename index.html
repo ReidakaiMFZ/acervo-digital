@@ -1,57 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>inicial</title>
-    <link href="css/cssinicio.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <main>
-     
-    <header>
-      <div id="head">
-        <table>	
-         <tr>
-            <td><input type="button" name="inicio" class="num" value="Inicio" onclick="" /></td>
-            <td><input type="button" name="buscar" class="num" value="Buscar" onclick="" /></td>
-			<td><input type="button" name="biblioteca" class="num" value="Biblioteca" onclick="" /></td>
-            <td id="perfil" ><input type="button" name="Perfil" class="num" value="Perfil" onclick="" /></td>
-			
-         </tr>
-      </table>
-      </div>
-    </header>
-    
-    <div id="fileira1">
-     <ul>
-       <li>
-         <img src="alguma imagem aí">
-         <label>artista/banda</label>
-           <small>gravadora /ano</small>
-       </li>
-     </ul>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/cssinicio.css">
+  <script src="js/indexscript.js"></script>
+  <title>inicial</title>
+</head>
+
+<body>
+
+  <header>
+    <h3><a href="#">Inicio</a></h3>
+    <h3><a href="#">Biblioteca</a></h3>
+
+    <div class="input-group">
+        <input id="search-input" type="search" id="form1" class="form-control" />
+        <label class="form-label" for="form1">Search</label>
+      <button id="search-button" type="button" class="btn btn-primary">Q</button>
     </div>
-      <div id="fileira2">
-        <ul>
-       <li>
-         <img src="alguma imagem aí">
-         <label>artista/banda</label>
-           <small>gravadora /ano</small>
-       </li>
-     </ul>
-      </div>
-       <div id="fileira3">
-         <ul>
-       <li>
-        <img src="" alt="">
-         <label>artista/banda</label>
-           <small>gravadora /ano</small>
-       </li>
-     </ul>
-       </div>
-     </main>
-    
-    <script src="js/script.js"></script>
-  </body>
+
+    <h3 class="perfil">
+      <a href="#">perfil</a>
+    </h3>
+  </header>
+
+  <main>
+    <div id="fileira1">
+      <img src="alguma imagem aí">
+      <label>artista/banda</label>
+      <small>gravadora /ano</small>
+    </div>
+  </main>
+
+
+
+</body>
 </html>
