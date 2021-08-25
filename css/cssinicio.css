@@ -3,12 +3,12 @@
   font-family: sans-serif;
 }
 body{
-  background-color: #000;
+  background-color: #333333;
 }
 header{
   display:flex;
   height: 10vh;
-  background-color: blueviolet;
+  background-color: #B36EEA;
 }
 header > h3{
   margin-left: 2.5%;
@@ -16,19 +16,31 @@ header > h3{
   margin-top:2%;
 }
 .perfil{
-  margin-left: 60%;
-  margin-top:2%;
+  margin-left: 55%;
+}
+.perfil > img{
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 header > h3> a{
   text-decoration: none;
   color: #fff;
 }
-.input-group{
+.pesquisa{
   display:flex;
-  height: 5vh;
+  height: 4vh;
   margin-top: 2%;
+
 }
-.form-label{
-  position:absolute;
+.txtPesquisa{
+  width: 20vw;
+}
+.pesquisa > .btnPesquisa{
+  position: absolute;
+  height: 4vh;
+  width: 3vw;
+  margin-left: 20vw;
+  border: #000 1px solid;
 }
 
