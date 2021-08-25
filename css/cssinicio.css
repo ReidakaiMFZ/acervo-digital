@@ -16,31 +16,30 @@ header > h3{
   margin-top:2%;
 }
 .perfil{
-  margin-left: 55%;
+  margin-left: 25%;
 }
 .perfil > img{
   border-radius: 50%;
   height: 50px;
   width: 50px;
 }
-header > h3> a{
+header a{
   text-decoration: none;
   color: #fff;
 }
 .pesquisa{
   display:flex;
   height: 4vh;
-  margin-top: 2%;
+  margin-top: 1.8%;
 
 }
 .txtPesquisa{
-  width: 20vw;
-}
-.pesquisa > .btnPesquisa{
-  position: absolute;
-  height: 4vh;
-  width: 3vw;
-  margin-left: 20vw;
+  width: 35vw;
   border: #000 1px solid;
 }
 
+img{
+  position: relative;
+  width: 3vw;
+  border: #000 1px solid;
+}
