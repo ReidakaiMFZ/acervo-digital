@@ -41,7 +41,7 @@ $c = 1; //contador
 
 while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
 {
-    $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO 
+    $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO, BDSCODIGO, ARTCODIGO
     FROM musicas 
     LEFT JOIN generos ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO
     LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
@@ -68,11 +68,11 @@ while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
       echo "<br/>";
       if ($regPop['BDSNOME'] == NULL)
       {
-        echo   "<a href=''><small>" . $regPop['ARTNOME'] . "</small></a>";
+        echo   "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
       }
       else
       {
-        echo   "<a href=''><small>" . $regPop['BDSNOME'] . "</small></a>";
+        echo   "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
       }
       echo "</td>";
       echo "</div>";

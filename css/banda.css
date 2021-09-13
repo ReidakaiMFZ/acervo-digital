@@ -58,6 +58,11 @@ header > .perfil > img{
 }
 
 /*corpo*/
+p{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    text-align: center;
+}
 .conteiners{
     margin-bottom:0px ;
     border-bottom:2px solid #4F4F4F ;
@@ -66,26 +71,25 @@ header > .perfil > img{
 .conteiners>h1{
     display: inline-block;
     margin-top: 15vh;
-    margin-left: 40vw;
+    margin-left: 45vw;
 }
 .conteiners> ul li{
     display:flex;
+    margin-bottom: 3vh;
+
+}
+.conteiners> ul{
     margin-top: 7vh;
+    margin-bottom: 4vh;
 }
 .tabelas{
     display:flex;
-    margin-left: 15vw;
 }
 table{
-    margin-left: 5vw;
-    width: 2vw;    
+    margin-left: 3vw;
+    width: 20vw;    
+    text-align: center;
 }
-button{
-    background-color: black;
-    margin-bottom: 10vh;
-    margin-left:15vw ;
-    margin-top: 10vh;
-    height: 7vh;
-    width: 9vw;
-    border: 0; 
+.espaco{
+    margin-bottom:10vh;
 }
