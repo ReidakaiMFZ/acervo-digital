@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(isset($_SESSION['USRCODIGO']) == false)
+{
+  header('location:../login.htm');
+}
+?>
 <!DOCTYPE html>
 
 <head>
@@ -30,8 +38,6 @@
 </header>
 
 <?php
-session_start();
-
 $conexao = mysqli_connect("localhost", "root", "","acervo"); //conexão
 $queryGeneros ="SELECT * FROM GENEROS"; //pesquisa de generos no banco de dados
 $consultaGeneros = mysqli_query($conexao, $queryGeneros); //consulta de generos de fato

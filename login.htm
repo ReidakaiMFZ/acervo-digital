@@ -61,8 +61,9 @@ form{
   margin-left: 19vw;
 }
 </style>
+
 <body>
- <form action="php\sessao.php">
+ <form action="php\Login2.php">
   <main>
     <img src="images\formulario.jpeg"> 
     <nav>
@@ -79,4 +80,17 @@ form{
   </main>
 </form>
 </body>
+
+<script>
+  var falha = 0;
+  var params = window.location.search.substring(1).split('=');
+
+  falha = params[1];
+  
+  if(falha == 1)
+  {
+    alert("Usuário negado");
+  }
+  </script>
+
 </html>
