@@ -12,7 +12,6 @@ if(isset($_SESSION['USRCODIGO']) == false)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/cssinicio.css">
-  <script src="../js/indexscript.js"></script>
   <title>Inicio - ACERVO</title>
 </head>
 
@@ -24,10 +23,10 @@ if(isset($_SESSION['USRCODIGO']) == false)
   <h3><a href="#">Biblioteca</a></h3>
   <h3><a href="#">Cadastrar</a></h3>
 
-  <div class="pesquisa">
-    <input id="txtPesquisa" type="search" class="txtPesquisa" placeholder="Pesquisar..." />
-    <input type="image" class="btnPesquisa" src="../images/search-site-pw2.png" alt="">
-  </div>
+  <form class="pesquisa" action="search.php" method="get">
+    <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
+    <button type="submit" class="btnPesquisa"><img src="../images/search-site-pw2.png" alt=""/></button>
+  </form>
 
   <div class="perfil">
     <img src="../images/unknown.ico">

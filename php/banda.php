@@ -4,6 +4,7 @@ session_start();
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../login.htm');
+  die();
 }
 
 $conexao = mysqli_connect("localhost", "root", "", "acervo");
@@ -18,8 +19,17 @@ WHERE BDSCODIGO = ".$intId.
 " ORDER BY ARTNOME;" ;
 $queryBanda  = mysqli_query($conexao, $strBandas);
 
-$regBanda = mysqli_fetch_array($queryBanda);
 
+if($regBanda = mysqli_fetch_array($queryBanda))
+{
+
+}
+else
+{
+    echo "<h1>Error 404</h1>";
+    echo "<label>Not Found</label>";
+    die();
+}
 ?>
 
 <html lang="pt-br">
@@ -35,7 +45,7 @@ $regBanda = mysqli_fetch_array($queryBanda);
     
         <header>
 
-            <h3><a href="index.php">Inicio</a></h3>
+            <h3><a href="../php/">Inicio</a></h3>
             <h3><a href="#">Biblioteca</a></h3>
             <h3><a href="#">Cadastrar</a></h3>
           

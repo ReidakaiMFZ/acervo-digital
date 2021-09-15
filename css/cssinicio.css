@@ -36,7 +36,15 @@ header a{
 .btnPesquisa{
   position: relative;
   width: 3vw;
+  height: 4vh;
   border: #000 1px solid;
+}
+.btnPesquisa > img{
+  display: none;
+  width: 3vw;
+  height: 4vh;
+  border: #000 1px solid;
+  border-radius: 10%;
 }
 .perfil{
   text-align: center;

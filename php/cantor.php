@@ -11,7 +11,18 @@ $conexao=mysqli_connect("localhost", "root", "", "acervo");
 $intId = $_GET['artistaid'];
 $consultaArtista = "SELECT ARTNOME,ARTDTINICIO,ARTDTTERMINO,ARTAPRESENTACAO FROM artistas WHERE ARTCODIGO = ".$intId;
 $queryArtista = mysqli_query($conexao, $consultaArtista);
-$dados = mysqli_fetch_array($queryArtista);
+
+if($dados = mysqli_fetch_array($queryArtista))
+{
+
+}
+else
+{
+    echo "<h1>Error 404</h1>";
+    echo "<label>Not Found</label>";
+    die();
+}
+
 ?>
 
 <html lang="pt-br">
