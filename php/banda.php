@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if(isset($_SESSION['USRCODIGO']) == false)
+{
+  header('location:../login.htm');
+}
+
 $conexao = mysqli_connect("localhost", "root", "", "acervo");
 
 $intId = $_GET['bandaid'];
