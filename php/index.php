@@ -11,7 +11,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../css/cssinicio.css">
+  <link rel="stylesheet" href="../css/index.css">
   <title>Inicio - ACERVO</title>
 </head>
 

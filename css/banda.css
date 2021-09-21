@@ -93,3 +93,7 @@ table{
 .espaco{
     margin-bottom:10vh;
 }
+input{
+    color: #000;
+    text-indent: 5px;
+  }

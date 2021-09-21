@@ -99,3 +99,7 @@ h2{
   width: 100%;
   border-radius: 10%;
 }
+input{
+  color: #000;
+  text-indent: 5px;
+}
