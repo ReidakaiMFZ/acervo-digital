@@ -7,8 +7,10 @@ if($pesquisa == "all")
     FROM musicas 
     LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
     LEFT JOIN artistas ON artistas.ARTCODIGO = musicas.MSCARTISTA";
+
     $queryBanda ="SELECT BDSCODIGO, BDSNOME
     FROM bandas";
+
     $queryCantor ="SELECT ARTCODIGO, ARTNOME
     FROM artistas";
 }
@@ -23,6 +25,7 @@ else
     $queryBanda ="SELECT BDSCODIGO, BDSNOME
     FROM bandas 
     WHERE BDSNOME LIKE '%". $pesquisa ."%' ORDER BY BDSNOME";
+
     $queryCantor ="SELECT ARTCODIGO, ARTNOME
     FROM artistas 
     WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME";
@@ -101,7 +104,7 @@ while($regPop = mysqli_fetch_assoc($consultaPop))
 }
 echo "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
 //bandas
-echo "<a class='prev1' onclick='plusSlides1(-1)'>&#10094;</a>";
+echo "<a class='prev1' onclick='plusSlides1(parseInt(-1, 10))'>&#10094;</a>";
 while($regBanda = mysqli_fetch_array($consultaBanda))
 {
     echo "<div class='linha1'>";
@@ -115,7 +118,7 @@ while($regBanda = mysqli_fetch_array($consultaBanda))
         {
             echo "<td>";
             echo "<div class='album'>";
-            echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/>";
+            echo   "<a href='banda.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
             echo   "<label>" . $regBanda['BDSNOME'] . "</label></a>";
             echo "</td>";
             echo "</div>";
@@ -127,58 +130,39 @@ while($regBanda = mysqli_fetch_array($consultaBanda))
     echo  "</table>";
     echo "</div>";
 }
-echo "<a class='next1' onclick='plusSlides1(1)'>&#10095;</a>";
+echo "<a class='next1' onclick='plusSlides1(parseInt(1, 10))'>&#10095;</a>";
 
-/*
-//teste de bandas
-if(mysqli_fetch_array($consultaBanda) != null)
-{
-    echo "<div class='linha'>";
-    echo  "<h2>Bandas</h2>";
-    echo  "<table>";
-    echo    "<tbody>";
-    echo      "<tr>";
 
-    while($regBanda = mysqli_fetch_assoc($consultaBanda))
-    {
-        echo "<td>";
-        echo "<div class='album'>";
-        echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/></a>";
-        echo   "<a href='banda.php?bandaid=". $regBanda['BDSCODIGO']."'><label>" . $regBanda['BDSNOME'] . "</label></a>";
-        echo "<br/>";
-        echo "</td>";
-        echo "</div>";
-    }
-    echo      "</tr>";
-    echo    "</tbody>";
-    echo  "</table>";
-    echo "</div>";
-}
-*/
 //teste de cantor
-if(mysqli_fetch_array($consultaCantor) != null)
+
+echo "<a class='prev2' onclick='plusSlides2(parseInt(-1, 10))'>&#10094;</a>";
+while($regCantor = mysqli_fetch_array($consultaCantor))
 {
-    echo "<div class='linha'>";
-    echo  "<h2>Artistas</h2>";
+    echo "<div class='linha2'>";
+    echo  "<h2>Cantores</h2>";
     echo  "<table>";
     echo    "<tbody>";
     echo      "<tr>";
-
-    while($regCantor = mysqli_fetch_assoc($consultaCantor))
+    for($i = 0; $i < 7; $i++)
     {
-        echo "<td>";
-        echo "<div class='album'>";
-        echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/></a>";
-        echo   "<a href='cantor.php?artistaid=". $regCantor['ARTCODIGO'] ."'><label>" . $regCantor['ARTNOME'] . "</label></a>";
-        echo "<br/>";
-        echo "</td>";
-        echo "</div>";
+        if($regCantor != null)
+        {
+            echo "<td>";
+            echo "<div class='album'>";
+            echo   "<a href='cantor.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+            echo   "<label>" . $regCantor['ARTNOME'] . "</label></a>";
+            echo "</td>";
+            echo "</div>";
+            $regCantor = mysqli_fetch_array($consultaCantor);
+        }
     }
     echo      "</tr>";
     echo    "</tbody>";
     echo  "</table>";
     echo "</div>";
 }
+echo "<a class='next2' onclick='plusSlides2(parseInt(1, 10))'>&#10095;</a>";
+
 
 mysqli_free_result($consultaCantor);
 mysqli_free_result($consultaPop);
@@ -188,20 +172,5 @@ mysqli_close($conexao);
 ?>
 </body>
 
-<script>
-var cont = 1;
-var slidesmus = document.getElementsByClassName("linha");
-while(cont < slidesmus.length){
-    slidesmus[cont].style.display = "none";
-    cont++;
-}
-
-var contban = 1;
-var slidesban = document.getElementsByClassName("linha1");
-while(contban < slidesban.length){
-    slidesban[contban].style.display = "none";
-    contban++;
-}
-</script>
-
+<script src="../js/search.js"></script>
 </html>

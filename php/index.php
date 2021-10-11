@@ -25,13 +25,13 @@ if(isset($_SESSION['USRCODIGO']) == false)
 
   <form class="pesquisa" action="search.php" method="get">
     <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
-    <button type="submit" class="btnPesquisa"><img src="../images/search-site-pw2.png" alt=""/></button>
+    <button type="submit" class="btnPesquisa"></button>
   </form>
 
   <div class="perfil">
     <img src="../images/unknown.ico">
     <h3>
-      <a href="#">perfil</a>
+      <a href="perfil.php">perfil</a>
     </h3>
   </div>    
 </header>
@@ -73,11 +73,11 @@ while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
       echo "<br/>";
       if ($regPop['BDSNOME'] == NULL)
       {
-        echo   "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+        echo "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
       }
       else
       {
-        echo   "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+        echo "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
       }
       echo "</td>";
       echo "</div>";
@@ -95,7 +95,8 @@ while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
   }
   $c++;
 }
-
+mysqli_free_result($consultaGeneros);
+mysqli_free_result($qntgeneros);
 mysqli_close($conexao);
 ?>
 </body>

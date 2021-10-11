@@ -17,6 +17,7 @@ header{
   height: 12vh;
   width: 100vw;
   background-color: #B36EEA;
+  z-index: 2;
   
 }
 header > h3{
@@ -42,6 +43,9 @@ header a{
   width: 3vw;
   height: 4vh;
   border: #000 1px solid;
+  background-image: url("../images/search-site-pw2.png");
+  background-size: 2.5vw 3.5vh;
+  background-position: center;
 }
 .btnPesquisa > img{
   display: none;
@@ -63,12 +67,15 @@ header > .perfil > img{
   max-height: 50px;
   border: black 1px solid;
 }
-.linha, .linha1{
+
+/* main */
+.linha, .linha1, .linha2{
   position: absolute;
   margin-top: 20vh;
   margin-left: 5vw;
   margin-right: 5vw;
   max-width: 90vw;
+  z-index: 1;
 }
 .album{
   display: table;
@@ -99,7 +106,7 @@ header > .perfil > img{
   color: #fff;
 }
 /* Next & previous buttons */
-.prev, .next, .prev1, .next1 {
+.prev, .next, .prev1, .next1, .prev2, .next2 {
   cursor: pointer;
   position: absolute;
   display: block;
@@ -117,14 +124,20 @@ header > .perfil > img{
 .linha1{
   margin-top: 30%;
 }
+.linha2{
+  margin-top: 50%;
+}
 .prev1, .next1{
   margin-top: 18%;
 }
-.next, .next1 {
+.prev2, .next2{
+  margin-top: 38%;
+}
+.next, .next1, .next2 {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
-.prev:hover, .next:hover, .prev1:hover, .next1:hover {
+.prev:hover, .next:hover, .prev1:hover, .next1:hover, .prev2:hover, .next2:hover {
   background-color: rgba(0,0,0,0.8);
 }
 input{
