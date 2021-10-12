@@ -66,103 +66,115 @@ $consultaPop = mysqli_query($conexao, $queryPop);
 </header>
 
 <?php
-//teste de musicas
-echo "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
-while($regPop = mysqli_fetch_assoc($consultaPop))
+if(mysqli_fetch_assoc($consultaPop))
 {
-    echo "<div class='linha'>";
-    echo  "<h2>Musicas</h2>";
-    echo  "<table>";
-    echo    "<tbody>";
-    echo      "<tr>";
-    for($i = 0; $i < 7; $i++)
+    mysqli_free_result($consultaPop);
+    $consultaPop = mysqli_query($conexao, $queryPop);
+    //teste de musicas
+    echo "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
+    while($regPop = mysqli_fetch_assoc($consultaPop))
     {
-        if($regPop != null)
+        echo "<div class='linha'>";
+        echo  "<h2>Musicas</h2>";
+        echo  "<table>";
+        echo    "<tbody>";
+        echo      "<tr>";
+        for($i = 0; $i < 7; $i++)
         {
-            echo "<td>";
-            echo "<div class='album'>";
-            echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/>";
-            echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
-            echo "<br/>";
-            if ($regPop['BDSNOME'] == null)
+            if($regPop != null)
             {
-                echo   "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+                echo "<td>";
+                echo "<div class='album'>";
+                echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
+                echo "<br/>";
+                if ($regPop['BDSNOME'] == null)
+                {
+                    echo   "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+                }
+                else
+                {
+                    echo   "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+                }
+                echo "</td>";
+                echo "</div>";
+                $regPop = mysqli_fetch_assoc($consultaPop);
             }
-            else
+        }
+        echo      "</tr>";
+        echo    "</tbody>";
+        echo  "</table>";
+        echo "</div>";
+    }
+    echo "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
+}
+if(mysqli_fetch_assoc($consultaBanda))
+{
+    mysqli_free_result($consultaBanda);
+    $consultaBanda = mysqli_query($conexao, $queryBanda);
+    //bandas
+    echo "<a class='prev1' onclick='plusSlides1(parseInt(-1, 10))'>&#10094;</a>";
+    while($regBanda = mysqli_fetch_array($consultaBanda))
+    {
+        echo "<div class='linha1'>";
+        echo  "<h2>Bandas</h2>";
+        echo  "<table>";
+        echo    "<tbody>";
+        echo      "<tr>";
+        for($i = 0; $i < 7; $i++)
+        {
+            if($regBanda != null)
             {
-                echo   "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+                echo "<td>";
+                echo "<div class='album'>";
+                echo   "<a href='banda.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<label>" . $regBanda['BDSNOME'] . "</label></a>";
+                echo "</td>";
+                echo "</div>";
+                $regBanda = mysqli_fetch_array($consultaBanda);
             }
-            echo "</td>";
-            echo "</div>";
-            $regPop = mysqli_fetch_assoc($consultaPop);
         }
+        echo      "</tr>";
+        echo    "</tbody>";
+        echo  "</table>";
+        echo "</div>";
     }
-    echo      "</tr>";
-    echo    "</tbody>";
-    echo  "</table>";
-    echo "</div>";
+    echo "<a class='next1' onclick='plusSlides1(parseInt(1, 10))'>&#10095;</a>";
 }
-echo "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
-//bandas
-echo "<a class='prev1' onclick='plusSlides1(parseInt(-1, 10))'>&#10094;</a>";
-while($regBanda = mysqli_fetch_array($consultaBanda))
+if(mysqli_fetch_assoc($consultaCantor))
 {
-    echo "<div class='linha1'>";
-    echo  "<h2>Bandas</h2>";
-    echo  "<table>";
-    echo    "<tbody>";
-    echo      "<tr>";
-    for($i = 0; $i < 7; $i++)
+    mysqli_free_result($consultaCantor);
+    $consultaCantor = mysqli_query($conexao, $queryCantor);
+    //teste de cantor
+
+    echo "<a class='prev2' onclick='plusSlides2(parseInt(-1, 10))'>&#10094;</a>";
+    while($regCantor = mysqli_fetch_array($consultaCantor))
     {
-        if($regBanda != null)
+        echo "<div class='linha2'>";
+        echo  "<h2>Artistas</h2>";
+        echo  "<table>";
+        echo    "<tbody>";
+        echo      "<tr>";
+        for($i = 0; $i < 7; $i++)
         {
-            echo "<td>";
-            echo "<div class='album'>";
-            echo   "<a href='banda.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
-            echo   "<label>" . $regBanda['BDSNOME'] . "</label></a>";
-            echo "</td>";
-            echo "</div>";
-            $regBanda = mysqli_fetch_array($consultaBanda);
+            if($regCantor != null)
+            {
+                echo "<td>";
+                echo "<div class='album'>";
+                echo   "<a href='cantor.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<label>" . $regCantor['ARTNOME'] . "</label></a>";
+                echo "</td>";
+                echo "</div>";
+                $regCantor = mysqli_fetch_array($consultaCantor);
+            }
         }
+        echo      "</tr>";
+        echo    "</tbody>";
+        echo  "</table>";
+        echo "</div>";
     }
-    echo      "</tr>";
-    echo    "</tbody>";
-    echo  "</table>";
-    echo "</div>";
+    echo "<a class='next2' onclick='plusSlides2(parseInt(1, 10))'>&#10095;</a>";
 }
-echo "<a class='next1' onclick='plusSlides1(parseInt(1, 10))'>&#10095;</a>";
-
-
-//teste de cantor
-
-echo "<a class='prev2' onclick='plusSlides2(parseInt(-1, 10))'>&#10094;</a>";
-while($regCantor = mysqli_fetch_array($consultaCantor))
-{
-    echo "<div class='linha2'>";
-    echo  "<h2>Artistas</h2>";
-    echo  "<table>";
-    echo    "<tbody>";
-    echo      "<tr>";
-    for($i = 0; $i < 7; $i++)
-    {
-        if($regCantor != null)
-        {
-            echo "<td>";
-            echo "<div class='album'>";
-            echo   "<a href='cantor.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
-            echo   "<label>" . $regCantor['ARTNOME'] . "</label></a>";
-            echo "</td>";
-            echo "</div>";
-            $regCantor = mysqli_fetch_array($consultaCantor);
-        }
-    }
-    echo      "</tr>";
-    echo    "</tbody>";
-    echo  "</table>";
-    echo "</div>";
-}
-echo "<a class='next2' onclick='plusSlides2(parseInt(1, 10))'>&#10095;</a>";
-
 
 mysqli_free_result($consultaCantor);
 mysqli_free_result($consultaPop);
