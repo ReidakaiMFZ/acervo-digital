@@ -1,83 +1,29 @@
 <html>
-<style>
-nav
-{
-background-color:#bf6be8;
-flex-grow:1;
-} 
-main
-{
- position: absolute;
- width: 50vw;
- height: 70vh;
- margin: 1vh 5vw;
- display: flex;
-}
 
-h1
-{
-text-align: center;
-font-family: Arial, sens-serif;
-font-size: 50px;
-}
-label
-{
-margin-left: 10px;
-font-family: Arial, sens-serif;
-font-size: 16px;
-}
-input
-{
-margin-left: 10px;
-width:90%;
-height:21px;
-color:#FFFFFF;
-background:#333333;
-}
-a
-{
-font-family: Arial, sens-serif;
-font-size: 10px;
-}
-div
-{
-text-align: center;
-flex-grow:1;
-}
-button{
-  width: 50%;
-	height: 8%;
-  text-align: center;
-  padding: 1px 2px;
-  border-radius: 8px;
-  background-color: #333333;
-  font-size: 18px;
-	color: #FFFFFF;
-	margin-top: 5vh;	
-}	
-form{
-  margin-top: 20vh;
-  margin-left: 19vw;
-}
-</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/login.css">
+  <title>Acervo - Login</title>
+</head>
 
 <body>
- <form action="php\Login2.php">
-  <main>
-    <img src="images\formulario.jpeg"> 
-    <nav>
-       <h1> Login</h1>
-       <label> Email</label></br>
-       <input name="txtLogin" id="email" type="email" required /></br></br>
-       <label> Senha</label></br>
-       <input name= "txtSenha"id="senha" type="password" required />
-       <a href="registro.html"> Registre-se</a>
-       <div>
-	        <button> Enviar </a></button>
-       </div>
-    </nav>
-  </main>
-</form>
+
+<img src="images\formulario.jpeg"> 
+
+<div class="dentro">
+  <h2>Login</h2>
+  <form action="php\Login2.php">
+        <label>Email ou Login:</label></br>
+        <input name="txtLogin" id="email" required /></br>
+        <label>Senha:</label></br>
+        <input name= "txtSenha"id="senha" type="password" required />
+        <a href="registro.html">Registre-se</a> 
+        <button> Enviar </button>
+  </form>
+</div>
 </body>
 
 <script>
@@ -89,7 +35,8 @@ form{
   if(falha == 1)
   {
     alert("Usuário negado");
+    window.location.search = '';
   }
-  </script>
+</script>
 
 </html>

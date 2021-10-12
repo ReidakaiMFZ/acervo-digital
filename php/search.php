@@ -139,7 +139,7 @@ echo "<a class='prev2' onclick='plusSlides2(parseInt(-1, 10))'>&#10094;</a>";
 while($regCantor = mysqli_fetch_array($consultaCantor))
 {
     echo "<div class='linha2'>";
-    echo  "<h2>Cantores</h2>";
+    echo  "<h2>Artistas</h2>";
     echo  "<table>";
     echo    "<tbody>";
     echo      "<tr>";

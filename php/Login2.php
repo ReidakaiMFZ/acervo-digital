@@ -1,7 +1,7 @@
 <?php
 session_start();
 $oCon = mysqli_connect('localhost', 'root', '', 'acervo');
-$cSQL = "SELECT USRCODIGO, USRNOME" .
+$cSQL = "SELECT USRCODIGO, USRNOME, USRLOGIN" .
         "  FROM USUARIOS" .
 		" WHERE '" . $_GET['txtLogin'] . "' IN (USRLOGIN, USREMAIL)" .
 		"   AND USRSENHA = MD5('" . $_GET['txtSenha'] . "')";

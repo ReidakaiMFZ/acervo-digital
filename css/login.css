@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Arial, sens-serif;
+    color: #fff;
+    margin-left: 25vw;
+    margin-top: 20vh;
+}
+.dentro{
+    display: inline-block;
+    height: 60vh;
+    width: 20vw;
+    background-color: #bf6be8;
+    position: absolute;
+}
+img{
+    height: 60vh;
+    width: 30vw;
+    position:relative;
+}
+input
+{
+    margin-left: 10px;
+    margin-bottom: 1vh;
+    width:90%;
+    height:21px;
+    color:#FFFFFF;
+    background:#333333;
+}
+label{
+    margin-left: 1vw;
+    font-size: 16px;
+}
+a{
+    position: absolute;
+    margin-top: 3.5vh;
+    margin-left: -18vw;
+    font-size: 12px;
+    color: #fff;
+}
+h2{
+    margin: 5vh 1vw;
+}
+button{
+    position: absolute;
+    margin-top: 25vh;
+    height: 5vh;
+    width: 10vw;
+    margin-left: -18vw;
+}
