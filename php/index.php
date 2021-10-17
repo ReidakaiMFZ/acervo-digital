@@ -18,7 +18,6 @@ if(isset($_SESSION['USRCODIGO']) == false)
 <body>
 
 <header>
-
   <h3><a href="../php/">Inicio</a></h3>
   <h3><a href="#">Biblioteca</a></h3>
   <h3><a href="#">Cadastrar</a></h3>
