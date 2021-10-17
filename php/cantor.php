@@ -49,7 +49,7 @@ else
 <div class="perfil">
   <img src="../images/unknown.ico">
   <h3>
-    <a href="#">perfil</a>
+    <a href="perfil.php">perfil</a>
   </h3>
 </div>    
 </header>
