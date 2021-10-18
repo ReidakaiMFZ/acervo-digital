@@ -1,2 +1,2 @@
 # site_musica
-o Arquivo de reuso eu provavelmente não vou usar
+Este Site de musicas, nada mais é que um projeto escolar, onde eu e minha equipe temos que criá-lo utilizando diversas tecnologias. Este trabalho já está em seu final e em breve ele verá a luz do dia, quem sabe um dia retornarei a este projeto e colocarei novas features e tecnologias...
