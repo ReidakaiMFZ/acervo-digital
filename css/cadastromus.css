@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: #fff;
 }
 body{
   background-color: #333333;
@@ -55,4 +54,10 @@ header > .perfil > img{
   max-width: 50px;
   max-height: 50px;
   border: black 1px solid;
+}
+/* meio */
+#escolheInsercao{
+    margin-top: 20vh;
+    font-size: 24px;
+    text-align: center;
 }
