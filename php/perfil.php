@@ -39,7 +39,7 @@ $perfil = mysqli_fetch_assoc($query);
   <header>
     <h3><a href="../php/">Inicio</a></h3>
     <h3><a href="#">Biblioteca</a></h3>
-    <h3><a href="#">Cadastrar</a></h3>
+    <h3><a href="cadastromus.php">Cadastrar</a></h3>
 
     <form class="pesquisa" action="search.php" method="get">
       <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
@@ -50,7 +50,7 @@ $perfil = mysqli_fetch_assoc($query);
       <a href="#"><img src="../images/engrenagem.png"></a>
     </div>
   </header>
-  <img id="headerperfil"src="#" alt="">
+  <img id="headerperfil"src="../images/header-background.jpg" alt="">
   <form method="GET" id="perfilmain">
     <img id="fotoperfil" src="../images/unknown.ico" alt="" />
     <input type="text" id="nomeperfil" name="nomeperfil" value="<?php echo $perfil['USRNOME']?>"/>

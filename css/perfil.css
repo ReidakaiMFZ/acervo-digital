@@ -5,7 +5,7 @@
     color: #fff;
 }
 body{
-    background-color: #333333;
+    background-image: linear-gradient(to bottom, #000000, #121212, #1d1d1d, #282828, #333333);
 }
 /*cabeçalho*/
 header{
@@ -83,7 +83,6 @@ header > .perfil > a > img{
 }
 #headerperfil{
     position: absolute;
-    background-color: rgb(0, 174, 255);
     margin-top: 10vh;
     height:30vh; 
     width:100vw;

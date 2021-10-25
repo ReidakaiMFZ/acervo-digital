@@ -39,7 +39,7 @@ else
 <header>
 <h3><a href="../php/">Inicio</a></h3>
 <h3><a href="#">Biblioteca</a></h3>
-<h3><a href="#">Cadastrar</a></h3>
+<h3><a href="cadastromus.php">Cadastrar</a></h3>
 
 <form class="pesquisa" action="search.php" method="get">
     <input type='text' name='txtPesquisa' class='txtPesquisa' placeholder='Pesquisar...'/>
