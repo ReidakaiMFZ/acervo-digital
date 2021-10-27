@@ -12,7 +12,6 @@ if(isset($_SESSION['USRCODIGO']) == false)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/cadastromus.css">
-  <script src="../js/cadastromus.js"></script>
   <title>Acervo - Inserir</title>
 </head>
 
@@ -47,7 +46,13 @@ if(isset($_SESSION['USRCODIGO']) == false)
     <option value="6"> Inserir musicas</option>
 </select>
 
+<div id="" style="display: none;">
+
+</div>
+
 <?php $conexao = mysqli_connect("localhost", "root", "", "acervo");?>
 
 </body>
+
+<script src="../js/cadastromus.js"></script>
 </html>
