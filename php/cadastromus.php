@@ -5,7 +5,9 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../login.htm');
 }
+$conexao = mysqli_connect("localhost", "root", "", "acervo");
 ?>
+
 <!DOCTYPE html>
 
 <head>
@@ -46,11 +48,16 @@ if(isset($_SESSION['USRCODIGO']) == false)
     <option value="6"> Inserir musicas</option>
 </select>
 
-<div id="" style="display: none;">
-
+<div id="insercao00" class="insercao" name="insercao00"style="display: none;">
+  <h1>Álbuns</h1>
+  <input type="text" name="" id=""/>
 </div>
-
-<?php $conexao = mysqli_connect("localhost", "root", "", "acervo");?>
+<div id="insercao01" class="insercao" name="insercao01"style="display: none;"></div>
+<div id="insercao02" class="insercao" name="insercao02"style="display: none;"></div>
+<div id="insercao03" class="insercao" name="insercao03"style="display: none;"></div>
+<div id="insercao04" class="insercao" name="insercao04"style="display: none;"></div>
+<div id="insercao05" class="insercao" name="insercao05"style="display: none;"></div>
+<div id="insercao06" class="insercao" name="insercao06"style="display: none;"></div>
 
 </body>
 
