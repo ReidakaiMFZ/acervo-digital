@@ -1,11 +1,11 @@
 <?php
 session_start();
-
+$_SESSION['USRCODIGO'] = "103943";
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../login.htm');
 }
-$conexao = mysqli_connect("localhost", "root", "", "acervo");
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2", "ACERVO");
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +50,48 @@ $conexao = mysqli_connect("localhost", "root", "", "acervo");
 
 <div id="insercao00" class="insercao" name="insercao00"style="display: none;">
   <h1>Álbuns</h1>
-  <input type="text" name="" id=""/>
+  <label for="NOME">
+    <span>Nome</span>
+    <input type="text" name="txtAlbum" id="txtAlbum"/>
+  </label>
+  <label for="GRAVADORA">
+    <span>Gravadora</span>
+    <select name="txtGravadora" id="txtGravadora">
+      <option value="">--Selecionar--</option>
+    <?php
+      $queryGravadora = mysqli_query($conexao, "SELECT GRVCODIGO, GRVNOME FROM GRAVADORAS");
+      while($regGravadora = mysqli_fetch_assoc($queryGravadora)){
+        echo "<option value='". $regGravadora['GRVCODIGO'] ."'>". $regGravadora["GRVNOME"] ."</option>";
+      }
+    ?>
+    </select>
+  </label>
+  <label for="GENERO">
+    <span>Gênero</span>
+    <select name="txtGravadora" id="txtGravadora">
+      <option value="">--Selecionar--</option>
+    <?php
+      $queryGenero = mysqli_query($conexao, "SELECT GNRNOME, GNRCODIGO FROM GENEROS");
+      while($regGenero = mysqli_fetch_assoc($queryGenero)){
+        echo "<option value='". $regGenero['GNRCODIGO'] ."'>". $regGenero["GNRNOME"] ."</option>";
+      }
+    ?>
+    </select>
+  </label>
+  <Label for="banda">
+  <span>Banda</span>
+    <select name="txtBanda" id="txtBanda">
+      <option value="">--Selecionar--</option>
+    <?php
+      $queryBanda = mysqli_query($conexao, "SELECT ALBNOME, ALBCODIGO FROM ALBUNS");
+      while($regBanda = mysqli_fetch_assoc($queryBanda)){
+        echo "<option value='". $regBanda['ALBCODIGO'] ."'>". $regBanda["ALBNOME"] ."</option>";
+      }
+    ?>
+    </select>
+  </Label>
 </div>
+
 <div id="insercao01" class="insercao" name="insercao01"style="display: none;"></div>
 <div id="insercao02" class="insercao" name="insercao02"style="display: none;"></div>
 <div id="insercao03" class="insercao" name="insercao03"style="display: none;"></div>
