@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color:#000;
+}
+span, h1, #inpCapa{
   color:#fff;
 }
 body{
@@ -54,7 +57,7 @@ header > .perfil > img{
   min-width: 20px;
   max-width: 50px;
   max-height: 50px;
-  border: black 1px solid;
+  border: #000 1px solid;
 }
 /* meio */
 #escolheInsercao{
@@ -64,7 +67,35 @@ header > .perfil > img{
     font-size: 24px;
     text-align: center;
 }
-option, select{
-  color:#000;
+select, input:not(.rdBndArt){
+  min-width: 20vw;
 }
-
+label{
+  display: block;
+  margin-bottom: 2vh;
+}
+span{
+  display: block;
+}
+.rdBndArt{
+  display: inline-block;
+  margin-left: 0vw;
+}
+div:not(.perfil, #divRadButton){
+  margin-left: 30vw;
+  margin-top: -10vh;
+  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+  width: 25vw;
+  height: 75vh;
+  background-color: #222;
+  border: #000 solid 2px;
+}
+button{
+  font-size: 16px;
+  width: 7vw;
+  height: 4vh;
+}
+textarea{
+  width: 20vw;
+  height: 20vh;
+}

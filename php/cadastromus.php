@@ -1,11 +1,10 @@
 <?php
 session_start();
-$_SESSION['USRCODIGO'] = "103943";
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../login.htm');
 }
-$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2", "ACERVO");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 ?>
 
 <!DOCTYPE html>
@@ -19,87 +18,168 @@ $conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2", "ACERVO");
 
 <body>
 
-<header>
-  <h3><a href="../php/">Inicio</a></h3>
-  <h3><a href="#">Biblioteca</a></h3>
-  <h3><a href="#">Cadastrar</a></h3>
+  <header>
+    <h3><a href="../php/">Inicio</a></h3>
+    <h3><a href="#">Biblioteca</a></h3>
+    <h3><a href="#">Cadastrar</a></h3>
 
-  <form class="pesquisa" action="search.php" method="get">
-    <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
-    <button type="submit" class="btnPesquisa"></button>
-  </form>
+    <form class="pesquisa" action="search.php" method="get">
+      <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
+      <button type="submit" class="btnPesquisa"></button>
+    </form>
 
-  <div class="perfil">
-    <img src="../images/unknown.ico">
-    <h3>
-      <a href="perfil.php">perfil</a>
-    </h3>
-  </div>    
-</header>
+    <div class="perfil">
+      <img src="../images/unknown.ico">
+      <h3>
+        <a href="perfil.php">perfil</a>
+      </h3>
+    </div>
+  </header>
 
-<select id="escolheInsercao" onchange="escolha()">
-  <option value="">--Selecionar--</option>
-  <option value="0"> Inserir albuns</option>
-  <option value="1"> Inserir artistas</option>
-  <option value="2"> Inserir bandas</option>
-  <option value="3"> Inserir generos</option>
-  <option value="4"> Inserir gravadoras</option>
-  <option value="5"> Inserir instrumento</option>
-  <option value="6"> Inserir musicas</option>
-</select>
+  <select id="escolheInsercao" onchange="escolha()">
+    <option value="">--Selecionar--</option>
+    <option value="0"> Inserir albuns</option>
+    <option value="1"> Inserir artistas</option>
+    <option value="2"> Inserir bandas</option>
+    <option value="3"> Inserir generos</option>
+    <option value="4"> Inserir gravadoras</option>
+    <option value="5"> Inserir instrumento</option>
+    <option value="6"> Inserir musicas</option>
+  </select>
 
-<div id="insercao00" class="insercao" name="insercao00"style="display: none;">
-  <h1>Álbuns</h1>
-  <label for="NOME">
-    <span>Nome</span>
-    <input type="text" name="txtAlbum" id="txtAlbum"/>
-  </label>
-  <label for="GRAVADORA">
-    <span>Gravadora</span>
-    <select name="txtGravadora" id="txtGravadora">
-      <option value="">--Selecionar--</option>
-    <?php
+  <div id="insercao00" class="insercao" name="insercao00" style="display: none;">
+    <form action="envioDados.php" method="post">
+
+      <h1>Álbuns</h1>
+      <input type="hidden" name="TipoInsert" value="0" />
+      <!-- NOME DO ALBUM -->
+      <label for="NOME">
+        <span>Nome</span>
+        <input type="text" name="txtAlbum" id="txtAlbum" require/>
+      </label>
+      <!-- GRAVADORA -->
+      <label for="GRAVADORA">
+        <span>Gravadora</span>
+        <select name="txtGravadora" id="txtGravadora" require>
+          <option value="">--Selecionar--</option>
+          <?php
       $queryGravadora = mysqli_query($conexao, "SELECT GRVCODIGO, GRVNOME FROM GRAVADORAS");
       while($regGravadora = mysqli_fetch_assoc($queryGravadora)){
         echo "<option value='". $regGravadora['GRVCODIGO'] ."'>". $regGravadora["GRVNOME"] ."</option>";
       }
-    ?>
-    </select>
-  </label>
-  <label for="GENERO">
-    <span>Gênero</span>
-    <select name="txtGravadora" id="txtGravadora">
-      <option value="">--Selecionar--</option>
-    <?php
+      ?>
+        </select>
+      </label>
+      <!-- GENERO -->
+      <label for="GENERO">
+        <span>Gênero</span>
+        <select name="txtGenero" id="txtGenero" require>
+          <option value="">--Selecionar--</option>
+          <?php
       $queryGenero = mysqli_query($conexao, "SELECT GNRNOME, GNRCODIGO FROM GENEROS");
       while($regGenero = mysqli_fetch_assoc($queryGenero)){
         echo "<option value='". $regGenero['GNRCODIGO'] ."'>". $regGenero["GNRNOME"] ."</option>";
       }
     ?>
-    </select>
-  </label>
-  <Label for="banda">
-  <span>Banda</span>
-    <select name="txtBanda" id="txtBanda">
-      <option value="">--Selecionar--</option>
-    <?php
-      $queryBanda = mysqli_query($conexao, "SELECT ALBNOME, ALBCODIGO FROM ALBUNS");
+        </select>
+      </label>
+      <Label for="banda">
+        <!-- BOTÕES DE RADIO -->
+        <div id="divRadButton">
+          <label>
+            <input type="radio" name="rdBndArt" id="rdBndArt" class="rdBndArt" checked onclick="fnRadioButton(1)">
+            <span class="rdBndArt">Banda</span>
+          </label>
+          <label>
+            <input type="radio" name="rdBndArt" id="rdBndArt" class="rdBndArt" onclick="fnRadioButton(2)">
+            <span class="rdBndArt">Artista</span>
+          </label>
+        </div>
+        <!-- INPUT DE BANDA -->
+        <label id="lblBanda">
+          <span>Banda</span>
+          <select name="txtBanda" id="txtBanda" require>
+            <option value="">--Selecionar--</option>
+            <?php
+      $queryBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS");
       while($regBanda = mysqli_fetch_assoc($queryBanda)){
-        echo "<option value='". $regBanda['ALBCODIGO'] ."'>". $regBanda["ALBNOME"] ."</option>";
+        echo "<option value='". $regBanda['BDSCODIGO'] ."'>". $regBanda["BDSNOME"] ."</option>";
+      }
+      ?>
+          </select>
+        </Label>
+        <!-- INPUT DE ARTISTA -->
+        <label id="lblArtista" style="display: none;">
+          <span>Artista</span>
+          <select name="txtArtista" id="txtArtista">
+            <option value="">--Selecionar--</option>
+            <?php
+      $queryArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS");
+      while($regArtista = mysqli_fetch_assoc($queryArtista)){
+        echo "<option value='". $regArtista['ARTCODIGO'] ."'>". $regArtista["ARTNOME"] ."</option>";
       }
     ?>
-    </select>
-  </Label>
-</div>
+          </select>
+        </label>
+        <!-- DATA DE LANÇAMENTO -->
+        <label>
+          <span>Data de lançamento</span>
+          <input type="date" name="inpData" id="inpData" require/>
+        </Label>
+        <label>
+          <!-- CAPA -->
+          <span>Capa</span>
+          <input type="file" name="inpCapa" id="inpCapa" />
+        </label>
+        <!-- MIDIA -->
+        <label>
+          <span>Mídia</span>
+          <select name="txtMidia" id="txtMidia" require>
+            <option value="">--Selecionar--</option>
+            <?php
+        $queryMidia = mysqli_query($conexao, "SELECT MDSCODIGO, MDSNOME FROM midias");
+        while($regMidia = mysqli_fetch_assoc($queryMidia)){
+          echo "<option value='". $regMidia['MDSCODIGO'] ."'>". $regMidia['MDSNOME'] ."</option>";
+        }
+      ?>
+          </select>
+        </label>
+        <button type="submit">Enviar</button>
+    </form>
+  </div>
 
-<div id="insercao01" class="insercao" name="insercao01"style="display: none;"></div>
-<div id="insercao02" class="insercao" name="insercao02"style="display: none;"></div>
-<div id="insercao03" class="insercao" name="insercao03"style="display: none;"></div>
-<div id="insercao04" class="insercao" name="insercao04"style="display: none;"></div>
-<div id="insercao05" class="insercao" name="insercao05"style="display: none;"></div>
-<div id="insercao06" class="insercao" name="insercao06"style="display: none;"></div>
+  <div id="insercao01" class="insercao" name="insercao01" style="display: none;">
+    <form action="envioDados.php" method="POST">
+      <input type="hidden" name="TipoInsert" value="1"/>
+      <h1>Artista</h1>
+      <label>
+        <span>Nome</span>
+        <input type="text" name="txtArtista" id="txtArtista" require/>;
+      </label>
+      <label>
+        <span>Data de inicio</span>
+        <input type="date" name="txtDtInicioArt" id="txtDtInicioArt" require/>
+      </label>
+      <label>
+        <span>Data de Término</span>
+        <input type="date" name="txtDtTerminoArt" id="txtDtTerminoArt" />
+      </label>
+      <label>
+        <span>Apresentação</span>
+        <textarea name="txtArtistaApres" id="txtArtistaApres" require></textarea>
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <div id="insercao02" class="insercao" name="insercao02" style="display: none;"></div>
+  <div id="insercao03" class="insercao" name="insercao03" style="display: none;"></div>
+  <div id="insercao04" class="insercao" name="insercao04" style="display: none;"></div>
+  <div id="insercao05" class="insercao" name="insercao05" style="display: none;"></div>
+  <div id="insercao06" class="insercao" name="insercao06" style="display: none;"></div>
 
 </body>
 
 <script src="../js/cadastromus.js"></script>
+<script src="../js/fnRadioButton.js"></script>
+
 </html>
