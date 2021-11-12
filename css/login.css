@@ -4,6 +4,9 @@
 }
 body{
     font-family: Arial, sens-serif;
+    /* background-image: linear-gradient(217deg, rgba(130, 27, 190, 0.4), rgba(255,0,0,0) 70.71%),
+                      linear-gradient(127deg, rgba(196, 199, 23, 0.4), rgba(0,255,0,0) 70.71%),
+                      linear-gradient(336deg, rgba(26, 184, 39, 0.4), rgba(0,0,255,0) 70.71%); */
     color: #fff;
     margin-left: 25vw;
     margin-top: 20vh;

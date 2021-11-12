@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['USRCODIGO']) == false)
 {
-  header('location:../login.htm');
+  header('location:../pages/login.htm');
 }
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 ?>
@@ -15,7 +15,16 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
   <link rel="stylesheet" href="../css/cadastromus.css">
   <title>Acervo - Inserir</title>
 </head>
+<script>
 
+  var params = window.location.search.substring(1).split('=');
+  console.log(params);
+  
+  if(params[0] != "")
+  {
+    window.location.search = '';
+  }
+</script>
 <body>
 
   <header>
@@ -37,7 +46,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
   </header>
 
   <select id="escolheInsercao" onchange="escolha()">
-    <option value="">--Selecionar--</option>
+    <option value="-1">--Selecionar--</option>
     <option value="0"> Inserir albuns</option>
     <option value="1"> Inserir artistas</option>
     <option value="2"> Inserir bandas</option>
@@ -55,7 +64,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <!-- NOME DO ALBUM -->
       <label for="NOME">
         <span>Nome</span>
-        <input type="text" name="txtAlbum" id="txtAlbum" require/>
+        <input type="text" name="txtAlbum" id="txtAlbum" require />
       </label>
       <!-- GRAVADORA -->
       <label for="GRAVADORA">
@@ -124,7 +133,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <!-- DATA DE LANÇAMENTO -->
         <label>
           <span>Data de lançamento</span>
-          <input type="date" name="inpData" id="inpData" require/>
+          <input type="date" name="inpData" id="inpData" require />
         </Label>
         <label>
           <!-- CAPA -->
@@ -147,18 +156,17 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <button type="submit">Enviar</button>
     </form>
   </div>
-
   <div id="insercao01" class="insercao" name="insercao01" style="display: none;">
     <form action="envioDados.php" method="POST">
-      <input type="hidden" name="TipoInsert" value="1"/>
+      <input type="hidden" name="TipoInsert" value="1" />
       <h1>Artista</h1>
       <label>
         <span>Nome</span>
-        <input type="text" name="txtArtista" id="txtArtista" require/>;
+        <input type="text" name="txtArtista" id="txtArtista" require />;
       </label>
       <label>
         <span>Data de inicio</span>
-        <input type="date" name="txtDtInicioArt" id="txtDtInicioArt" require/>
+        <input type="date" name="txtDtInicioArt" id="txtDtInicioArt" require />
       </label>
       <label>
         <span>Data de Término</span>
@@ -171,10 +179,81 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <button type="submit">Enviar</button>
     </form>
   </div>
-  <div id="insercao02" class="insercao" name="insercao02" style="display: none;"></div>
-  <div id="insercao03" class="insercao" name="insercao03" style="display: none;"></div>
-  <div id="insercao04" class="insercao" name="insercao04" style="display: none;"></div>
-  <div id="insercao05" class="insercao" name="insercao05" style="display: none;"></div>
+  <div id="insercao02" class="insercao" name="insercao02" style="display: none;">
+    <form action="envioDados.php" method="POST">
+      <input type="hidden" name="TipoInsert" value="2" />
+      <h1>Banda</h1>
+      <label>
+        <span>Nome</span>
+        <input type="text" name="txtBanda" id="txtBanda" require />;
+      </label>
+      <label>
+        <span>Data de inicio</span>
+        <input type="date" name="txtDtInicioBnd" id="txtDtInicioBnd" require />
+      </label>
+      <label>
+        <span>Data de Término</span>
+        <input type="date" name="txtDtTerminoBnd" id="txtDtTerminoBnd" />
+      </label>
+      <label>
+        <span>Apresentação</span>
+        <textarea name="txtBandaApres" id="txtBandaApres" require></textarea>
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <div id="insercao03" class="insercao" name="insercao03" style="display: none;">
+    <form action="envioDados.php" method="POST">
+      <input type="hidden" name="TipoInsert" value="3" />
+      <h1>Gênero</h1>
+      <label>
+        <span>Nome</span>
+        <input type="text" name="txtGenero" id="txtGenero" require />;
+      </label>
+      <label>
+        <span>Descrição</span>
+        <textarea name="txtGeneroApres" id="txtGeneroApres" require></textarea>
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <div id="insercao04" class="insercao" name="insercao04" style="display: none;">
+    <form action="envioDados.php" method="post">
+      <input type="hidden" name="TipoInsert" value="4" />
+      <h1>Gravadora</h1>
+      <label>
+        <span>Nome da Gravadora</span>
+        <input type="text" name="txtGravadora" id="txtGravadora" require />;
+      </label>
+      <label>
+        <span>Data de Fundação</span>
+        <input type="date" name="txtFundDt" id="txtFundDt" require />
+      </label>
+      <label>
+        <span>Data de Falência</span>
+        <input type="date" name="txtFalenDt" id="txtFalenDt" />
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  
+  <div id="insercao05" class="insercao" name="insercao05" style="display: none;">
+    <form action="envioDados.php" method="post">
+      <input type="hidden" name="TipoInsert" value="5"/>
+      <h1>instrumento</h1>
+      <label>
+        <span>Nome</span>
+        <input type="text" name="txtInstrumento" id="txtInstrumento" require/>
+      </label>
+      <label>
+        <span>tipo de instrumento</span>
+        <select name="cmbInst" id="cmbInst">
+          <option value="">--Selecionar--</option>
+        </select>
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
   <div id="insercao06" class="insercao" name="insercao06" style="display: none;"></div>
 
 </body>

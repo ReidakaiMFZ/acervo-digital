@@ -26,7 +26,7 @@ function escolha(){
 }
 
 function apagaResto(x){
-    for(i = 0; i<=6; i++){
+    for(i = 0; i <= 6; i++){
         if(i != x){
             document.getElementById("insercao0" + i).style.cssText = "display: none;";
         }

@@ -7,7 +7,7 @@ if($_GET['nome'] !="" && $_GET['Senha'] !="" && $_GET['email'] !="" && $_GET['lo
     $oQuery = mysqli_query($oConexao, $oConsulta);
         
     mysqli_Close($oConexao);
-    header('location: ../login.htm');
+    header('location: ../login/login.htm');
 }
 else 
 {

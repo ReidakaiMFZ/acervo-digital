@@ -14,7 +14,7 @@ if($vReg = mysqli_fetch_assoc($oUsuarios))
 }
 else
 {
-	header('location: ../login.htm?falha=1');
+	header('location: ../pages/login.htm?falha=1');
 	session_destroy(); 
 }		
 mysqli_free_result($oUsuarios);

@@ -3,7 +3,7 @@ session_start();
 
 if(isset($_SESSION['USRCODIGO']) == false)
 {
-  header('location:../login.htm');
+  header('location:../pages/login.htm');
   die();
 }
 

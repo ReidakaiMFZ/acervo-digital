@@ -1,35 +1,28 @@
 <?php
+session_start();
+
+if(isset($_SESSION['USRCODIGO']) == false)
+{
+    header('location:../pages/login.htm');
+}
+
 $conexao = mysqli_connect("localhost", "root", "", "acervo");
 $pesquisa = $_GET['txtPesquisa'];
-if($pesquisa == "all")
-{
-    $queryPop = "SELECT MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO
-    FROM musicas 
-    LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
-    LEFT JOIN artistas ON artistas.ARTCODIGO = musicas.MSCARTISTA";
 
-    $queryBanda ="SELECT BDSCODIGO, BDSNOME
-    FROM bandas";
+$queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO
+FROM musicas 
+LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
+LEFT JOIN artistas ON artistas.ARTCODIGO = musicas.MSCARTISTA
+WHERE MSCNOME LIKE '%". $pesquisa ."%' ORDER BY MSCNOME";
 
-    $queryCantor ="SELECT ARTCODIGO, ARTNOME
-    FROM artistas";
-}
-else
-{
-    $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO
-    FROM musicas 
-    LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
-    LEFT JOIN artistas ON artistas.ARTCODIGO = musicas.MSCARTISTA
-    WHERE MSCNOME LIKE '%". $pesquisa ."%' ORDER BY MSCNOME";
+$queryBanda ="SELECT BDSCODIGO, BDSNOME
+FROM bandas 
+WHERE BDSNOME LIKE '%". $pesquisa ."%' ORDER BY BDSNOME";
 
-    $queryBanda ="SELECT BDSCODIGO, BDSNOME
-    FROM bandas 
-    WHERE BDSNOME LIKE '%". $pesquisa ."%' ORDER BY BDSNOME";
+$queryCantor ="SELECT ARTCODIGO, ARTNOME
+FROM artistas 
+WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME";
 
-    $queryCantor ="SELECT ARTCODIGO, ARTNOME
-    FROM artistas 
-    WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME";
-}
 $consultaCantor = mysqli_query($conexao, $queryCantor);
 $consultaBanda = mysqli_query($conexao, $queryBanda);
 $consultaPop = mysqli_query($conexao, $queryPop);
