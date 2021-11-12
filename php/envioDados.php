@@ -106,5 +106,8 @@ else if($_POST['TipoInsert' == 5]){
     mysqli_stmt_close($stmt);
     mysqli_close($conexao);
 }
+else if($_POST['TipoInsert' == 6]){
+
+}
 header('Location: cadastromus.php?x='.$_POST['TipoInsert']);
 ?>
