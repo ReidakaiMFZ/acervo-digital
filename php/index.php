@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+ini_set('display_errors', "On");
+error_reporting(E_ALL);
+
+
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
@@ -36,20 +40,22 @@ if(isset($_SESSION['USRCODIGO']) == false)
 </header>
 
 <?php
-$conexao = mysqli_connect("localhost", "root", "","acervo"); //conexão
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO"); //conexão
+
+
+
 $queryGeneros ="SELECT * FROM GENEROS"; //pesquisa de generos no banco de dados
 $consultaGeneros = mysqli_query($conexao, $queryGeneros); //consulta de generos de fato
-$qntgeneros = mysqli_query($conexao, "SELECT MAX(GNRCODIGO) FROM generos"); // quantidades de generos maxima
-$qntgeneros2 = mysqli_fetch_array($qntgeneros);
+$qntgeneros2 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT MAX(GNRCODIGO) FROM GENEROS"));
 $c = 1; //contador
 
 while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
 {
     $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO, BDSCODIGO, ARTCODIGO
-    FROM musicas 
-    LEFT JOIN generos ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO
-    LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
-    LEFT JOIN artistas ON artistas.ARTCODIGO = musicas.MSCARTISTA
+    FROM MUSICAS 
+    LEFT JOIN GENEROS ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO
+    LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA
+    LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA
     WHERE MSCGENERO =". $c; //query de musicas
     $consultaPop = mysqli_query($conexao, $queryPop);
   if(mysqli_fetch_assoc($consultaPop) != null)
@@ -95,7 +101,6 @@ while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
   $c++;
 }
 mysqli_free_result($consultaGeneros);
-mysqli_free_result($qntgeneros);
 mysqli_close($conexao);
 ?>
 </body>

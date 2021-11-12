@@ -6,17 +6,13 @@ if(isset($_SESSION['USRCODIGO']) == false)
   header('location:../pages/login.htm');
 }
 
-$conexao=mysqli_connect("localhost", "root", "", "acervo");
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
 
 $intId = $_GET['artistaid'];
-$consultaArtista = "SELECT ARTNOME,ARTDTINICIO,ARTDTTERMINO,ARTAPRESENTACAO FROM artistas WHERE ARTCODIGO = ".$intId;
+$consultaArtista = "SELECT ARTNOME,ARTDTINICIO,ARTDTTERMINO,ARTAPRESENTACAO FROM ARTISTAS WHERE ARTCODIGO = ".$intId;
 $queryArtista = mysqli_query($conexao, $consultaArtista);
 
-if($dados = mysqli_fetch_array($queryArtista))
-{
-
-}
-else
+if(!$dados = mysqli_fetch_array($queryArtista))
 {
     echo "<h1>Error 404</h1>";
     echo "<label>Not Found</label>";

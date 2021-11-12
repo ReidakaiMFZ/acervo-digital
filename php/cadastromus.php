@@ -4,7 +4,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
 ?>
 
 <!DOCTYPE html>
@@ -15,16 +15,18 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
   <link rel="stylesheet" href="../css/cadastromus.css">
   <title>Acervo - Inserir</title>
 </head>
+<script src="../js/fnRadioButton.js"></script>
 <script>
 
-  var params = window.location.search.substring(1).split('=');
-  console.log(params);
-  
-  if(params[0] != "")
-  {
-    window.location.search = '';
-  }
+var params = window.location.search.substring(1).split('=');
+console.log(params);
+
+if(params[0] != "")
+{
+  window.location.search = '';
+}
 </script>
+<script src="../js/cadastromus.js"></script>
 <body>
 
   <header>
@@ -89,7 +91,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       while($regGenero = mysqli_fetch_assoc($queryGenero)){
         echo "<option value='". $regGenero['GNRCODIGO'] ."'>". $regGenero["GNRNOME"] ."</option>";
       }
-    ?>
+      ?>
         </select>
       </label>
       <Label for="banda">
@@ -127,7 +129,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       while($regArtista = mysqli_fetch_assoc($queryArtista)){
         echo "<option value='". $regArtista['ARTCODIGO'] ."'>". $regArtista["ARTNOME"] ."</option>";
       }
-    ?>
+      ?>
           </select>
         </label>
         <!-- DATA DE LANÇAMENTO -->
@@ -146,11 +148,11 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
           <select name="txtMidia" id="txtMidia" require>
             <option value="">--Selecionar--</option>
             <?php
-        $queryMidia = mysqli_query($conexao, "SELECT MDSCODIGO, MDSNOME FROM midias");
+        $queryMidia = mysqli_query($conexao, "SELECT MDSCODIGO, MDSNOME FROM MIDIAS");
         while($regMidia = mysqli_fetch_assoc($queryMidia)){
           echo "<option value='". $regMidia['MDSCODIGO'] ."'>". $regMidia['MDSNOME'] ."</option>";
         }
-      ?>
+        ?>
           </select>
         </label>
         <button type="submit">Enviar</button>
@@ -236,7 +238,6 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <button type="submit">Enviar</button>
     </form>
   </div>
-  
   <div id="insercao05" class="insercao" name="insercao05" style="display: none;">
     <form action="envioDados.php" method="post">
       <input type="hidden" name="TipoInsert" value="5"/>
@@ -254,11 +255,10 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <button type="submit">Enviar</button>
     </form>
   </div>
+
   <div id="insercao06" class="insercao" name="insercao06" style="display: none;"></div>
 
 </body>
 
-<script src="../js/cadastromus.js"></script>
-<script src="../js/fnRadioButton.js"></script>
 
 </html>

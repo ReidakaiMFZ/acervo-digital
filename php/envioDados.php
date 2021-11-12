@@ -4,7 +4,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
 
 if($_POST['TipoInsert'] == 0){
     mysqli_begin_transaction($conexao);

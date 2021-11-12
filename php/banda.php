@@ -7,14 +7,14 @@ if(isset($_SESSION['USRCODIGO']) == false)
   die();
 }
 
-$conexao = mysqli_connect("localhost", "root", "", "acervo");
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
 
 $intId = $_GET['bandaid'];
 $strBandas = "SELECT BDSNOME, ARTNOME, BDSDTINICIO, BDSDTTERMINO, ARTDTINICIO, ARTDTTERMINO, BDSAPRESENTACAO, INSNOME 
-FROM bandas 
-LEFT JOIN integrantes ON integrantes.ITGBANDA = BDSCODIGO
-LEFT JOIN artistas ON artistas.ARTCODIGO = ITGARTISTA
-LEFT JOIN instrumentos ON instrumentos.INSCODIGO = ITGINSTRUMENTO
+FROM BANDAS 
+LEFT JOIN INTEGRANTES ON INTEGRANTES.ITGBANDA = BDSCODIGO
+LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = ITGARTISTA
+LEFT JOIN INSTRUMENTOS ON INSTRUMENTOS.INSCODIGO = ITGINSTRUMENTO
 WHERE BDSCODIGO = ".$intId.
 " ORDER BY ARTNOME;" ;
 $queryBanda  = mysqli_query($conexao, $strBandas);

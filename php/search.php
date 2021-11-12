@@ -6,21 +6,21 @@ if(isset($_SESSION['USRCODIGO']) == false)
     header('location:../pages/login.htm');
 }
 
-$conexao = mysqli_connect("localhost", "root", "", "acervo");
+$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
 $pesquisa = $_GET['txtPesquisa'];
 
 $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO
-FROM musicas 
-LEFT JOIN bandas ON BANDAS.BDSCODIGO = musicas.MSCBANDA
-LEFT JOIN artistas ON artistas.ARTCODIGO = musicas.MSCARTISTA
+FROM MUSICAS 
+LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA
+LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA
 WHERE MSCNOME LIKE '%". $pesquisa ."%' ORDER BY MSCNOME";
 
 $queryBanda ="SELECT BDSCODIGO, BDSNOME
-FROM bandas 
+FROM BANDAS
 WHERE BDSNOME LIKE '%". $pesquisa ."%' ORDER BY BDSNOME";
 
 $queryCantor ="SELECT ARTCODIGO, ARTNOME
-FROM artistas 
+FROM ARTISTAS 
 WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME";
 
 $consultaCantor = mysqli_query($conexao, $queryCantor);

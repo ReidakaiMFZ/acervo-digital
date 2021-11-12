@@ -1,6 +1,6 @@
 <?php
 session_start();
-$oCon = mysqli_connect('localhost', 'root', '', 'acervo');
+$oCon = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
 $cSQL = "SELECT USRCODIGO, USRNOME, USRLOGIN" .
         "  FROM USUARIOS" .
 		" WHERE '" . $_GET['txtLogin'] . "' IN (USRLOGIN, USREMAIL)" .
