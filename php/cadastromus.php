@@ -256,7 +256,18 @@ if(params[0] != "")
     </form>
   </div>
 
-  <div id="insercao06" class="insercao" name="insercao06" style="display: none;"></div>
+  <div id="insercao06" class="insercao" name="insercao06" style="display: none;">
+        <!-- INSERT INTO `MUSICAS`(`MSCNOME`, `MSCDURACAO`, `MSCGENERO`, `MSCBANDA`, `MSCARTISTA`, `MSCLETRA`, `MSCVIDEO`, `MSCAUDIO`) VALUES () -->
+        <label>
+          <span>Nome</span>
+          <input type="text" name="txtMusica" id="txtMusica" />
+        </label>
+        <label>
+          <span>Duração</span>
+          <input type="time" name="txtTempoMus" id="txtTempoMus" max="00:59:00">
+        </label>
+
+  </div>
 
 </body>
 
