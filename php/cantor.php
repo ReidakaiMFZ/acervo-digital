@@ -6,7 +6,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
   header('location:../pages/login.htm');
 }
 
-$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 
 $intId = $_GET['artistaid'];
 $consultaArtista = "SELECT ARTNOME,ARTDTINICIO,ARTDTTERMINO,ARTAPRESENTACAO FROM ARTISTAS WHERE ARTCODIGO = ".$intId;

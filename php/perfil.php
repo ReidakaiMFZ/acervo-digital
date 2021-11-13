@@ -62,5 +62,6 @@ if(isset($_GET['nomeperfil']))
 {
   echo "<script>window.location.search = '';</script>";
 }
+mysqli_close($conexao);
 ?>
 </html>

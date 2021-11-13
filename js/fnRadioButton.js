@@ -8,3 +8,13 @@ function fnRadioButton(x){
         document.getElementById("lblBanda").style.cssText = "display: none";
     }
 }
+function fnRadioButton2(x){
+    if(x == 1){
+        document.getElementById("lblMusBanda").style.cssText = "display: inline-block";
+        document.getElementById("lblMusArtista").style.cssText = "display: none";
+    }    
+    else if(x == 2){
+        document.getElementById("lblMusArtista").style.cssText = "display: inline-block";
+        document.getElementById("lblMusBanda").style.cssText = "display: none";
+    }
+}

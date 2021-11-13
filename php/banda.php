@@ -7,7 +7,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
   die();
 }
 
-$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 
 $intId = $_GET['bandaid'];
 $strBandas = "SELECT BDSNOME, ARTNOME, BDSDTINICIO, BDSDTTERMINO, ARTDTINICIO, ARTDTTERMINO, BDSAPRESENTACAO, INSNOME 

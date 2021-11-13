@@ -1,11 +1,11 @@
 <?php
 session_start();
-$oCon = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 $cSQL = "SELECT USRCODIGO, USRNOME, USRLOGIN" .
         "  FROM USUARIOS" .
 		" WHERE '" . $_GET['txtLogin'] . "' IN (USRLOGIN, USREMAIL)" .
 		"   AND USRSENHA = MD5('" . $_GET['txtSenha'] . "')";
-$oUsuarios = mysqli_query($oCon, $cSQL);
+$oUsuarios = mysqli_query($conexao, $cSQL);
 
 if($vReg = mysqli_fetch_assoc($oUsuarios))
 {
@@ -18,6 +18,6 @@ else
 	session_destroy(); 
 }		
 mysqli_free_result($oUsuarios);
-mysqli_close($oCon);
+mysqli_close($conexao);
 
 ?>

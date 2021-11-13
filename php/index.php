@@ -40,7 +40,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
 </header>
 
 <?php
-$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO"); //conexão
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO"); //conexão
 
 
 

@@ -4,7 +4,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-$conexao = mysqli_connect("192.168.0.12", "Aluno2DS", "SenhaBD2","ACERVO");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 
 if($_POST['TipoInsert'] == 0){
     mysqli_begin_transaction($conexao);
@@ -107,7 +107,19 @@ else if($_POST['TipoInsert' == 5]){
     mysqli_close($conexao);
 }
 else if($_POST['TipoInsert' == 6]){
+    mysqli_begin_transaction($conexao);
+    $stmt = mysqli_stmt_init($conexao);
 
+    if(isset($_POST[''])){
+        mysqli_stmt_prepare($stmt, "INSERT INTO instrumentos(INSNOME) VALUES (?)");
+        mysqli_stmt_bind_param($stmt, "s", $_POST['txtGravadora']);        
+    }
+    
+    mysqli_stmt_execute($stmt);
+    mysqli_commit($conexao);
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conexao);
 }
-header('Location: cadastromus.php?x='.$_POST['TipoInsert']);
+header('Location: cadastromus.php?s=' . (int)$_POST['TipoInsert']);
 ?>

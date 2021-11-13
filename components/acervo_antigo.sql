@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 12-Nov-2021 às 21:11
--- Versão do servidor: 8.0.25
--- versão do PHP: 7.3.28
+-- Host: 127.0.0.1
+-- Tempo de geração: 13-Nov-2021 às 02:54
+-- Versão do servidor: 10.4.20-MariaDB
+-- versão do PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,32 +18,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `ACERVO`
+-- Banco de dados: `acervo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ALBUNS`
+-- Estrutura da tabela `albuns`
 --
 
-CREATE TABLE `ALBUNS` (
-  `ALBCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `albuns` (
+  `ALBCODIGO` int(10) UNSIGNED NOT NULL,
   `ALBNOME` varchar(150) DEFAULT NULL,
-  `ALBGRAVADORA` int UNSIGNED DEFAULT NULL,
-  `ALBGENERO` int UNSIGNED DEFAULT NULL,
-  `ALBDTLANCAMENTO` datetime DEFAULT CURRENT_TIMESTAMP,
-  `ALBBANDA` int UNSIGNED DEFAULT NULL,
-  `ALBARTISTA` int UNSIGNED DEFAULT NULL,
+  `ALBGRAVADORA` int(10) UNSIGNED DEFAULT NULL,
+  `ALBGENERO` int(10) UNSIGNED DEFAULT NULL,
+  `ALBDTLANCAMENTO` datetime DEFAULT current_timestamp(),
+  `ALBBANDA` int(10) UNSIGNED DEFAULT NULL,
+  `ALBARTISTA` int(10) UNSIGNED DEFAULT NULL,
   `ALBCAPA` varchar(250) DEFAULT NULL,
-  `ALBMIDIA` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ALBMIDIA` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `ALBUNS`
+-- Extraindo dados da tabela `albuns`
 --
 
-INSERT INTO `ALBUNS` (`ALBCODIGO`, `ALBNOME`, `ALBGRAVADORA`, `ALBGENERO`, `ALBDTLANCAMENTO`, `ALBBANDA`, `ALBARTISTA`, `ALBCAPA`, `ALBMIDIA`) VALUES
+INSERT INTO `albuns` (`ALBCODIGO`, `ALBNOME`, `ALBGRAVADORA`, `ALBGENERO`, `ALBDTLANCAMENTO`, `ALBBANDA`, `ALBARTISTA`, `ALBCAPA`, `ALBMIDIA`) VALUES
 (1, 'Sgt. Peppers Lonely Hearts Club Band', 1, 1, '1967-06-05 00:00:00', 1, NULL, NULL, 3),
 (2, 'Goodbye Yellow Brick Road', 2, 1, '1973-08-05 00:00:00', NULL, 5, NULL, 3),
 (3, 'Hunky Dory', 3, 1, '1971-12-17 00:00:00', NULL, 6, NULL, 3),
@@ -124,87 +124,27 @@ INSERT INTO `ALBUNS` (`ALBCODIGO`, `ALBNOME`, `ALBGRAVADORA`, `ALBGENERO`, `ALBD
 (78, 'BLACK HOLES AND REVELATIONS', 8, 2, '2006-07-03 00:00:00', 2, NULL, NULL, 1),
 (79, 'HOLLYWOOD´S BLEEDING', 29, 24, '2019-08-06 00:00:00', NULL, 135, NULL, 1),
 (80, 'AM', 25, 2, '2013-08-09 00:00:00', 21, NULL, NULL, 1),
-(81, 'TRANQUILITY BASE HOTEL & CASINO', 25, 2, '2018-05-11 00:00:00', 21, NULL, NULL, 1),
-(83, NULL, 18, 8, '2021-09-08 00:00:00', 15, 19, NULL, 1),
-(84, NULL, 18, 8, '2021-09-08 00:00:00', 15, 19, NULL, 1),
-(92, 'TESTE gravacao album 4', 31, 19, '2021-09-14 00:00:00', 1, 105, NULL, 4),
-(93, 'TESTE gravacao album 4', 31, 18, '2021-09-15 00:00:00', 9, 78, NULL, 4),
-(94, 'ALBUM NOVO TESTE', NULL, NULL, NULL, NULL, 19, NULL, 5),
-(101, 'NOVO ALBUM OUTRA VEZ', 32, 8, NULL, NULL, 8, NULL, 2),
-(103, 'NEVERMIND', 5, 2, '1991-01-01 00:00:00', 13, NULL, 'nevermind.jpg', 5),
-(104, 'IMMACULATE COLLECTION', 25, 5, '1990-01-01 00:00:00', NULL, 104, '4df647b4c221d52aa47a178fe2f500b6jpg', 3),
-(105, 'TESTE 01', 6, 27, NULL, NULL, 112, 'f034965997b76849cbff4e5ca5a19b71.jpg', 3),
-(106, 'TESTE 01', 6, 27, NULL, NULL, 112, 'f034965997b76849cbff4e5ca5a19b71.jpg', 3),
-(107, 'TESTE 01', 6, 27, NULL, NULL, 112, 'f034965997b76849cbff4e5ca5a19b71.jpg', 3),
-(108, 'TESTE 01', 6, 27, NULL, NULL, 112, 'f034965997b76849cbff4e5ca5a19b71.jpg', 3),
-(109, 'TESTE 01', 6, 27, NULL, NULL, 112, '315d45057a29b5ac2137b4705cea9c87.jpg', 3),
-(110, 'Penis', 23, 9, '2222-02-22 00:00:00', 15, NULL, NULL, 5),
-(111, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(112, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(113, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(114, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(115, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(116, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(117, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(118, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(119, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(120, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(121, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(122, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(123, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(124, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(125, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(126, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(127, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(128, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(129, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(130, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(131, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(132, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(133, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(134, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(135, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(136, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(137, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(138, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(139, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(140, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(141, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(142, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(143, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(144, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(145, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(146, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(147, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(148, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(149, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(150, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(151, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(152, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(153, 'Teste imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, NULL, 1),
-(154, 'Teste DE imagem', 18, 16, '2021-10-14 00:00:00', 3, NULL, 'Teste DE imagem20211020.jpg', 1),
-(155, 'café', 21, 24, '2021-10-13 00:00:00', 5, NULL, 'café20211020.jfif', 1),
-(156, 'TETINHO', 35, 1, '2222-02-28 00:00:00', 8, NULL, 'TETINHO20211103.', 5);
+(81, 'TRANQUILITY BASE HOTEL & CASINO', 25, 2, '2018-05-11 00:00:00', 21, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ARTISTAS`
+-- Estrutura da tabela `artistas`
 --
 
-CREATE TABLE `ARTISTAS` (
-  `ARTCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `artistas` (
+  `ARTCODIGO` int(10) UNSIGNED NOT NULL,
   `ARTNOME` varchar(150) DEFAULT NULL,
-  `ARTDTINICIO` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ARTDTINICIO` datetime DEFAULT current_timestamp(),
   `ARTDTTERMINO` datetime DEFAULT NULL,
-  `ARTAPRESENTACAO` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ARTAPRESENTACAO` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `ARTISTAS`
+-- Extraindo dados da tabela `artistas`
 --
 
-INSERT INTO `ARTISTAS` (`ARTCODIGO`, `ARTNOME`, `ARTDTINICIO`, `ARTDTTERMINO`, `ARTAPRESENTACAO`) VALUES
+INSERT INTO `artistas` (`ARTCODIGO`, `ARTNOME`, `ARTDTINICIO`, `ARTDTTERMINO`, `ARTAPRESENTACAO`) VALUES
 (1, 'PAUL MCCARTNEY', '1957-01-01 00:00:00', NULL, NULL),
 (2, 'JOHN LENNON', '1956-01-01 00:00:00', '1980-01-01 00:00:00', NULL),
 (3, 'RINGO STARR', '1957-01-01 00:00:00', NULL, NULL),
@@ -331,7 +271,7 @@ INSERT INTO `ARTISTAS` (`ARTCODIGO`, `ARTNOME`, `ARTDTINICIO`, `ARTDTTERMINO`, `
 (124, 'Michael Margott ', '2011-01-03 00:00:00', NULL, '\r\nMichael Blake Margott (California, October 1, 1993), mais conhecido como Mikey,  é o baixista da banda de rock The Neighbourhood, mais conhecida por seu álbum de estreia  I Love You. . Mikey e seus companheiros de banda se reuniram em 2011, ele e a banda lançaram seu primeiro Extended Play (EP), I am Sorry ...  em maio de 2012.'),
 (125, 'Brandon Fried ', '2011-01-01 00:00:00', NULL, 'Brandon Alexander Fried (Califórnia, November 6, 1990),  é o baterista da banda de rock The Neighbourhood, mais conhecida por seu álbum de estreia  I Love You. . Fried e seus companheiros de banda se reuniram em 2011, ele e a banda lançaram seu primeiro Extended Play (EP)  I am Sorry ... em maio de 2012.'),
 (126, 'Bryan Sammis ', '2011-01-01 00:00:00', '2014-01-01 00:00:00', '\r\nBryan Sammis (Oak Park, California, July 11, 1990) Bryan era um membro original do The Neighbourhood, começando junto com seus ex-companheiros de banda em agosto de 2011. Ele deixou a banda no início de 2014, sendo substituído por Brandon Fried. Ele atende pelo pseudônimo de Olivver e está fazendo carreira solo como Olivver The Kid.');
-INSERT INTO `ARTISTAS` (`ARTCODIGO`, `ARTNOME`, `ARTDTINICIO`, `ARTDTTERMINO`, `ARTAPRESENTACAO`) VALUES
+INSERT INTO `artistas` (`ARTCODIGO`, `ARTNOME`, `ARTDTINICIO`, `ARTDTTERMINO`, `ARTAPRESENTACAO`) VALUES
 (127, 'Alok', '2004-01-01 00:00:00', NULL, 'Alok Achkar Peres Petrillo (Goiânia, 26 de agosto de 1991) é um DJ e produtor musical brasileiro, mais conhecido por seu sucesso mundial de 2016 Hear Me Now. Em 2020, Alok foi eleito o 5º melhor DJ do mundo pela revista britânica DJ Mag.\r\n\r\nEle acompanhava seus pais ao lado de seu irmão gêmeo Bhaskar, em suas apresentações de psy trance pelo país, depois decidiram formar o projeto ao vivo de trance Lógica. Com ela, a dupla lançou um álbum totalmente autoral chegando a fazer shows em cerca de 19 países, além de suas músicas serem destaque na loja virtual Beatport.\r\n\r\nAos 19 anos, depois de trancar o curso de relações internacionais, fez um curso de discotecagem em Londres, retornando ao Brasil novamente. Em 2010, decidiu seguir carreira solo, mudando de gênero para o house music, sendo um dos primeiros a adotar o sub-gênero brazilian bass. Em 2016, ele acabou assinando contrato com a gravadora holandesa Spinnin\' Records, lançando logo depois a canção Hear Me Now com Bruno Martini e do cantor e compositor Zeeba, que levou a sua projeção internacional, com a música entrando em paradas de vários países.'),
 (128, 'Eminem (Marshal Bruce Mathers III)', '1989-01-01 00:00:00', NULL, 'Eminem (1972) é um rapper, compositor e produtor musical norte-americano. O álbum \"The Marshall Mathers”, na categoria artista-solo, foi considerado o mais vendido na história musical dos EUA.\r\n\r\nEminem (1972) é um nome artístico de Marshal Bruce Mathers III, nascido em St. Joseph, Missouri, Estados Unidos, no dia 17 de outubro de 1972. Foi abandonado pelo pai e passou por problemas na infância por ter vivido em um bairro negro em Detroit, com fortes conotações raciais, pois Eminem é branco. Logo, interessou-se pelo Rap, ritmo dominante na época e apreciado por comunidades negras americanas. Em 1989, decidiu dedicar-se à música.\r\n\r\nEm 1996, Eminem lançou o álbum \"\"Infinite\"\" que o tornou conhecido no meio musical. Em 1997, foi descoberto pelo rapper Dr. Dre, que o levou para a Aftermath Records. Em 1999, lançou o álbum “Slim Shady”, que contou com a participação do rapper Dr. Young. O disco vendeu 4 milhões de cópias e ganhou o Grammy Award de Melhor álbum de Rap.\r\n\r\nEm 2000, Eminem lançou o álbum \"\"The Marshall Mathers\"\" que foi o mais vendido da história dos EUA, logo nas primeiras semanas do lançamento, tornando-se uma plataforma em sua carreira. Mas, foi com o álbum \"\"The Eminem Show\"\", lançado em 2002, que Eminem chegou ao estrelato. O trabalho virou referência do estilo Rap recebendo o disco de platina pela RIAA-Associação da Indústria de Gravação da América.\r\n\r\nAinda em 2002, lançou um filme semi-biográfico intitulado “8 Mile”, no qual a música de sua autoria “Lose Yourself”, ganhou o Oscar de Melhor Canção Original, em 2003. A música se tornou o single que permaneceu por mais tempo na primeira posição das paradas de hip-hop dos Estados Unidos. O sucesso da música ajudou na divulgação de sua gravadora, a Shady Records e de seu grupo, o D12.\r\nEminem (1972) é um rapper, compositor e produtor musical norte-americano. O álbum \"\"The Marshall Mathers”, na categoria artista-solo, foi considerado o mais vendido na história musical dos EUA.'),
 (129, 'Eminem (Marshal Bruce Mathers III)', '1989-01-01 00:00:00', NULL, 'Eminem (1972) é um rapper, compositor e produtor musical norte-americano. O álbum \"The Marshall Mathers”, na categoria artista-solo, foi considerado o mais vendido na história musical dos EUA.\r\n\r\nEminem (1972) é um nome artístico de Marshal Bruce Mathers III, nascido em St. Joseph, Missouri, Estados Unidos, no dia 17 de outubro de 1972. Foi abandonado pelo pai e passou por problemas na infância por ter vivido em um bairro negro em Detroit, com fortes conotações raciais, pois Eminem é branco. Logo, interessou-se pelo Rap, ritmo dominante na época e apreciado por comunidades negras americanas. Em 1989, decidiu dedicar-se à música.\r\n\r\nEm 1996, Eminem lançou o álbum \"\"Infinite\"\" que o tornou conhecido no meio musical. Em 1997, foi descoberto pelo rapper Dr. Dre, que o levou para a Aftermath Records. Em 1999, lançou o álbum “Slim Shady”, que contou com a participação do rapper Dr. Young. O disco vendeu 4 milhões de cópias e ganhou o Grammy Award de Melhor álbum de Rap.\r\n\r\nEm 2000, Eminem lançou o álbum \"\"The Marshall Mathers\"\" que foi o mais vendido da história dos EUA, logo nas primeiras semanas do lançamento, tornando-se uma plataforma em sua carreira. Mas, foi com o álbum \"\"The Eminem Show\"\", lançado em 2002, que Eminem chegou ao estrelato. O trabalho virou referência do estilo Rap recebendo o disco de platina pela RIAA-Associação da Indústria de Gravação da América.\r\n\r\nAinda em 2002, lançou um filme semi-biográfico intitulado “8 Mile”, no qual a música de sua autoria “Lose Yourself”, ganhou o Oscar de Melhor Canção Original, em 2003. A música se tornou o single que permaneceu por mais tempo na primeira posição das paradas de hip-hop dos Estados Unidos. O sucesso da música ajudou na divulgação de sua gravadora, a Shady Records e de seu grupo, o D12.\r\nEminem (1972) é um rapper, compositor e produtor musical norte-americano. O álbum \"\"The Marshall Mathers”, na categoria artista-solo, foi considerado o mais vendido na história musical dos EUA.'),
@@ -346,29 +286,27 @@ INSERT INTO `ARTISTAS` (`ARTCODIGO`, `ARTNOME`, `ARTDTINICIO`, `ARTDTTERMINO`, `
 (138, 'JAMIE COOK', '2002-01-01 00:00:00', NULL, 'Arctic Monkeys é uma banda britânica de rock formada em 2002 nos subúrbios da cidade de Sheffield, na Inglaterra. O grupo é formado por Alex Turner (vocal, guitarra), Matt Helders (bateria, backing vocal), Jamie Cook (guitarra) e Nick OMalley (baixo, backing vocal).\r\nA banda já lançou seis álbuns de estúdio: Whatever People Say I Am, Thats What Im Not (2006), Favourite Worst Nightmare (2007), Humbug (2009), Suck It and See (2011), AM (2013) e Tranquility Base Hotel & Casino (2018). Seu primeiro álbum foi o disco de estreia que vendeu mais rápido na história das paradas de sucesso britânicas e, em 2013, a revista Rolling Stone o nomeou como o 30º melhor álbum de todos os tempos.'),
 (139, 'GLYN JONES', '2002-01-01 00:00:00', NULL, 'Arctic Monkeys é uma banda britânica de rock formada em 2002 nos subúrbios da cidade de Sheffield, na Inglaterra. O grupo é formado por Alex Turner (vocal, guitarra), Matt Helders (bateria, backing vocal), Jamie Cook (guitarra) e Nick OMalley (baixo, backing vocal).\r\nA banda já lançou seis álbuns de estúdio: Whatever People Say I Am, Thats What Im Not (2006), Favourite Worst Nightmare (2007), Humbug (2009), Suck It and See (2011), AM (2013) e Tranquility Base Hotel & Casino (2018). Seu primeiro álbum foi o disco de estreia que vendeu mais rápido na história das paradas de sucesso britânicas e, em 2013, a revista Rolling Stone o nomeou como o 30º melhor álbum de todos os tempos.'),
 (140, 'BEM PARSONS ', '2011-01-01 00:00:00', NULL, 'Arctic Monkeys é uma banda britânica de rock formada em 2002 nos subúrbios da cidade de Sheffield, na Inglaterra. O grupo é formado por Alex Turner (vocal, guitarra), Matt Helders (bateria, backing vocal), Jamie Cook (guitarra) e Nick OMalley (baixo, backing vocal).\r\nA banda já lançou seis álbuns de estúdio: Whatever People Say I Am, Thats What Im Not (2006), Favourite Worst Nightmare (2007), Humbug (2009), Suck It and See (2011), AM (2013) e Tranquility Base Hotel & Casino (2018). Seu primeiro álbum foi o disco de estreia que vendeu mais rápido na história das paradas de sucesso britânicas e, em 2013, a revista Rolling Stone o nomeou como o 30º melhor álbum de todos os tempos.'),
-(141, 'Claudio Reis', '1111-11-11 00:00:00', '2222-02-22 00:00:00', 'Rei\r\n '),
-(142, 'cafe', '2021-10-01 00:00:00', '2021-10-01 00:00:00', ' cafe'),
-(143, 'Mano Marrom', '1986-01-01 00:00:00', NULL, ' Grande Mano Marrom\r\n');
+(143, '', '0000-00-00 00:00:00', NULL, '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `BANDAS`
+-- Estrutura da tabela `bandas`
 --
 
-CREATE TABLE `BANDAS` (
-  `BDSCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `bandas` (
+  `BDSCODIGO` int(10) UNSIGNED NOT NULL,
   `BDSNOME` varchar(150) DEFAULT NULL,
-  `BDSDTINICIO` datetime DEFAULT CURRENT_TIMESTAMP,
+  `BDSDTINICIO` datetime DEFAULT current_timestamp(),
   `BDSDTTERMINO` datetime DEFAULT NULL,
-  `BDSAPRESENTACAO` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `BDSAPRESENTACAO` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `BANDAS`
+-- Extraindo dados da tabela `bandas`
 --
 
-INSERT INTO `BANDAS` (`BDSCODIGO`, `BDSNOME`, `BDSDTINICIO`, `BDSDTTERMINO`, `BDSAPRESENTACAO`) VALUES
+INSERT INTO `bandas` (`BDSCODIGO`, `BDSNOME`, `BDSDTINICIO`, `BDSDTTERMINO`, `BDSAPRESENTACAO`) VALUES
 (1, 'FOO FIGHTERS', '1994-01-01 00:00:00', NULL, 'Foo Fighters é uma banda de rock dos Estados Unidos formada pelos ex-Nirvana Dave Grohl em 1994. Seu nome é uma referência ao termo \"\"foo fighter\"\", usado por aviadores na Segunda Guerra Mundial para descrever fenômenos aéreos misteriosos, considerados OVNIs.\r\nA banda atingiu sucesso internacional, lançando vários hits incluindo \"\"This Is a Call\"\", \"\"Everlong\"\", \"\"Learn to Fly\"\", \"\"All My Life\"\", \"\"Times Like These\"\", \"\"Best of You\"\", \"\"Walk\"\", \"\"My Hero\"\" e \"\"The Pretender\"\". Quatro de seus álbuns, There Is Nothing Left to Lose, One by One, Echoes, Silence, Patience & Grace e Wasting Light ganharam o Grammy por \"\"melhor álbum de rock\"\".'),
 (2, 'MUSE', '1994-01-01 00:00:00', NULL, 'Muse é uma banda britânica de rock de Teignmouth, Devon, formada em 1994. Seus membros são: Matthew Bellamy (vocal, guitarra e piano), Christopher Wolstenholme (baixo, voz secundária e teclado) e Dominic Howard (bateria e percussão).\r\nO estilo de Muse é um misto de vários gêneros musicais, incluindo rock alternativo, música clássica e eletrônica. O grupo tornou-se, em 16 e 17 de junho de 2007, a primeira banda a lotar o recém-reformado Estádio de Wembley em Londres.\r\n\r\nA discografia da banda abrange oito álbuns de estúdio: Showbiz, lançado em 1999, seguido de Origin of Symmetry em 2001 e Absolution em 2003. O álbum de maior sucesso foi Black Holes & Revelations (2006) que garantiu ao grupo uma nomeação para os Mercury Prize e o terceiro lugar na lista de \"\"Álbuns do Ano\"\" da NME para 2006. A banda lançou seu quinto álbum em setembro de 2009, intitulado The Resistance. Um sexto disco, chamado The 2nd Law, foi lançado em outubro de 2012. O sétimo, Drones, foi liberado em junho de 2015, e o oitavo, Simulation Theory, foi lançado três anos depois.\r\nMuse conquistou vários prêmios ao longo da sua carreira, incluindo cinco MTV Europe Music Awards, cinco Q Awards, nove NME Awards, dois Brit awards, quatro Kerrang! Awards e um American Music Awards. Foi nomeado para seis prêmios Grammy, ganhando dois na categoria de \"\"Melhor Álbum de Rock\"\" pelos discos The Resistance e Drones.'),
 (3, 'THE BEATLES', '1960-01-01 00:00:00', '1970-01-01 00:00:00', 'The Beatles foi uma banda de rock inglesa formada em 1960 na cidade de Liverpool. Formada por John Lennon, Paul McCartney, George Harrison e Ringo Starr, é considerada a banda mais influente de todos os tempos. O grupo fez parte do desenvolvimento da contracultura da década de 1960 e do reconhecimento da música popular como forma de arte. Enraizados do skiffle, beat e rock and roll da década de 1950, seu som incorporava elementos da música clássica e pop tradicional de maneiras inovadoras; a banda mais tarde explorou estilos musicais que variavam de baladas e música indiana a psicodelia e hard rock. Como pioneiros em gravação, composição e apresentação artística, o grupo revolucionou muitos aspectos da indústria da música e foi frequentemente divulgado como líder dos movimentos juvenis e socioculturais da época.'),
@@ -389,45 +327,44 @@ INSERT INTO `BANDAS` (`BDSCODIGO`, `BDSNOME`, `BDSDTINICIO`, `BDSDTTERMINO`, `BD
 (18, 'Charlie Brown Jr.', '1992-01-01 00:00:00', '2013-01-01 00:00:00', 'Charlie Brown Jr. foi uma banda brasileira de rock formada em Santos em 1992. As canções da banda misturavam vários estilos como o rock alternativo, hardcore punk, reggae, rap, e skate punk, criando, assim, um estilo próprio. As letras frequentemente traziam críticas à sociedade, além de abordarem o universo do jovem contemporâneo.\r\nTodos os membros da banda nasceram em Santos, exceto o vocalista Chorão, natural de São Paulo.\r\nNo dia 6 de março de 2013, Chorão morreu em seu apartamento em São Paulo devido a uma overdose de cocaína e álcool. Os membros remanescentes da banda decidiram abandonar o nome Charlie Brown Jr. e mudaram para A Banca a fim de preservar a memória do cantor com o antigo e homenageá-lo. Porém, o grupo acabou em setembro de 2013, na madrugada do dia 9 daquele mês, pois o baixista-fundador do Charlie Brown Jr. e vocalista da A Banca, Champignon, foi encontrado morto em casa, em São Paulo. por suicídio.'),
 (19, 'The Neighbourhood', '2011-01-01 00:00:00', NULL, 'The Neighbourhood (às vezes representado como THE NBHD) é uma banda americana de indie rock formada em Newbury Park, Califórnia em 2011. A banda é composta pelo vocalista Jesse Rutherford, os guitarristas Jeremy Freedman e Zach Abels, o baixista Mikey Margott e o baterista Brandon Fried.\r\nDepois de lançar três EPs, I am Sorry..., The Love Collection e Thank You, eles lançaram seu primeiro álbum completo, I Love You, em 23 de abril de 2013, pela Columbia Records. Em novembro de 2014, eles lançaram uma mixtape intitulada #000000 & #FFFFFF. O segundo álbum da banda, Wiped Out! foi lançado em 30 de outubro de 2015, tendo como cargo chefe a canção \"R. I. P. 2 My Youth\".\r\n\r\nEm setembro de 2017, foi lançado o extended play Hard, com cinco faixas inéditas. Em janeiro de 2018 foi lançado o EP To Imagine com mais cinco músicas inéditas, conectando os dois EPs juntos no dia 24 de janeiro de 2018, eles lançaram um video intitulado \"\"Hard to Imagine\"\", com músicas de ambos os EPs.[2] O terceiro álbum da banda de nome homônimo The Neighbourhood foi lançado em 9 de março de 2018 incluindo algumas músicas lançadas nos EPs Hard e To Imagine meses antes.'),
 (20, 'Bon Jovi', '1983-01-01 00:00:00', NULL, 'Bon Jovi é uma banda americana de rock, formada em 1983, em Sayreville, Nova Jersey. A banda mantém algumas características do estilo hard rock dos anos 1980 até hoje, mas assimilou influências dos variados estilos surgidos no rock e heavy metal desde o seu álbum de estreia, em 1984. Com passar dos anos veio a se tornar uma das bandas mais bem sucedidas da história do rock, quando se trata de turnês pelo mundo, sua marca, músicas em seriados, e aparições em programas de tv, a banda em 2011 foi eleita pela revista Rolling Stone como a segunda banda de rock mais cara do planeta, perdendo o topo posteriormente para a banda irlandesa U2.\r\n\r\nBon Jovi já lançou quinze álbuns de estúdio, cinco coletâneas musicais e três álbuns ao vivo. A banda vendeu mais de 100 milhões de cópias, fazendo deles uma das bandas de rock mais bem sucedidas de todos os tempos, realizando também mais de 2 700 shows em 50 países. Bon Jovi foi introduzido no Hall da Fama da música no Reino Unido em 2006 e no Rock and Roll Hall of Fame dos Estados Unidos em 2018. A banda também recebeu prêmios ao mérito da American Music Awards em 2004 e Jon Bon Jovi e Richie Sambora foram introduzidos no Songwriters Hall of Fame em 2009.'),
-(21, 'ARCTIC MONKEYS', '2002-01-01 00:00:00', NULL, 'Arctic Monkeys é uma banda britânica de rock formada em 2002 nos subúrbios da cidade de Sheffield, na Inglaterra. O grupo é formado por Alex Turner (vocal, guitarra), Matt Helders (bateria, backing vocal), Jamie Cook (guitarra) e Nick OMalley (baixo, backing vocal).\r\nA banda já lançou seis álbuns de estúdio: Whatever People Say I Am, Thats What Im Not (2006), Favourite Worst Nightmare (2007), Humbug (2009), Suck It and See (2011), AM (2013) e Tranquility Base Hotel & Casino (2018). Seu primeiro álbum foi o disco de estreia que vendeu mais rápido na história das paradas de sucesso britânicas e, em 2013, a revista Rolling Stone o nomeou como o 30º melhor álbum de todos os tempos.'),
-(22, 'Anus', '2222-03-12 00:00:00', NULL, 'asdas ');
+(21, 'ARCTIC MONKEYS', '2002-01-01 00:00:00', NULL, 'Arctic Monkeys é uma banda britânica de rock formada em 2002 nos subúrbios da cidade de Sheffield, na Inglaterra. O grupo é formado por Alex Turner (vocal, guitarra), Matt Helders (bateria, backing vocal), Jamie Cook (guitarra) e Nick OMalley (baixo, backing vocal).\r\nA banda já lançou seis álbuns de estúdio: Whatever People Say I Am, Thats What Im Not (2006), Favourite Worst Nightmare (2007), Humbug (2009), Suck It and See (2011), AM (2013) e Tranquility Base Hotel & Casino (2018). Seu primeiro álbum foi o disco de estreia que vendeu mais rápido na história das paradas de sucesso britânicas e, em 2013, a revista Rolling Stone o nomeou como o 30º melhor álbum de todos os tempos.');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CLASSIFICACAO`
+-- Estrutura da tabela `classificacao`
 --
 
-CREATE TABLE `CLASSIFICACAO` (
-  `CLSUSUARIO` int UNSIGNED NOT NULL,
-  `CLSMUSICA` int UNSIGNED NOT NULL,
-  `CLSNOTA` tinyint DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `classificacao` (
+  `CLSUSUARIO` int(10) UNSIGNED NOT NULL,
+  `CLSMUSICA` int(10) UNSIGNED NOT NULL,
+  `CLSNOTA` tinyint(4) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `CLASSIFICACAO`
+-- Extraindo dados da tabela `classificacao`
 --
 
-INSERT INTO `CLASSIFICACAO` (`CLSUSUARIO`, `CLSMUSICA`, `CLSNOTA`) VALUES
+INSERT INTO `classificacao` (`CLSUSUARIO`, `CLSMUSICA`, `CLSNOTA`) VALUES
 (3, 5, 5);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `FAIXAS`
+-- Estrutura da tabela `faixas`
 --
 
-CREATE TABLE `FAIXAS` (
-  `FXSALBUM` int UNSIGNED NOT NULL,
-  `FXSMUSICA` int UNSIGNED NOT NULL,
-  `FXSPOSICAO` tinyint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `faixas` (
+  `FXSALBUM` int(10) UNSIGNED NOT NULL,
+  `FXSMUSICA` int(10) UNSIGNED NOT NULL,
+  `FXSPOSICAO` tinyint(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `FAIXAS`
+-- Extraindo dados da tabela `faixas`
 --
 
-INSERT INTO `FAIXAS` (`FXSALBUM`, `FXSMUSICA`, `FXSPOSICAO`) VALUES
+INSERT INTO `faixas` (`FXSALBUM`, `FXSMUSICA`, `FXSPOSICAO`) VALUES
 (1, 1, 1),
 (1, 2, 2),
 (1, 3, 3),
@@ -1059,53 +996,25 @@ INSERT INTO `FAIXAS` (`FXSALBUM`, `FXSMUSICA`, `FXSPOSICAO`) VALUES
 (78, 825, 10),
 (78, 826, 11),
 (78, 827, 12),
-(78, 828, 13),
-(92, 839, 0),
-(92, 840, 1),
-(92, 841, 2),
-(92, 842, 3),
-(92, 843, 4),
-(92, 844, 5),
-(93, 845, 0),
-(93, 846, 1),
-(93, 847, 2),
-(94, 94, 0),
-(101, 887, 0),
-(101, 888, 1),
-(101, 889, 2),
-(103, 892, 1),
-(103, 893, 2),
-(103, 894, 3),
-(104, 895, 1),
-(104, 896, 2),
-(105, 897, 1),
-(105, 898, 2),
-(106, 899, 1),
-(106, 900, 2),
-(107, 901, 1),
-(107, 902, 2),
-(108, 903, 1),
-(108, 904, 2),
-(109, 905, 1),
-(109, 906, 2);
+(78, 828, 13);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `GENEROS`
+-- Estrutura da tabela `generos`
 --
 
-CREATE TABLE `GENEROS` (
-  `GNRCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `generos` (
+  `GNRCODIGO` int(10) UNSIGNED NOT NULL,
   `GNRNOME` varchar(50) DEFAULT NULL,
-  `GNRDESCRICAO` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `GNRDESCRICAO` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `GENEROS`
+-- Extraindo dados da tabela `generos`
 --
 
-INSERT INTO `GENEROS` (`GNRCODIGO`, `GNRNOME`, `GNRDESCRICAO`) VALUES
+INSERT INTO `generos` (`GNRCODIGO`, `GNRNOME`, `GNRDESCRICAO`) VALUES
 (1, 'MPB', 'A MPB, sigla derivada da expressão Música Popular Brasileira, é um gênero musical surgido no Brasil em meados da década de 1960. A MPB surgiu a partir de 1966 na cidade do Rio de Janeiro com a segunda geração da bossa nova, mas com uma forte influência do folclore brasileiro que já vinha desde 1932. Na prática, a sigla MPB anunciou uma fusão de dois movimentos musicais até então divergentes, a bossa nova e o engajamento folclórico dos Centros Populares de Cultura da União Nacional dos Estudantes. Os primeiros defendendo a sofisticação musical e os segundos, a fidelidade à música de raiz brasileira. Seus propósitos se misturaram e, com o golpe de 1964, os dois movimentos se tornaram uma frente ampla cultural contra o regime militar, adotando a sigla MPB na sua bandeira de luta.\r\n\r\nA Jovem Guarda e a Tropicália são movimentos musicais que fazem parte da MPB, mas a Tropicália se identificou mais com a MPB do que a Jovem Guarda devido as misturas de ritmos nacionais com as internacionais.\r\n\r\nA MPB começou com um perfil marcadamente nacionalista, mas foi mudando e incorporando elementos de procedências várias, até pela pouca resistência, por parte dos músicos, em misturar gêneros musicais. Esta diversidade é até saudada como uma das marcas deste gênero musical. Pela própria hibridez, é difícil defini-la.\r\n\r\nO nome MPB pode, em determinados momentos, criar confusão por aparentemente se referir a qualquer música popular do Brasil, porém é importante diferenciar MPB - o estilo musical - de outros, como o samba, o choro, a bossa nova etc. Apesar de todos terem ligações, não são a mesma coisa. Assim como a bossa nova, a MPB foi uma tentativa de produzir uma música brasileira \"\"nacional\"\" a partir de estilos tradicionais. A MPB teve um impacto considerável na década de 1960, em grande parte graças a vários festivais de música na televisão.'),
 (2, 'ROCK', 'Rock (ou roque) é um termo abrangente que define um gênero musical de música popular que se desenvolveu durante e após a década de 1950. Suas raízes se encontram no rock and roll e no rockabilly que emergiram e se definiram nos Estados Unidos no final dos anos quarenta e início dos cinquenta e que, por sua vez, evoluíram do blues, da música country e do rhythm and blues. Outras influências musicais sobre o rock ainda incluem o folk, o jazz e a música clássica. Todas estas influências foram combinadas em uma estrutura musical simples baseada no blues que era \"\"rápida, dançável e pegajosa\"\".\r\n\r\nNo final da década de 1960 e início dos anos setenta, o rock desenvolveu diferentes subgêneros. Quando foi misturado com a folk music ou com o blues ou com o jazz, nasceram o folk rock, o blues-rock e o jazz-rock, respectivamente. Na década de 1970, o rock incorporou influências de gêneros como a soul music, o funk e de diversos ritmos de países latino-americanos. Ainda naquela década, o rock gerou uma série de outros subgêneros, tais como o soft rock, o glam rock, o heavy metal, o hard rock, o rock progressivo e o punk rock. Já nos anos oitenta, os subgêneros que surgiram foram a new wave, o punk hardcore e rock alternativo. E, na década de 1990, os subgêneros criados foram o grunge, o britpop, o indie rock e o nu metal.\r\n\r\nO som do rock, muitas vezes, gira em torno da guitarra elétrica ou do violão e utiliza um forte backbeat (contratempo) estabelecido pelo ritmo do baixo elétrico, da bateria, do teclado, e outros instrumentos como órgão, piano, ou, desde a década de 1970, sintetizadores digitais. Junto com a guitarra ou teclado, o saxofone e a gaita, são por vezes utilizados como instrumentos solo. Em sua \"\"forma pura\"\", o rock \"\"tem três acordes, um forte e insistente contratempo e uma melodia cativante\"\".\r\n\r\nA maioria dos grupos de rock é constituída por um vocalista, um guitarrista, um baixista e um baterista, formando um quarteto. Alguns grupos omitem uma ou mais destas funções e/ou utilizam um vocalista que toca um instrumento enquanto canta, às vezes formando um trio ou duo; outros ainda adicionam outros músicos, como um ou dois guitarristas e/ou tecladista. Mais raramente, os grupos também utilizam saxofonistas ou trompetistas e até instrumentos como violinos com cordas ou violoncelos.'),
 (5, 'POP', 'A música pop (em inglês: pop music; um termo que deriva da abreviação de \"popular\") é um gênero da música popular.'),
@@ -1127,29 +1036,26 @@ INSERT INTO `GENEROS` (`GNRCODIGO`, `GNRNOME`, `GNRDESCRICAO`) VALUES
 (21, 'Reggae', 'Reggae é um gênero musical desenvolvido originalmente na Jamaica do fim da década de 1960. No Brasil, é um ritmo predominante no estado do Maranhão. Embora por vezes seja usado num sentido mais amplo para se referir à maior parte dos tipos de música jamaicana, o termo reggae indica mais especificamente um tipo particular de música que se originou do desenvolvimento do ska e do rocksteady.'),
 (22, 'Trap', 'Trap é um subgênero do rap que se originou na década de 2000 com DJ Paul no sul dos Estados Unidos. Ganhou popularidade em meados de 2007 com o surgimento de vários grupos de rap e rappers como Gucci Mane, OJ da Juiceman e produtores como Drumma Boy, Shawty Redd e DJ Zaytoven. Logo depois surgiu o menino Lex Luger com seu 808 com pegada diferente que elevou o trap a outro nível. O trap da música eletrônica é o que é graças ao trap do movimento hip-hop que aguçou a inspiração de vários DJ de EDM'),
 (23, 'Eletrônica', 'A música eletrónica (português europeu) ou eletrônica (português brasileiro) é toda música que é criada ou modificada através do uso de equipamentos e instrumentos eletrônicos.[1] Por sua história passar de uma vertente da música erudita (fruto do trabalho de compositores visionários) a um elemento da música popular, primeiramente bastante relacionado ao rock e posteriormente discernindo-se como um gênero musical próprio (principalmente relacionado com a música popular nos sub-estilos considerados dançantes tais como o techno, acid house, trance e drum \'n\' bass, desenvolvidos a partir do auge da música disco no final da década de 1970). Atualmente existem várias ramificações do estilo, tanto eruditas como populares.\r\nOriginalmente relutada por ter sua tecnologia evoluída muito mais rapidamente que sua estética, só passou a ter princípios e tradição após a Segunda Guerra Mundial,[1] com o trabalho de franceses na música concreta e de alemães na Elektronische Musik.'),
-(24, 'RAP', 'Rap é um discurso ritmico com rimas e poesias, que surgiu no final do século XX entre comunidades Afro-descendentes nos Estados Unidos. É um dos cinco pilares fundamentais da cultura do hip hop, de modo que se chame metonimicamente (e de forma impresisa) hip hop.                                                                                         O rap, comercializado nos EUA, desenvolveu-se tanto por dentro como por fora da cultura hip hop, e começou com as festas nas ruas, nos anos 1970 por jamaicanos e outros. Eles introduziam as grandes festas populares em grandes galpões, com a prática de ter um MC, que subia no palco junto ao DJ e animava a multidão, gritando e encorajando com as palavras rimadas, até que foi se formando o rap. A origem do Rap veio da Jamaica, mais ou menos na década de 1960 quando surgiram os sistemas de som, que eram colocados nas ruas dos guetos jamaicanos para animar bailes. Esses bailes serviam de fundo para o discurso dos \"toasters\", autênticos mestres de cerimônia que comentavam, nas suas intervenções, assuntos como a violência das favelas de Kingston e a situação política da Ilha, sem deixar de falar, é claro, de temas mais polêmicos, como sexo e drogas. No início da década de 1970 muitos jovens jamaicanos foram obrigados a emigrar para os Estados Unidos, devido a uma crise econômica e social que se abateu sobre a ilha. E um em especial, o DJ jamaicano Kool Herc, introduziu em Nova Iorque a tradição dos sistemas de som e do canto falado e foi se espalhando e popularizando entre as classes mais pobres ate chegar a atingir a alta sociedade.Rap, na música, é extremamente fidedigna à improvisação poética sobre uma batida no tempo rápido e freqüentemente só é acompanhada pelo som do baixo, ou sem acompanhamento. Rap é um estilo musical raro em que o texto é mais importante que a linha melódica ou a parte harmônica; sendo um dos dois únicos estilos musicais da história da música ocidental em que o texto é mais importante que a música---o outro sendo o canto gregoriano, em que a música era uma monodia, homofônica, marcada pelo ritmo, e a melodia religiosamente não podia nunca sobressair o texto litúrgico. O rap não usa melodias e motivos decorativos e harmônicos com arranjos elaborados dos instrumentos, mas vale-se somente em quão rápido o cantor narra a sua \"fala\" com muito pouca musicalidade adicionada a sua poesia. A música rap também tem uma similaridade distinta com a música celta em que forma-se uma brincadeira na qual os cantores tentam duelar suas frases com rimas, rapidamente improvisadas e humorísticas; alternadamente, um desafiando o outro nas rápidas frases inteligentes; quem ganha---deixando o outro esgotado sem ideias---não paga pelas bebidas. Esta influência indireta e não intencional veio da música de raiz, de folclore, importada pelos imigrantes escoceses e irlandeses que migraram para o sul dos EUA, das fazendas de plantação, como a música afro-americana, que pelo povo do sul, com a música de improvisação, no Jazz de raiz, surge nos duelos de banjo (country) depois, e desses \"duelos\" aparece também, bem mais tarde, o rap.'),
-(25, 'Teste', ' khjgdfhgd'),
-(26, 'Teste', 'é um genero de teste'),
-(27, 'Fofo', ' Um genero muito fofo');
+(24, 'RAP', 'Rap é um discurso ritmico com rimas e poesias, que surgiu no final do século XX entre comunidades Afro-descendentes nos Estados Unidos. É um dos cinco pilares fundamentais da cultura do hip hop, de modo que se chame metonimicamente (e de forma impresisa) hip hop.                                                                                         O rap, comercializado nos EUA, desenvolveu-se tanto por dentro como por fora da cultura hip hop, e começou com as festas nas ruas, nos anos 1970 por jamaicanos e outros. Eles introduziam as grandes festas populares em grandes galpões, com a prática de ter um MC, que subia no palco junto ao DJ e animava a multidão, gritando e encorajando com as palavras rimadas, até que foi se formando o rap. A origem do Rap veio da Jamaica, mais ou menos na década de 1960 quando surgiram os sistemas de som, que eram colocados nas ruas dos guetos jamaicanos para animar bailes. Esses bailes serviam de fundo para o discurso dos \"toasters\", autênticos mestres de cerimônia que comentavam, nas suas intervenções, assuntos como a violência das favelas de Kingston e a situação política da Ilha, sem deixar de falar, é claro, de temas mais polêmicos, como sexo e drogas. No início da década de 1970 muitos jovens jamaicanos foram obrigados a emigrar para os Estados Unidos, devido a uma crise econômica e social que se abateu sobre a ilha. E um em especial, o DJ jamaicano Kool Herc, introduziu em Nova Iorque a tradição dos sistemas de som e do canto falado e foi se espalhando e popularizando entre as classes mais pobres ate chegar a atingir a alta sociedade.Rap, na música, é extremamente fidedigna à improvisação poética sobre uma batida no tempo rápido e freqüentemente só é acompanhada pelo som do baixo, ou sem acompanhamento. Rap é um estilo musical raro em que o texto é mais importante que a linha melódica ou a parte harmônica; sendo um dos dois únicos estilos musicais da história da música ocidental em que o texto é mais importante que a música---o outro sendo o canto gregoriano, em que a música era uma monodia, homofônica, marcada pelo ritmo, e a melodia religiosamente não podia nunca sobressair o texto litúrgico. O rap não usa melodias e motivos decorativos e harmônicos com arranjos elaborados dos instrumentos, mas vale-se somente em quão rápido o cantor narra a sua \"fala\" com muito pouca musicalidade adicionada a sua poesia. A música rap também tem uma similaridade distinta com a música celta em que forma-se uma brincadeira na qual os cantores tentam duelar suas frases com rimas, rapidamente improvisadas e humorísticas; alternadamente, um desafiando o outro nas rápidas frases inteligentes; quem ganha---deixando o outro esgotado sem ideias---não paga pelas bebidas. Esta influência indireta e não intencional veio da música de raiz, de folclore, importada pelos imigrantes escoceses e irlandeses que migraram para o sul dos EUA, das fazendas de plantação, como a música afro-americana, que pelo povo do sul, com a música de improvisação, no Jazz de raiz, surge nos duelos de banjo (country) depois, e desses \"duelos\" aparece também, bem mais tarde, o rap.');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `GRAVADORAS`
+-- Estrutura da tabela `gravadoras`
 --
 
-CREATE TABLE `GRAVADORAS` (
-  `GRVCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `gravadoras` (
+  `GRVCODIGO` int(10) UNSIGNED NOT NULL,
   `GRVNOME` varchar(100) DEFAULT NULL,
-  `GRVDTFUNDACAO` datetime DEFAULT CURRENT_TIMESTAMP,
+  `GRVDTFUNDACAO` datetime DEFAULT current_timestamp(),
   `GRVDTFALENCIA` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `GRAVADORAS`
+-- Extraindo dados da tabela `gravadoras`
 --
 
-INSERT INTO `GRAVADORAS` (`GRVCODIGO`, `GRVNOME`, `GRVDTFUNDACAO`, `GRVDTFALENCIA`) VALUES
+INSERT INTO `gravadoras` (`GRVCODIGO`, `GRVNOME`, `GRVDTFUNDACAO`, `GRVDTFALENCIA`) VALUES
 (1, 'RCA RECORDS', '1929-01-01 00:00:00', NULL),
 (2, 'MCA INC.', '1924-01-01 00:00:00', NULL),
 (3, 'PARLOPHONE', '1896-01-01 00:00:00', NULL),
@@ -1181,32 +1087,25 @@ INSERT INTO `GRAVADORAS` (`GRVCODIGO`, `GRVNOME`, `GRVDTFUNDACAO`, `GRVDTFALENCI
 (29, 'Republic Records ', '1995-01-01 00:00:00', NULL),
 (30, 'Westbury Road Entertainment', '2016-04-29 00:00:00', NULL),
 (31, 'Atlantic Records', '1947-01-01 00:00:00', NULL),
-(32, 'DOMINO RECORDS', '1993-01-01 00:00:00', NULL),
-(33, 'asdsdasda', '1111-11-11 00:00:00', '2222-02-22 00:00:00'),
-(34, 'cafe', '2021-10-01 00:00:00', '2021-10-01 00:00:00'),
-(35, 'cafe2', '2021-10-01 00:00:00', NULL),
-(36, 'asdsdasda', '1111-11-11 00:00:00', NULL),
-(37, 'asdsdasda', '1111-11-11 00:00:00', '2222-02-22 00:00:00'),
-(38, 'sihro', '3333-03-23 00:00:00', NULL),
-(39, 'feijão', '2021-10-01 00:00:00', NULL);
+(32, 'DOMINO RECORDS', '1993-01-01 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `INSTRUMENTOS`
+-- Estrutura da tabela `instrumentos`
 --
 
-CREATE TABLE `INSTRUMENTOS` (
-  `INSCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `instrumentos` (
+  `INSCODIGO` int(10) UNSIGNED NOT NULL,
   `INSNOME` varchar(50) DEFAULT NULL,
-  `INSTIPO` tinyint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `INSTIPO` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `INSTRUMENTOS`
+-- Extraindo dados da tabela `instrumentos`
 --
 
-INSERT INTO `INSTRUMENTOS` (`INSCODIGO`, `INSNOME`, `INSTIPO`) VALUES
+INSERT INTO `instrumentos` (`INSCODIGO`, `INSNOME`, `INSTIPO`) VALUES
 (1, 'VOCAIS', NULL),
 (2, 'GUITARRA', 1),
 (3, 'BAIXO', 1),
@@ -1225,22 +1124,22 @@ INSERT INTO `INSTRUMENTOS` (`INSCODIGO`, `INSNOME`, `INSTIPO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `INTEGRANTES`
+-- Estrutura da tabela `integrantes`
 --
 
-CREATE TABLE `INTEGRANTES` (
-  `ITGBANDA` int UNSIGNED NOT NULL,
-  `ITGARTISTA` int UNSIGNED NOT NULL,
-  `ITGDTINICIO` datetime DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `integrantes` (
+  `ITGBANDA` int(10) UNSIGNED NOT NULL,
+  `ITGARTISTA` int(10) UNSIGNED NOT NULL,
+  `ITGDTINICIO` datetime DEFAULT current_timestamp(),
   `ITGDTTERMINO` datetime DEFAULT NULL,
-  `ITGINSTRUMENTO` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ITGINSTRUMENTO` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `INTEGRANTES`
+-- Extraindo dados da tabela `integrantes`
 --
 
-INSERT INTO `INTEGRANTES` (`ITGBANDA`, `ITGARTISTA`, `ITGDTINICIO`, `ITGDTTERMINO`, `ITGINSTRUMENTO`) VALUES
+INSERT INTO `integrantes` (`ITGBANDA`, `ITGARTISTA`, `ITGDTINICIO`, `ITGDTTERMINO`, `ITGINSTRUMENTO`) VALUES
 (1, 9, '1994-01-01 00:00:00', NULL, 1),
 (1, 10, '1995-01-01 00:00:00', NULL, 3),
 (1, 11, '1997-01-01 00:00:00', NULL, 4),
@@ -1336,26 +1235,25 @@ INSERT INTO `INTEGRANTES` (`ITGBANDA`, `ITGARTISTA`, `ITGDTINICIO`, `ITGDTTERMIN
 (21, 137, '2002-01-01 00:00:00', NULL, 4),
 (21, 138, '2002-01-01 00:00:00', NULL, 2),
 (21, 139, '2002-01-01 00:00:00', NULL, 1),
-(21, 140, '2011-01-01 00:00:00', NULL, 5),
-(22, 19, '2222-02-22 00:00:00', '2222-02-22 00:00:00', 11);
+(21, 140, '2011-01-01 00:00:00', NULL, 5);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MIDIAS`
+-- Estrutura da tabela `midias`
 --
 
-CREATE TABLE `MIDIAS` (
-  `MDSCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `midias` (
+  `MDSCODIGO` int(10) UNSIGNED NOT NULL,
   `MDSNOME` varchar(50) DEFAULT NULL,
-  `MDSONLINE` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MDSONLINE` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `MIDIAS`
+-- Extraindo dados da tabela `midias`
 --
 
-INSERT INTO `MIDIAS` (`MDSCODIGO`, `MDSNOME`, `MDSONLINE`) VALUES
+INSERT INTO `midias` (`MDSCODIGO`, `MDSNOME`, `MDSONLINE`) VALUES
 (1, 'CD', 0),
 (2, 'DVD', 0),
 (3, 'VINIL', 0),
@@ -1365,26 +1263,26 @@ INSERT INTO `MIDIAS` (`MDSCODIGO`, `MDSNOME`, `MDSONLINE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MUSICAS`
+-- Estrutura da tabela `musicas`
 --
 
-CREATE TABLE `MUSICAS` (
-  `MSCCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `musicas` (
+  `MSCCODIGO` int(10) UNSIGNED NOT NULL,
   `MSCNOME` varchar(200) DEFAULT NULL,
   `MSCDURACAO` time NOT NULL,
-  `MSCGENERO` int UNSIGNED DEFAULT NULL,
-  `MSCBANDA` int UNSIGNED DEFAULT NULL,
-  `MSCARTISTA` int UNSIGNED DEFAULT NULL,
-  `MSCLETRA` text,
+  `MSCGENERO` int(10) UNSIGNED DEFAULT NULL,
+  `MSCBANDA` int(10) UNSIGNED DEFAULT NULL,
+  `MSCARTISTA` int(10) UNSIGNED DEFAULT NULL,
+  `MSCLETRA` text DEFAULT NULL,
   `MSCVIDEO` varchar(250) DEFAULT NULL,
   `MSCAUDIO` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `MUSICAS`
+-- Extraindo dados da tabela `musicas`
 --
 
-INSERT INTO `MUSICAS` (`MSCCODIGO`, `MSCNOME`, `MSCDURACAO`, `MSCGENERO`, `MSCBANDA`, `MSCARTISTA`, `MSCLETRA`, `MSCVIDEO`, `MSCAUDIO`) VALUES
+INSERT INTO `musicas` (`MSCCODIGO`, `MSCNOME`, `MSCDURACAO`, `MSCGENERO`, `MSCBANDA`, `MSCARTISTA`, `MSCLETRA`, `MSCVIDEO`, `MSCAUDIO`) VALUES
 (1, 'Sgt. Peppers Lonely Hearts Club Band', '02:02:00', 2, 3, NULL, NULL, NULL, NULL),
 (2, 'With A Little Help From My Friends', '02:44:00', 2, 3, NULL, NULL, NULL, NULL),
 (3, 'Lucy In The Sky With Diamonds', '03:28:00', 2, 3, NULL, NULL, NULL, NULL),
@@ -2126,139 +2024,47 @@ INSERT INTO `MUSICAS` (`MSCCODIGO`, `MSCNOME`, `MSCDURACAO`, `MSCGENERO`, `MSCBA
 (823, 'MAD SOUNDS', '03:35:00', 2, 21, NULL, NULL, NULL, NULL),
 (824, 'FIRESIDE', '03:01:00', 2, 21, NULL, NULL, NULL, NULL),
 (825, 'WHY´D YOU ONLY CALL ME WHEN YOU´RE HIGH?', '02:41:00', 2, 21, NULL, NULL, NULL, NULL);
-INSERT INTO `MUSICAS` (`MSCCODIGO`, `MSCNOME`, `MSCDURACAO`, `MSCGENERO`, `MSCBANDA`, `MSCARTISTA`, `MSCLETRA`, `MSCVIDEO`, `MSCAUDIO`) VALUES
+INSERT INTO `musicas` (`MSCCODIGO`, `MSCNOME`, `MSCDURACAO`, `MSCGENERO`, `MSCBANDA`, `MSCARTISTA`, `MSCLETRA`, `MSCVIDEO`, `MSCAUDIO`) VALUES
 (826, 'SNAP OUT OF IT', '03:12:00', 2, 21, NULL, NULL, NULL, NULL),
 (827, 'KNEE SOCKS', '04:17:00', 2, 21, NULL, NULL, NULL, NULL),
-(828, 'I WANNA BE YOURS', '03:04:00', 2, 21, NULL, NULL, NULL, NULL),
-(839, 'MUSICA 1', '00:03:00', 19, 1, 105, '00', '', ''),
-(840, 'MUSICA 1', '00:03:00', 19, 1, 105, '00', '', ''),
-(841, 'MUSICA 1', '00:03:00', 19, 1, 105, '00', '', ''),
-(842, 'MUSICA 1', '00:03:00', 19, 1, 105, '00', '', ''),
-(843, 'MUSICA 1', '00:03:00', 19, 1, 105, '00', '', ''),
-(844, 'MUSICA 1', '00:03:00', 19, 1, 105, '00', '', ''),
-(845, 'MUSICA 1', '00:04:00', 18, 9, 78, '00', '', ''),
-(846, 'MUSICA 2', '00:05:00', 18, 9, 78, '11', '', ''),
-(847, 'MUSICA 3', '00:06:00', 18, 9, 78, '22', '', ''),
-(887, 'NOVA MUSICA 1', '03:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(888, 'NOVA MUSICA 2', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(889, 'NOVA MUSICA 3', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(892, 'MUSICA 01', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(893, 'MUSICA 02', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(894, 'MUSICA 03', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(895, 'MUSICA NOVA 01', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(896, 'MUSICA NOVA 02', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(897, 'MUSICA 01', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(898, 'MUSICA 02', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(899, 'MUSICA 01', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(900, 'MUSICA 02', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(901, 'MUSICA 01', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(902, 'MUSICA 02', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(903, 'MUSICA 01', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(904, 'MUSICA 02', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(905, 'MUSICA 01', '05:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(906, 'MUSICA 02', '04:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
-(907, 'Penis', '23:00:00', 9, 15, NULL, 'pepepe ', 'epepeppe', 'epepepep'),
-(908, 'VALE TUDO VALE NADA', '00:32:00', 2, NULL, NULL, 'VOCÊ VALE TUDO MAS VOCÊ NÃO VALE NADA ', 'valetudo.com', 'valenada.com'),
-(909, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(910, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(911, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(912, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(913, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(914, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(915, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(916, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(917, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(918, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(919, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(920, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(921, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(922, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(923, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(924, 'musuca2', '03:00:00', 6, 3, NULL, ' lkjhlkjhkjl', 'jhgjhfg', 'hgfjhgffg'),
-(925, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(926, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(927, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(928, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(929, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(930, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(931, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(932, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(933, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(934, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(935, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(936, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(937, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(938, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(939, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(940, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(941, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(942, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(943, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(944, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(945, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(946, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(947, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(948, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(949, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(950, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(951, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(952, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(953, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(954, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(955, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(956, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(957, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(958, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(959, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(960, 'musica1', '04:00:00', 1, 3, NULL, ' oihjuh', 'kjgjhg', 'jhfgjhf'),
-(961, 'musica6', '00:00:00', 2, NULL, 5, ' ', '', ''),
-(962, 'ASASAS', '02:02:00', 1, NULL, 8, ' aSDA', 'sadasd', 'aadsda');
+(828, 'I WANNA BE YOURS', '03:04:00', 2, 21, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `USUARIOS`
+-- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE `USUARIOS` (
-  `USRCODIGO` int UNSIGNED NOT NULL,
+CREATE TABLE `usuarios` (
+  `USRCODIGO` int(10) UNSIGNED NOT NULL,
   `USRNOME` varchar(150) DEFAULT NULL,
   `USRLOGIN` varchar(15) NOT NULL,
   `USREMAIL` varchar(150) NOT NULL,
   `USRSENHA` varchar(50) NOT NULL,
-  `USRBLOQUEIO` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `USRBLOQUEIO` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `USUARIOS`
+-- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `USUARIOS` (`USRCODIGO`, `USRNOME`, `USRLOGIN`, `USREMAIL`, `USRSENHA`, `USRBLOQUEIO`) VALUES
+INSERT INTO `usuarios` (`USRCODIGO`, `USRNOME`, `USRLOGIN`, `USREMAIL`, `USRSENHA`, `USRBLOQUEIO`) VALUES
 (1, 'Gabriel', 'um', 'gabriel@gmail', '1234', 0),
 (2, 'Administrador do sistema', 'admin', 'adm@servidor.com', '827ccb0eea8a706c4c34a16891f84e7b', 0),
-(3, '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', 0),
 (4, 'Fulano da Silva', 'Fulano', 'fulano@servidor.com', '827ccb0eea8a706c4c34a16891f84e7b', 0),
 (7, 'dfgfd dfgfd', 'dfgdfg', 'djfh@gmail.com', '202cb962ac59075b964b07152d234b70', 0),
 (8, 'nmnmvv', 'nmm,mm', 'v@hgcgh', 'd5a5a0719549b4565e93f9fa35248b03', 0),
 (9, 'Var Argas', 'Var Argas', 'Var_Argas@gmail.com', '234e508a95acb0a6931a4d2c08330d27', 0),
-(12, 'Caua', 'Caua', 'cauazin@email.com', '827ccb0eea8a706c4c34a16891f84e7b', 0),
-(13, 'goroditto', 'goroditto', 'Gordo@gordo.com', '827ccb0eea8a706c4c34a16891f84e7b', 0),
-(14, 'Mourao', 'Mourao', 'Mourao@Planalto.com', '81dc9bdb52d04dc20036dbd8313ed055', 0),
-(15, 'Penis', 'Penis', 'penis@pinto.com', '62361711c02eaa44409b79ebee049268', 0),
-(17, 'opa', 'opa', 'opa@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 0),
-(18, 'pintinho', 'pinto', 'pinto@gmail.com', 'e9e2b0c987c20acce83a47aeddebd497', 0),
-(19, '', 'kapa', 'kapakapa@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 0),
-(20, 'perna bamba bamba perna', 'Peba', 'perna@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0),
-(21, 'sexo da silva', 'sexo', 'sexo@transar.com', 'de2d4dba9ca94e7cd4fc69c426449b11', 0);
+(69, 'sexo da silva', 'sexo', 'sexo@transar.com', 'de2d4dba9ca94e7cd4fc69c426449b11', 0);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `ALBUNS`
+-- Índices para tabela `albuns`
 --
-ALTER TABLE `ALBUNS`
+ALTER TABLE `albuns`
   ADD PRIMARY KEY (`ALBCODIGO`),
   ADD KEY `ALBGRAVADORA` (`ALBGRAVADORA`),
   ADD KEY `ALBGENERO` (`ALBGENERO`),
@@ -2267,76 +2073,76 @@ ALTER TABLE `ALBUNS`
   ADD KEY `ALBMIDIA` (`ALBMIDIA`);
 
 --
--- Índices para tabela `ARTISTAS`
+-- Índices para tabela `artistas`
 --
-ALTER TABLE `ARTISTAS`
+ALTER TABLE `artistas`
   ADD PRIMARY KEY (`ARTCODIGO`);
 
 --
--- Índices para tabela `BANDAS`
+-- Índices para tabela `bandas`
 --
-ALTER TABLE `BANDAS`
+ALTER TABLE `bandas`
   ADD PRIMARY KEY (`BDSCODIGO`);
 
 --
--- Índices para tabela `CLASSIFICACAO`
+-- Índices para tabela `classificacao`
 --
-ALTER TABLE `CLASSIFICACAO`
+ALTER TABLE `classificacao`
   ADD PRIMARY KEY (`CLSUSUARIO`,`CLSMUSICA`),
   ADD KEY `CLSMUSICA` (`CLSMUSICA`);
 
 --
--- Índices para tabela `FAIXAS`
+-- Índices para tabela `faixas`
 --
-ALTER TABLE `FAIXAS`
+ALTER TABLE `faixas`
   ADD PRIMARY KEY (`FXSALBUM`,`FXSMUSICA`),
   ADD KEY `FXSMUSICA` (`FXSMUSICA`);
 
 --
--- Índices para tabela `GENEROS`
+-- Índices para tabela `generos`
 --
-ALTER TABLE `GENEROS`
+ALTER TABLE `generos`
   ADD PRIMARY KEY (`GNRCODIGO`);
 
 --
--- Índices para tabela `GRAVADORAS`
+-- Índices para tabela `gravadoras`
 --
-ALTER TABLE `GRAVADORAS`
+ALTER TABLE `gravadoras`
   ADD PRIMARY KEY (`GRVCODIGO`);
 
 --
--- Índices para tabela `INSTRUMENTOS`
+-- Índices para tabela `instrumentos`
 --
-ALTER TABLE `INSTRUMENTOS`
+ALTER TABLE `instrumentos`
   ADD PRIMARY KEY (`INSCODIGO`);
 
 --
--- Índices para tabela `INTEGRANTES`
+-- Índices para tabela `integrantes`
 --
-ALTER TABLE `INTEGRANTES`
+ALTER TABLE `integrantes`
   ADD PRIMARY KEY (`ITGBANDA`,`ITGARTISTA`),
   ADD KEY `ITGARTISTA` (`ITGARTISTA`),
   ADD KEY `ITGINSTRUMENTO` (`ITGINSTRUMENTO`);
 
 --
--- Índices para tabela `MIDIAS`
+-- Índices para tabela `midias`
 --
-ALTER TABLE `MIDIAS`
+ALTER TABLE `midias`
   ADD PRIMARY KEY (`MDSCODIGO`);
 
 --
--- Índices para tabela `MUSICAS`
+-- Índices para tabela `musicas`
 --
-ALTER TABLE `MUSICAS`
+ALTER TABLE `musicas`
   ADD PRIMARY KEY (`MSCCODIGO`),
   ADD KEY `MSCGENERO` (`MSCGENERO`),
   ADD KEY `MSCBANDA` (`MSCBANDA`),
   ADD KEY `MSCARTISTA` (`MSCARTISTA`);
 
 --
--- Índices para tabela `USUARIOS`
+-- Índices para tabela `usuarios`
 --
-ALTER TABLE `USUARIOS`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`USRCODIGO`),
   ADD UNIQUE KEY `USRLOGIN` (`USRLOGIN`),
   ADD UNIQUE KEY `USREMAIL` (`USREMAIL`);
@@ -2346,102 +2152,95 @@ ALTER TABLE `USUARIOS`
 --
 
 --
--- AUTO_INCREMENT de tabela `ALBUNS`
+-- AUTO_INCREMENT de tabela `albuns`
 --
-ALTER TABLE `ALBUNS`
-  MODIFY `ALBCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+ALTER TABLE `albuns`
+  MODIFY `ALBCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
--- AUTO_INCREMENT de tabela `ARTISTAS`
+-- AUTO_INCREMENT de tabela `artistas`
 --
-ALTER TABLE `ARTISTAS`
-  MODIFY `ARTCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+ALTER TABLE `artistas`
+  MODIFY `ARTCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
--- AUTO_INCREMENT de tabela `BANDAS`
+-- AUTO_INCREMENT de tabela `bandas`
 --
-ALTER TABLE `BANDAS`
-  MODIFY `BDSCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+ALTER TABLE `bandas`
+  MODIFY `BDSCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT de tabela `GENEROS`
+-- AUTO_INCREMENT de tabela `generos`
 --
-ALTER TABLE `GENEROS`
-  MODIFY `GNRCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+ALTER TABLE `generos`
+  MODIFY `GNRCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT de tabela `GRAVADORAS`
+-- AUTO_INCREMENT de tabela `gravadoras`
 --
-ALTER TABLE `GRAVADORAS`
-  MODIFY `GRVCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+ALTER TABLE `gravadoras`
+  MODIFY `GRVCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT de tabela `INSTRUMENTOS`
+-- AUTO_INCREMENT de tabela `instrumentos`
 --
-ALTER TABLE `INSTRUMENTOS`
-  MODIFY `INSCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `instrumentos`
+  MODIFY `INSCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT de tabela `MIDIAS`
+-- AUTO_INCREMENT de tabela `midias`
 --
-ALTER TABLE `MIDIAS`
-  MODIFY `MDSCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `midias`
+  MODIFY `MDSCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de tabela `MUSICAS`
+-- AUTO_INCREMENT de tabela `musicas`
 --
-ALTER TABLE `MUSICAS`
-  MODIFY `MSCCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=963;
+ALTER TABLE `musicas`
+  MODIFY `MSCCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=829;
 
 --
--- AUTO_INCREMENT de tabela `USUARIOS`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
-ALTER TABLE `USUARIOS`
-  MODIFY `USRCODIGO` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+ALTER TABLE `usuarios`
+  MODIFY `USRCODIGO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Restrições para despejos de tabelas
 --
 
 --
--- Limitadores para a tabela `ALBUNS`
+-- Limitadores para a tabela `albuns`
 --
-ALTER TABLE `ALBUNS`
-  ADD CONSTRAINT `ALBUNS_ibfk_1` FOREIGN KEY (`ALBGRAVADORA`) REFERENCES `GRAVADORAS` (`GRVCODIGO`),
-  ADD CONSTRAINT `ALBUNS_ibfk_2` FOREIGN KEY (`ALBGENERO`) REFERENCES `GENEROS` (`GNRCODIGO`),
-  ADD CONSTRAINT `ALBUNS_ibfk_3` FOREIGN KEY (`ALBBANDA`) REFERENCES `BANDAS` (`BDSCODIGO`),
-  ADD CONSTRAINT `ALBUNS_ibfk_4` FOREIGN KEY (`ALBARTISTA`) REFERENCES `ARTISTAS` (`ARTCODIGO`),
-  ADD CONSTRAINT `ALBUNS_ibfk_5` FOREIGN KEY (`ALBMIDIA`) REFERENCES `MIDIAS` (`MDSCODIGO`);
+ALTER TABLE `albuns`
+  ADD CONSTRAINT `ALBUNS_ibfk_1` FOREIGN KEY (`ALBGRAVADORA`) REFERENCES `gravadoras` (`GRVCODIGO`),
+  ADD CONSTRAINT `ALBUNS_ibfk_2` FOREIGN KEY (`ALBGENERO`) REFERENCES `generos` (`GNRCODIGO`),
+  ADD CONSTRAINT `ALBUNS_ibfk_3` FOREIGN KEY (`ALBBANDA`) REFERENCES `bandas` (`BDSCODIGO`),
+  ADD CONSTRAINT `ALBUNS_ibfk_4` FOREIGN KEY (`ALBARTISTA`) REFERENCES `artistas` (`ARTCODIGO`),
+  ADD CONSTRAINT `ALBUNS_ibfk_5` FOREIGN KEY (`ALBMIDIA`) REFERENCES `midias` (`MDSCODIGO`);
 
 --
--- Limitadores para a tabela `CLASSIFICACAO`
+-- Limitadores para a tabela `faixas`
 --
-ALTER TABLE `CLASSIFICACAO`
-  ADD CONSTRAINT `CLASSIFICACAO_ibfk_1` FOREIGN KEY (`CLSUSUARIO`) REFERENCES `USUARIOS` (`USRCODIGO`),
-  ADD CONSTRAINT `CLASSIFICACAO_ibfk_2` FOREIGN KEY (`CLSMUSICA`) REFERENCES `MUSICAS` (`MSCCODIGO`);
+ALTER TABLE `faixas`
+  ADD CONSTRAINT `FAIXAS_ibfk_1` FOREIGN KEY (`FXSALBUM`) REFERENCES `albuns` (`ALBCODIGO`),
+  ADD CONSTRAINT `FAIXAS_ibfk_2` FOREIGN KEY (`FXSMUSICA`) REFERENCES `musicas` (`MSCCODIGO`);
 
 --
--- Limitadores para a tabela `FAIXAS`
+-- Limitadores para a tabela `integrantes`
 --
-ALTER TABLE `FAIXAS`
-  ADD CONSTRAINT `FAIXAS_ibfk_1` FOREIGN KEY (`FXSALBUM`) REFERENCES `ALBUNS` (`ALBCODIGO`),
-  ADD CONSTRAINT `FAIXAS_ibfk_2` FOREIGN KEY (`FXSMUSICA`) REFERENCES `MUSICAS` (`MSCCODIGO`);
+ALTER TABLE `integrantes`
+  ADD CONSTRAINT `INTEGRANTES_ibfk_1` FOREIGN KEY (`ITGBANDA`) REFERENCES `bandas` (`BDSCODIGO`),
+  ADD CONSTRAINT `INTEGRANTES_ibfk_2` FOREIGN KEY (`ITGARTISTA`) REFERENCES `artistas` (`ARTCODIGO`),
+  ADD CONSTRAINT `INTEGRANTES_ibfk_3` FOREIGN KEY (`ITGINSTRUMENTO`) REFERENCES `instrumentos` (`INSCODIGO`);
 
 --
--- Limitadores para a tabela `INTEGRANTES`
+-- Limitadores para a tabela `musicas`
 --
-ALTER TABLE `INTEGRANTES`
-  ADD CONSTRAINT `INTEGRANTES_ibfk_1` FOREIGN KEY (`ITGBANDA`) REFERENCES `BANDAS` (`BDSCODIGO`),
-  ADD CONSTRAINT `INTEGRANTES_ibfk_2` FOREIGN KEY (`ITGARTISTA`) REFERENCES `ARTISTAS` (`ARTCODIGO`),
-  ADD CONSTRAINT `INTEGRANTES_ibfk_3` FOREIGN KEY (`ITGINSTRUMENTO`) REFERENCES `INSTRUMENTOS` (`INSCODIGO`);
-
---
--- Limitadores para a tabela `MUSICAS`
---
-ALTER TABLE `MUSICAS`
-  ADD CONSTRAINT `MUSICAS_ibfk_1` FOREIGN KEY (`MSCGENERO`) REFERENCES `GENEROS` (`GNRCODIGO`),
-  ADD CONSTRAINT `MUSICAS_ibfk_2` FOREIGN KEY (`MSCBANDA`) REFERENCES `BANDAS` (`BDSCODIGO`),
-  ADD CONSTRAINT `MUSICAS_ibfk_3` FOREIGN KEY (`MSCARTISTA`) REFERENCES `ARTISTAS` (`ARTCODIGO`);
+ALTER TABLE `musicas`
+  ADD CONSTRAINT `MUSICAS_ibfk_1` FOREIGN KEY (`MSCGENERO`) REFERENCES `generos` (`GNRCODIGO`),
+  ADD CONSTRAINT `MUSICAS_ibfk_2` FOREIGN KEY (`MSCBANDA`) REFERENCES `bandas` (`BDSCODIGO`),
+  ADD CONSTRAINT `MUSICAS_ibfk_3` FOREIGN KEY (`MSCARTISTA`) REFERENCES `artistas` (`ARTCODIGO`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
