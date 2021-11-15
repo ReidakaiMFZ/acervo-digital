@@ -67,12 +67,20 @@ header > .perfil > img{
     font-size: 24px;
     text-align: center;
 }
-select, input:not(.rdBndArt){
-  min-width: 20vw;
+select:not(#escolheInsercao), input:not(.rdBndArt, .txtPesquisa){
+  width: 24vw;
 }
-label{
+div:not(#insercao06) label{
   display: block;
-  margin-bottom: 2vh;
+  margin-bottom: 1.8vh;
+}
+#insercao06 label, #insercao01 label{
+  display: block;
+  margin-bottom: 1vh;
+  font-size: 15px;
+}
+#insercao01 input{
+  height:2vh;
 }
 span{
   display: block;
@@ -95,7 +103,11 @@ button{
   width: 7vw;
   height: 4vh;
 }
-textarea{
-  width: 20vw;
-  height: 20vh;
+textarea:not(#txtArtistaApres){
+  width: 24vw;
+  height: 15vh;
+}
+#insercao01 textarea{
+  height: 12vh;
+  width: 24vw;
 }

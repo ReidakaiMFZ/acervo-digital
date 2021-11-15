@@ -42,66 +42,62 @@ if(isset($_SESSION['USRCODIGO']) == false)
 <?php
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO"); //conexão
 
-
-
 $queryGeneros ="SELECT * FROM GENEROS"; //pesquisa de generos no banco de dados
-$consultaGeneros = mysqli_query($conexao, $queryGeneros); //consulta de generos de fato
+//$consultaGeneros = mysqli_query($conexao, $queryGeneros); //consulta de generos de fato
 $qntgeneros2 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT MAX(GNRCODIGO) FROM GENEROS"));
 $c = 1; //contador
+try{
+  while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1)){
+      $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO, BDSCODIGO, ARTCODIGO
+      FROM MUSICAS 
+      LEFT JOIN GENEROS ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO
+      LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA
+      LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA
+      WHERE MSCGENERO =". $c; //query de musicas
+      $consultaPop = mysqli_query($conexao, $queryPop);
+    if($regPop = mysqli_fetch_assoc($consultaPop)){
+      //$regPop = mysqli_fetch_assoc($consultaPop);
+      echo "<div class='linha'>";
+      echo  "<h2>". $regPop['GNRNOME'] ."</h2>";
+      echo  "<table>";
+      echo    "<tbody>";
+      echo      "<tr>";//cabeçalho do div
 
-while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1))
-{
-    $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO, BDSCODIGO, ARTCODIGO
-    FROM MUSICAS 
-    LEFT JOIN GENEROS ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO
-    LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA
-    LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA
-    WHERE MSCGENERO =". $c; //query de musicas
-    $consultaPop = mysqli_query($conexao, $queryPop);
-  if(mysqli_fetch_assoc($consultaPop) != null)
-  {
-    $regPop = mysqli_fetch_assoc($consultaPop);
-    echo "<div class='linha'>";
-    echo  "<h2>". $regPop['GNRNOME'] ."</h2>";
-    echo  "<table>";
-    echo    "<tbody>";
-    echo      "<tr>";//cabeçalho do div
-
-  
-    for($i = 0; $i<=6; $i++)
+    
+      for($i = 0; $i<=6; $i++){
+        if($regPop = mysqli_fetch_array($consultaPop)){
+          echo "<td>";
+          echo "<div class='album'>";
+          echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/>";
+          echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
+          echo "<br/>";
+          if ($regPop['BDSNOME'] == NULL){
+            echo "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+          }
+          else{
+            echo "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+          }
+          echo "</div>";
+          echo "</td>";
+        }
+      }
+        echo      "</tr>";
+        echo    "</tbody>";
+        echo  "</table>";
+        echo "</div>";
+    }
+    else
     {
-      $regPop = mysqli_fetch_array($consultaPop);
-      echo "<td>";
-      echo "<div class='album'>";
-      echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/>";
-      echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
-      echo "<br/>";
-      if ($regPop['BDSNOME'] == NULL)
-      {
-        echo "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
-      }
-      else
-      {
-        echo "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
-      }
-      echo "</td>";
-      echo "</div>";
-    }     
-      
-    echo      "</tr>";
-    echo    "</tbody>";
-    echo  "</table>";
-    echo "</div>";
-  }
-  else
-  {
+      $c++;
+      //mysqli_fetch_assoc($consultaGeneros);
+    }
     $c++;
-    mysqli_fetch_assoc($consultaGeneros);
   }
-  $c++;
 }
-mysqli_free_result($consultaGeneros);
-mysqli_close($conexao);
+finally{
+  //mysqli_free_result($consultaGeneros);
+  mysqli_close($conexao);
+}
 ?>
 </body>
 </html>

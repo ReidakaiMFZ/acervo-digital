@@ -37,7 +37,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
     </div>
   </header>
 
-  <select id="escolheInsercao" onchange="escolha()">
+  <select id="escolheInsercao"  onchange="escolha()">
     <option value="-1">--Selecionar--</option>
     <option value="0"> Inserir albuns</option>
     <option value="1"> Inserir artistas</option>
@@ -49,7 +49,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
   </select>
   <!-- albuns -->
   <div id="insercao00" class="insercao" name="insercao00" style="display: none;">
-    <form action="envioDados.php" method="post">
+    <form action="envioDados.php" method="post" enctype="multipart/form-data">
       <h1>Álbuns</h1>
       <input type="hidden" name="TipoInsert" value="0" />
       <!-- NOME DO ALBUM -->
@@ -97,12 +97,11 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
             <span class="rdBndArt">Artista</span>
           </label>
         </div>
-
         <!-- INPUT DE BANDA -->
         <label id="lblBanda">
           <span>Banda</span>
           <select name="txtBanda" id="txtBanda" require>
-            <option value="">--Selecionar--</option>
+            <option value="-1">--Selecionar--</option>
             <?php
               $queryBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS");
               while($regBanda = mysqli_fetch_assoc($queryBanda)){
@@ -116,7 +115,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <label id="lblArtista" style="display: none;">
           <span>Artista</span>
           <select name="txtArtista" id="txtArtista">
-            <option value="">--Selecionar--</option>
+            <option value="-1">--Selecionar--</option>
             <?php
               $queryArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS");
               while($regArtista = mysqli_fetch_assoc($queryArtista)){
@@ -171,6 +170,45 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <span>Data de Término</span>
         <input type="date" name="txtDtTerminoArt" id="txtDtTerminoArt" />
       </label>
+      <!-- banda -->
+      <label>
+        <span>Banda</span>
+        <select name="cmbArtBanda" id="cmbArtBanda" onchange="fnInstrumento(this.value)">
+          <option value="-1">--Selecionar--</option>
+          <?php
+          $queryBanda = mysqli_query($conexao, "SELECT BDSCODIGO, BDSNOME FROM BANDAS");
+          while($regBanda = mysqli_fetch_assoc($queryBanda)){
+            echo "<option value='".$regBanda['BDSCODIGO']."'>".$regBanda['BDSNOME']."</option>";
+          }
+          mysqli_free_result($queryBanda);
+          ?>
+        </select>
+      </label>
+      <!-- instrumento -->
+      <label id="lblInstrumento" style="display : none;">
+        <span>Instrumento</span>
+        <select name="cmbInstrumento" id="cmbInstrumento">
+          <option value="-1">--Selecionar--</option>
+          <?php
+          $queryInstrumento = mysqli_query($conexao, "SELECT INSCODIGO, INSNOME FROM INSTRUMENTOS");
+          while($regInstrumento = mysqli_fetch_assoc($queryInstrumento)){
+            echo "<option value='".$regInstrumento['INSCODIGO']."'>".$regInstrumento['INSNOME']."</option>";
+          }
+          mysqli_free_result($queryInstrumento);
+          ?>
+        </select>
+      </label>
+      <!-- inicio banda -->
+      <label id="lblBandaIniArt" style="display : none;">
+        <span>Data de inicio na banda</span>
+        <input type="date" name="txtBandaIniArt" id="txtBandaIniArt" require />
+      </label>
+      <!-- termino banda -->
+      <label id="lblBandaFimArt" style="display : none;">
+        <span>Data de Término na banda</span>
+        <input type="date" name="txtBandaFimArt" id="txtBandaFimArt" />
+      </label>
+      <!-- apresentação -->
       <label>
         <span>Apresentação</span>
         <textarea name="txtArtistaApres" id="txtArtistaApres" require></textarea>
@@ -269,7 +307,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <!-- duração -->
       <label>
         <span>Duração</span>
-        <input type="time" name="txtTempoMus" id="txtTempoMus" />
+        <input type="time" name="txtTempoMus" id="txtTempoMus" step="1"/>
       </label>
       <!-- generos -->
       <label>
@@ -296,35 +334,57 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
           <span class="rdBndArt">Artista</span>
         </label>
       </div>
+      <!-- bandas -->
       <label id="lblMusBanda">
         <span>Banda</span>
         <select name="cmbBanda" id="cmbBanda">
           <option value="-1">--Selecionar--</option>
           <?php
-            $queryBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS");
-            while($regBanda = mysqli_fetch_assoc($queryBanda)){
-              echo "<option value='". $regGenero['BDSCODIGO'] ."'>". $regBanda["BDSNOME"] ."</option>";
+            $queryMusBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS");
+            while($regMusBanda = mysqli_fetch_assoc($queryMusBanda)){
+              echo "<option value='". $regMusBanda['BDSCODIGO'] ."'>". $regMusBanda["BDSNOME"] ."</option>";
             }
-            mysqli_free_result($queryBanda);
+            mysqli_free_result($queryMusBanda);
           ?>
         </select>
       </label>
+      <!-- artistas -->
       <label id="lblMusArtista" style="display: none;">
         <span>Artista</span>
         <select name="cmbArtista" id="cmbArtista">
           <option value="-1">--Selecionar--</option>
           <?php
-            $queryArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS");
-            while($regArtista = mysqli_fetch_assoc($queryArtista)){
-              echo "<option value='". $regArtista['BDSCODIGO'] ."'>". $regArtista["BDSNOME"] ."</option>";
+            $queryMusArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS");
+            while($regMusArtista = mysqli_fetch_assoc($queryMusArtista)){
+              echo "<option value='". $regMusArtista['ARTCODIGO'] ."'>". $regMusArtista["ARTNOME"] ."</option>";
             }
-            mysqli_free_result($queryArtista);
+            mysqli_free_result($queryMusArtista);
           ?>
         </select>
       </label>
+      <!-- album -->
+      <label>
+        <span>Album</span>
+        <select name="cmbAlbumMus" id="cmbAlbumMus">
+          <option value="-1">--Selecionar--</option>
+          <?php
+            $queryAlbum = mysqli_query($conexao, "SELECT ALBCODIGO, ALBNOME FROM ALBUNS");
+            while($regAlbum = mysqli_fetch_assoc($queryAlbum)){
+              echo "<option value='". $regAlbum['ALBCODIGO'] ."'>". $regAlbum['ALBNOME'] . "</option>";
+            }
+            mysqli_free_result($queryAlbum);
+          ?>
+        </select>
+      </label>
+      <!-- letra -->
       <label>
         <span>Letra</span>
         <textarea name="txtLetra" id="txtLetra"></textarea>
+      </label>
+      <!-- link do video -->
+      <label>
+        <span>Link do vídeo</span>
+        <input type="url" name="txtUrlMusica" id="txtUrlMusica" />
       </label>
       <button type="submit">Enviar</button>
     </form>
@@ -335,7 +395,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 <script>
   var params = window.location.search.split('=');
   
-  if(params[1] >= 1 && params[1] <=6)
+  if(params[1] >= 0 && params[1] <=6)
   {
     document.getElementById('escolheInsercao').value = parseInt(params[1]);
     escolha();
