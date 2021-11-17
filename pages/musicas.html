@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/musicas.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h3><a href="../php/">Inicio</a></h3>
+        <h3><a href="#">Biblioteca</a></h3>
+        <h3><a href="../php/cadastromus.php">Cadastrar</a></h3>
+      
+        <form class="pesquisa" action="../php/search.php" method="get">
+          <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
+          <button type="submit" class="btnPesquisa"></button>
+        </form>
+      
+        <div class="perfil">
+          <img src="../images/unknown.ico">
+          <h3>
+            <a href="../php/perfil.php">perfil</a>
+          </h3>
+        </div>    
+      </header>
+      <img src="" alt="musica"/>
+      <div style="margin-top: 50vh;">
+
+        <p>00:00</p>
+        <p id="maximo">00:00</p>
+        <progress id="musicaProgresso" value="0" max="0"></progress>
+        <button onclick="atualizaMusica()" style="color: black;">play</button>
+      </div>
+    
+</body>
+<script src="../js/teste.js"></script>
+</html>

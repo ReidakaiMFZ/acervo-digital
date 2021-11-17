@@ -23,9 +23,16 @@ $queryCantor ="SELECT ARTCODIGO, ARTNOME
 FROM ARTISTAS 
 WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME";
 
+$queryAlbum ="SELECT ALBCODIGO, ALBNOME, IFNULL(ALBCAPA, 'placeholder-de-imagens.png') ALBCAPA, BDSNOME, ARTNOME
+FROM ALBUNS 
+LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = ALBBANDA
+LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = ALBARTISTA
+WHERE ALBNOME LIKE '%". $pesquisa . "%' ORDER BY ALBNOME";
+
 $consultaCantor = mysqli_query($conexao, $queryCantor);
 $consultaBanda = mysqli_query($conexao, $queryBanda);
 $consultaPop = mysqli_query($conexao, $queryPop);
+$consultaAlbum = mysqli_query($conexao, $queryAlbum);
 ?>
 <html lang="pt-br">
 <head>
@@ -59,15 +66,15 @@ $consultaPop = mysqli_query($conexao, $queryPop);
 </header>
 
 <?php
-if(mysqli_fetch_assoc($consultaPop))
-{
+// musica
+if(mysqli_fetch_assoc($consultaPop)){
     mysqli_free_result($consultaPop);
     $consultaPop = mysqli_query($conexao, $queryPop);
     //teste de musicas
-    echo "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
     while($regPop = mysqli_fetch_assoc($consultaPop))
     {
         echo "<div class='linha'>";
+        echo "<a class='prev' id='prev' onclick='plusSlides(-1)'>&#10094;</a>";
         echo  "<h2>Musicas</h2>";
         echo  "<table>";
         echo    "<tbody>";
@@ -97,19 +104,53 @@ if(mysqli_fetch_assoc($consultaPop))
         echo      "</tr>";
         echo    "</tbody>";
         echo  "</table>";
+        echo "<a class='next' id='next' onclick='plusSlides(1)'>&#10095;</a>";
         echo "</div>";
     }
-    echo "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
 }
-if(mysqli_fetch_assoc($consultaBanda))
-{
+// album
+if(mysqli_fetch_assoc($consultaAlbum)){
+    mysqli_free_result($consultaAlbum);
+    $consultaAlbum = mysqli_query($conexao, $queryAlbum);
+    //teste de cantor
+
+    while($regAlbum = mysqli_fetch_array($consultaAlbum))
+    {
+        echo "<div class='linha3'>";
+        echo "<a class='prev' id='prev3' onclick='plusSlides3(parseInt(-1, 10))'>&#10094;</a>";
+        echo  "<h2>Álbuns</h2>";
+        echo  "<table>";
+        echo    "<tbody>";
+        echo      "<tr>";
+        for($i = 0; $i < 7; $i++)
+        {
+            if($regAlbum != null)
+            {
+                echo "<td>";
+                echo "<div class='album'>";
+                echo   "<a href=''><img src='../images/". $regAlbum['ALBCAPA'] ."'/>";
+                echo   "<label>" . $regAlbum['ALBNOME'] . "</label></a>";
+                echo "</td>";
+                echo "</div>";
+                $regAlbum = mysqli_fetch_array($consultaAlbum);
+            }
+        }
+        echo      "</tr>";
+        echo    "</tbody>";
+        echo  "</table>";
+        echo "<a class='next' id='next3' onclick='plusSlides3(parseInt(1, 10))'>&#10095;</a>";
+        echo "</div>";
+    }
+}
+// banda
+if(mysqli_fetch_assoc($consultaBanda)){
     mysqli_free_result($consultaBanda);
     $consultaBanda = mysqli_query($conexao, $queryBanda);
     //bandas
-    echo "<a class='prev1' onclick='plusSlides1(parseInt(-1, 10))'>&#10094;</a>";
     while($regBanda = mysqli_fetch_array($consultaBanda))
     {
         echo "<div class='linha1'>";
+        echo "<a class='prev' id='prev1' onclick='plusSlides1(parseInt(-1, 10))'>&#10094;</a>";
         echo  "<h2>Bandas</h2>";
         echo  "<table>";
         echo    "<tbody>";
@@ -130,20 +171,20 @@ if(mysqli_fetch_assoc($consultaBanda))
         echo      "</tr>";
         echo    "</tbody>";
         echo  "</table>";
+        echo "<a class='next' id='next1' onclick='plusSlides1(parseInt(1, 10))'>&#10095;</a>";
         echo "</div>";
     }
-    echo "<a class='next1' onclick='plusSlides1(parseInt(1, 10))'>&#10095;</a>";
 }
-if(mysqli_fetch_assoc($consultaCantor))
-{
+// artista
+if(mysqli_fetch_assoc($consultaCantor)){
     mysqli_free_result($consultaCantor);
     $consultaCantor = mysqli_query($conexao, $queryCantor);
     //teste de cantor
 
-    echo "<a class='prev2' onclick='plusSlides2(parseInt(-1, 10))'>&#10094;</a>";
     while($regCantor = mysqli_fetch_array($consultaCantor))
     {
         echo "<div class='linha2'>";
+        echo "<a class='prev' id='prev2' onclick='plusSlides2(parseInt(-1, 10))'>&#10094;</a>";
         echo  "<h2>Artistas</h2>";
         echo  "<table>";
         echo    "<tbody>";
@@ -164,9 +205,9 @@ if(mysqli_fetch_assoc($consultaCantor))
         echo      "</tr>";
         echo    "</tbody>";
         echo  "</table>";
+        echo "<a class='next' id='next2' onclick='plusSlides2(parseInt(1, 10))'>&#10095;</a>";
         echo "</div>";
     }
-    echo "<a class='next2' onclick='plusSlides2(parseInt(1, 10))'>&#10095;</a>";
 }
 
 mysqli_free_result($consultaCantor);

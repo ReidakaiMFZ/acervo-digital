@@ -13,12 +13,12 @@ body{
 /*cabeçalho*/
 header{
   position:fixed;
+  top: 0px;
   display:flex;
   height: 12vh;
   width: 100vw;
   background-color: #B36EEA;
   z-index: 2;
-  
 }
 header > h3{
   margin-left: 2.5%;
@@ -69,8 +69,8 @@ header > .perfil > img{
 }
 
 /* main */
-.linha, .linha1, .linha2{
-  position: absolute;
+.linha, .linha1, .linha2, .linha3{
+  position: relative;
   margin-top: 20vh;
   margin-left: 5vw;
   margin-right: 5vw;
@@ -105,12 +105,21 @@ header > .perfil > img{
   text-decoration: none;
   color: #fff;
 }
+
 /* Next & previous buttons */
-.prev, .next, .prev1, .next1, .prev2, .next2 {
+.prev{ 
+  margin-left: -5%;
+}
+.next{
+  right: 0;
+  border-radius: 3px 0 0 3px;
+  margin-right: -5%;
+}
+.prev, .next{
   cursor: pointer;
   position: absolute;
   display: block;
-  top: 40%;
+  top: 50%;
   width: auto;
   padding: 16px;
   margin-top: -22px;
@@ -121,23 +130,7 @@ header > .perfil > img{
   border-radius: 0 3px 3px 0;
   user-select: none;
 }
-.linha1{
-  margin-top: 30%;
-}
-.linha2{
-  margin-top: 50%;
-}
-.prev1, .next1{
-  margin-top: 18%;
-}
-.prev2, .next2{
-  margin-top: 38%;
-}
-.next, .next1, .next2 {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-.prev:hover, .next:hover, .prev1:hover, .next1:hover, .prev2:hover, .next2:hover {
+.prev:hover, .next:hover{
   background-color: rgba(0,0,0,0.8);
 }
 input{
