@@ -10,44 +10,45 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if($_POST['TipoInsert'] == 0){ //Album
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
+
     if($_FILES['inpCapa']['name'] != ""){
         $nome = pathinfo($_FILES['inpCapa']['name'], PATHINFO_FILENAME) . date("Ymd", time()) . "." . pathinfo($_FILES['inpCapa']['name'], PATHINFO_EXTENSION);
     }
     else{
         $nome = NULL;
     }
+    // var_dump($_POST["txtAlbum"]);
+    // die();
 
+    if($_POST["txtAlbum"] == ""){header('Location: cadastromus.php?s=0$error=1');}
+    if($_POST["txtMidia"] == ""){header('Location: cadastromus.php?s=0&error=2');}
     if($_POST["txtBanda"] != -1){
         mysqli_stmt_prepare($stmt, "INSERT INTO albuns(ALBNOME, ALBGRAVADORA, ALBGENERO, ALBDTLANCAMENTO, ALBBANDA, ALBMIDIA, ALBCAPA) VALUES (?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "siisiis", 
             $_POST["txtAlbum"], 
-            $_POST["txtGravadora"], 
-            $_POST["txtGenero"], 
-            $_POST["inpData"], 
-            $_POST["txtBanda"], 
+            $_POST["txtGravadora"] != -1 ? $_POST["txtGravadora"] : null,
+            $_POST["txtGenero"] != -1 ? $_POST["txtGenero"] : null,
+            $_POST["inpData"],
+            $_POST["txtBanda"],
             $_POST["txtMidia"],
             $nome
         );
-        if($nome != null){
-            move_uploaded_file($_FILES['inpCapa']['tmp_name'], "../images/".$nome);
-        }
     }
     else if($_POST["txtArtista"] != -1){
         mysqli_stmt_prepare($stmt, "INSERT INTO albuns(ALBNOME, ALBGRAVADORA, ALBGENERO, ALBDTLANCAMENTO, ALBARTISTA, ALBMIDIA, ALBCAPA) VALUES (?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "siisiis", 
             $_POST["txtAlbum"], 
-            $_POST["txtGravadora"], 
-            $_POST["txtGenero"], 
+            $_POST["txtGravadora"] != -1 ? $_POST["txtGravadora"] : null, 
+            $_POST["txtGenero"] != -1 ? $_POST["txtGenero"] : null, 
             $_POST["inpData"], 
             $_POST["txtArtista"], 
             $_POST["txtMidia"],
             $nome
         );
-        if($nome != null){
-            move_uploaded_file($_FILES['inpCapa']['tmp_name'], "../images/".$nome);
-        }
     }
-    
+    if($nome != null){
+        move_uploaded_file($_FILES['inpCapa']['tmp_name'], "../images/".$nome);
+    }
     mysqli_stmt_execute($stmt);
     mysqli_commit($conexao);
 
@@ -196,40 +197,56 @@ else if($_POST['TipoInsert']== 5){ //instrumentos
 else if($_POST['TipoInsert']== 6){ //Musicas
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
-    
+
     if($_POST['cmbArtista'] != -1){
-        if(isset($_POST['txtLetra'])){
-            mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCARTISTA, MSCLETRA, MSCVIDEO) VALUES (?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmt, "ssiiis", 
+        if(isset($_POST['txtLetraMus'])){
+            mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCARTISTA, MSCLETRA, MSCVIDEO, MSCAUDIO) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssiisss", 
                 $_POST['txtMusica'],
                 $_POST['txtTempoMus'],
                 $_POST['cmbGenero'],
                 $_POST['cmbArtista'],
-                $_POST['txtLetra'],
-                $_POST['txtUrlMusica']
+                $_POST['txtLetraMus'],
+                $_POST['txtUrlMusica'],
+                $_POST['txtUrlSomMusica']
             );
         }
         else{
-            mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCARTISTA, MSCVIDEO) VALUES (?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmt, "ssiiis", 
+            mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCARTISTA, MSCVIDEO, MSCAUDIO) VALUES (?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssiiss", 
                 $_POST['txtMusica'],
                 $_POST['txtTempoMus'],
                 $_POST['cmbGenero'],
                 $_POST['cmbArtista'],
-                $_POST['txtUrlMusica']
+                $_POST['txtUrlMusica'],
+                $_POST['txtUrlSomMusica']
             );
         }
     }
     else if($_POST['cmbBanda'] != -1){
-        mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCBANDA, MSCLETRA, MSCVIDEO) VALUES (?, ?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt, "ssiiis", 
-            $_POST['txtMusica'],
-            $_POST['txtTempoMus'],
-            $_POST['cmbGenero'],
-            $_POST['cmbBanda'],
-            $_POST['txtLetra'],
-            $_POST['txtUrlMusica']
-        );
+        if(isset($_POST['txtLetraMus'])){
+            mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCBANDA, MSCLETRA, MSCVIDEO, MSCAUDIO) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssiisss", 
+                $_POST['txtMusica'],
+                $_POST['txtTempoMus'],
+                $_POST['cmbGenero'],
+                $_POST['cmbBanda'],
+                $_POST['txtLetraMus'],
+                $_POST['txtUrlMusica'],
+                $_POST['txtUrlSomMusica']
+            );
+        }
+        else{
+            mysqli_stmt_prepare($stmt, "INSERT INTO MUSICAS(MSCNOME, MSCDURACAO, MSCGENERO, MSCBANDA, MSCVIDEO, MSCAUDIO) VALUES (?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssiiss", 
+                $_POST['txtMusica'],
+                $_POST['txtTempoMus'],
+                $_POST['cmbGenero'],
+                $_POST['cmbBanda'],
+                $_POST['txtUrlMusica'],
+                $_POST['txtUrlSomMusica']
+            );
+        }
     }
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);

@@ -90,11 +90,12 @@ span{
   margin-left: 0vw;
 }
 div:not(.perfil, #divRadButton){
+  display: flex;
   margin-left: 30vw;
   margin-top: -10vh;
   padding: 0.5vh 0.5vw 0.5vh 0.5vw;
   width: 25vw;
-  height: 78vh;
+  min-height: 78vh;
   background-color: #222;
   border: #000 solid 2px;
 }
@@ -103,11 +104,15 @@ button{
   width: 7vw;
   height: 4vh;
 }
-textarea:not(#txtArtistaApres){
+textarea:not(#txtArtistaApres, #txtLetra){
   width: 24vw;
   height: 15vh;
 }
 #insercao01 textarea{
   height: 12vh;
   width: 24vw;
+}
+#txtLetra{
+  width: 24vw;
+  height: 9vh;
 }

@@ -379,12 +379,17 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <!-- letra -->
       <label>
         <span>Letra</span>
-        <textarea name="txtLetra" id="txtLetra" placeholder="digite a letra da musica aqui..."></textarea>
+        <textarea name="txtLetraMus" id="txtLetraMus" placeholder="digite a letra da musica aqui..."></textarea>
       </label>
       <!-- link do video -->
       <label>
         <span>Link do vídeo</span>
-        <input type="url" name="txtUrlMusica" id="txtUrlMusica" />
+        <input type="url" name="txtUrlMusica" id="txtUrlMusica"  required/>
+      </label>
+      <!-- link do audio -->
+      <label>
+        <span>Link do áudio</span>
+        <input type="url" name="txtUrlSomMusica" id="txtUrlSomMusica"  required/>
       </label>
       <button type="submit">Enviar</button>
     </form>
@@ -393,15 +398,23 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 </body>
 <?php mysqli_close($conexao);?>
 <script>
-  var params = window.location.search.split('=');
-  
-  if(params[1] >= 0 && params[1] <=6)
+  var params = window.location.search.split('?')[1].split('&');
+  var s = params[0].split('=')[1];
+  var errors = params[1].split('=')[1];
+
+  if(s >= 0 && s <=6)
   {
-    document.getElementById('escolheInsercao').value = parseInt(params[1]);
+    document.getElementById('escolheInsercao').value = parseInt(s);
     escolha();
   }
   else{
     document.getElementById('escolheInsercao').value = -1;
+  }
+  if(s == 0 && errors == 1){
+    alert("O nome do album não pode ser vazio!!");
+  }
+  else if(s == 0 && errors == 2){
+    alert("Escolha o tipo de Midia!!");
   }
 
 </script>
