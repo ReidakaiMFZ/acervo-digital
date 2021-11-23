@@ -9,25 +9,27 @@ if(isset($_SESSION['USRCODIGO']) == false)
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 $pesquisa = $_GET['txtPesquisa'];
 
-$queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO
+$queryPop ="SELECT MSCCODIGO, MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO, ALBCAPA
 FROM MUSICAS 
 LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA
 LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA
-WHERE MSCNOME LIKE '%". $pesquisa ."%' ORDER BY MSCNOME";
+LEFT JOIN FAIXAS ON FAIXAS.FXSMUSICA = MUSICAS.MSCCODIGO 
+LEFT JOIN ALBUNS ON ALBUNS.ALBCODIGO = FAIXAS.FXSALBUM 
+WHERE MSCNOME LIKE '%". $pesquisa ."%' ORDER BY MSCNOME ASC";
 
 $queryBanda ="SELECT BDSCODIGO, BDSNOME
 FROM BANDAS
-WHERE BDSNOME LIKE '%". $pesquisa ."%' ORDER BY BDSNOME";
+WHERE BDSNOME LIKE '%". $pesquisa ."%' ORDER BY BDSNOME ASC";
 
 $queryCantor ="SELECT ARTCODIGO, ARTNOME
 FROM ARTISTAS 
-WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME";
+WHERE ARTNOME LIKE '%". $pesquisa ."%' ORDER BY ARTNOME ASC";
 
 $queryAlbum ="SELECT ALBCODIGO, ALBNOME, IFNULL(ALBCAPA, 'placeholder-de-imagens.png') ALBCAPA, BDSNOME, ARTNOME
 FROM ALBUNS 
 LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = ALBBANDA
 LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = ALBARTISTA
-WHERE ALBNOME LIKE '%". $pesquisa . "%' ORDER BY ALBNOME";
+WHERE ALBNOME LIKE '%". $pesquisa . "%' ORDER BY ALBNOME ASC";
 
 $consultaCantor = mysqli_query($conexao, $queryCantor);
 $consultaBanda = mysqli_query($conexao, $queryBanda);
@@ -85,7 +87,12 @@ if(mysqli_fetch_assoc($consultaPop)){
             {
                 echo "<td>";
                 echo "<div class='album'>";
-                echo   "<a href=''><img src='../images/placeholder-de-imagens.png'/>";
+                if($regPop['ALBCAPA'] != null){
+                    echo   "<a href='../php/musicas.php?musicaid=". $regPop['MSCCODIGO'] ."'><img src='../images/". $regPop['ALBCAPA'] ."'/>";
+                }
+                else{
+                    echo   "<a href='../php/musicas.php?musicaid=". $regPop['MSCCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+                }
                 echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
                 echo "<br/>";
                 if ($regPop['BDSNOME'] == null)

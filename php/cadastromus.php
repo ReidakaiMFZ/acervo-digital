@@ -63,7 +63,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="txtGravadora" id="txtGravadora" require>
           <option value="">--Selecionar--</option>
           <?php
-            $queryGravadora = mysqli_query($conexao, "SELECT GRVCODIGO, GRVNOME FROM GRAVADORAS");
+            $queryGravadora = mysqli_query($conexao, "SELECT GRVCODIGO, GRVNOME FROM GRAVADORAS ORDER BY GRVNOME ASC");
             while($regGravadora = mysqli_fetch_assoc($queryGravadora)){
               echo "<option value='". $regGravadora['GRVCODIGO'] ."'>". $regGravadora["GRVNOME"] ."</option>";
             }
@@ -77,7 +77,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="txtGenero" id="txtGenero" require>
           <option value="">--Selecionar--</option>
           <?php
-            $queryGenero = mysqli_query($conexao, "SELECT GNRNOME, GNRCODIGO FROM GENEROS");
+            $queryGenero = mysqli_query($conexao, "SELECT GNRNOME, GNRCODIGO FROM GENEROS ORDER BY GNRNOME ASC");
             while($regGenero = mysqli_fetch_assoc($queryGenero)){
               echo "<option value='". $regGenero['GNRCODIGO'] ."'>". $regGenero["GNRNOME"] ."</option>";
             }
@@ -103,7 +103,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
           <select name="txtBanda" id="txtBanda" require>
             <option value="-1">--Selecionar--</option>
             <?php
-              $queryBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS");
+              $queryBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS ORDER BY BDSNOME ASC");
               while($regBanda = mysqli_fetch_assoc($queryBanda)){
                 echo "<option value='". $regBanda['BDSCODIGO'] ."'>". $regBanda["BDSNOME"] ."</option>";
               }
@@ -117,7 +117,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
           <select name="txtArtista" id="txtArtista">
             <option value="-1">--Selecionar--</option>
             <?php
-              $queryArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS");
+              $queryArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS ORDER BY ARTNOME ASC");
               while($regArtista = mysqli_fetch_assoc($queryArtista)){
                 echo "<option value='". $regArtista['ARTCODIGO'] ."'>". $regArtista["ARTNOME"] ."</option>";
               }
@@ -142,7 +142,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="txtMidia" id="txtMidia" require>
           <option value="">--Selecionar--</option>
           <?php
-            $queryMidia = mysqli_query($conexao, "SELECT MDSCODIGO, MDSNOME FROM MIDIAS");
+            $queryMidia = mysqli_query($conexao, "SELECT MDSCODIGO, MDSNOME FROM MIDIAS ORDER BY MDSNOME ASC");
             while($regMidia = mysqli_fetch_assoc($queryMidia)){
               echo "<option value='". $regMidia['MDSCODIGO'] ."'>". $regMidia['MDSNOME'] ."</option>";
             }
@@ -176,7 +176,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="cmbArtBanda" id="cmbArtBanda" onchange="fnInstrumento(this.value)">
           <option value="-1">--Selecionar--</option>
           <?php
-          $queryBanda = mysqli_query($conexao, "SELECT BDSCODIGO, BDSNOME FROM BANDAS");
+          $queryBanda = mysqli_query($conexao, "SELECT BDSCODIGO, BDSNOME FROM BANDAS ORDER BY BDSNOME ASC");
           while($regBanda = mysqli_fetch_assoc($queryBanda)){
             echo "<option value='".$regBanda['BDSCODIGO']."'>".$regBanda['BDSNOME']."</option>";
           }
@@ -190,7 +190,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="cmbInstrumento" id="cmbInstrumento">
           <option value="-1">--Selecionar--</option>
           <?php
-          $queryInstrumento = mysqli_query($conexao, "SELECT INSCODIGO, INSNOME FROM INSTRUMENTOS");
+          $queryInstrumento = mysqli_query($conexao, "SELECT INSCODIGO, INSNOME FROM INSTRUMENTOS ORDER BY INSNOME ASC");
           while($regInstrumento = mysqli_fetch_assoc($queryInstrumento)){
             echo "<option value='".$regInstrumento['INSCODIGO']."'>".$regInstrumento['INSNOME']."</option>";
           }
@@ -315,7 +315,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="cmbGenero" id="cmbGenero">
           <option value="-1">--Selecionar--</option>
           <?php
-            $queryGenero = mysqli_query($conexao, "SELECT GNRNOME, GNRCODIGO FROM GENEROS");
+            $queryGenero = mysqli_query($conexao, "SELECT GNRNOME, GNRCODIGO FROM GENEROS ORDER BY GNRNOME ASC");
             while($regGenero = mysqli_fetch_assoc($queryGenero)){
               echo "<option value='". $regGenero['GNRCODIGO'] ."'>". $regGenero["GNRNOME"] ."</option>";
             }
@@ -340,7 +340,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="cmbBanda" id="cmbBanda">
           <option value="-1">--Selecionar--</option>
           <?php
-            $queryMusBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS");
+            $queryMusBanda = mysqli_query($conexao, "SELECT BDSNOME, BDSCODIGO FROM BANDAS ORDER BY BDSNOME ASC");
             while($regMusBanda = mysqli_fetch_assoc($queryMusBanda)){
               echo "<option value='". $regMusBanda['BDSCODIGO'] ."'>". $regMusBanda["BDSNOME"] ."</option>";
             }
@@ -354,7 +354,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="cmbArtista" id="cmbArtista">
           <option value="-1">--Selecionar--</option>
           <?php
-            $queryMusArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS");
+            $queryMusArtista = mysqli_query($conexao, "SELECT ARTNOME, ARTCODIGO FROM ARTISTAS ORDER BY ARTNOME ASC");
             while($regMusArtista = mysqli_fetch_assoc($queryMusArtista)){
               echo "<option value='". $regMusArtista['ARTCODIGO'] ."'>". $regMusArtista["ARTNOME"] ."</option>";
             }
@@ -368,7 +368,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
         <select name="cmbAlbumMus" id="cmbAlbumMus">
           <option value="-1">--Selecionar--</option>
           <?php
-            $queryAlbum = mysqli_query($conexao, "SELECT ALBCODIGO, ALBNOME FROM ALBUNS");
+            $queryAlbum = mysqli_query($conexao, "SELECT ALBCODIGO, ALBNOME FROM ALBUNS ORDER BY ALBNOME ASC");
             while($regAlbum = mysqli_fetch_assoc($queryAlbum)){
               echo "<option value='". $regAlbum['ALBCODIGO'] ."'>". $regAlbum['ALBNOME'] . "</option>";
             }
@@ -379,7 +379,7 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
       <!-- letra -->
       <label>
         <span>Letra</span>
-        <textarea name="txtLetra" id="txtLetra"></textarea>
+        <textarea name="txtLetra" id="txtLetra" placeholder="digite a letra da musica aqui..."></textarea>
       </label>
       <!-- link do video -->
       <label>

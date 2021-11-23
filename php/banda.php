@@ -20,12 +20,7 @@ WHERE BDSCODIGO = ".$intId.
 $queryBanda  = mysqli_query($conexao, $strBandas);
 
 
-if($regBanda = mysqli_fetch_array($queryBanda))
-{
-
-}
-else
-{
+if(!$regBanda = mysqli_fetch_array($queryBanda)){
     echo "<h1>Error 404</h1>";
     echo "<label>Not Found</label>";
     die();

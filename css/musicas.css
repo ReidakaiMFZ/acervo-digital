@@ -1,40 +1,48 @@
 /*tudo*/
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     color: #fff;
-    }
-    body{
+}
+
+body {
     background-color: #333333;
-    }
-    /*cabeçalho*/
-    header{
-    position:fixed;
-    display:flex;
+}
+
+/*cabeçalho*/
+header {
+    position: fixed;
+    display: flex;
     height: 12vh;
     width: 100vw;
     background-color: #B36EEA;
-    }
-    header > h3{
+    z-index: 2;
+}
+
+header>h3 {
     margin-left: 2.5%;
     margin-right: 2.5%;
-    margin-top:2%;
-    }
-    header a{
+    margin-top: 2%;
+}
+
+header a {
     text-decoration: none;
     color: #fff;
-    }
-    .pesquisa{
-    display:flex;
+}
+
+.pesquisa {
+    display: flex;
     height: 4vh;
     margin-top: 1.8%;
-    }
-    .txtPesquisa{
+}
+
+.txtPesquisa {
     width: 30vw;
     border: #000 1px solid;
-    }
-    .btnPesquisa{
+}
+
+.btnPesquisa {
     position: relative;
     width: 3vw;
     height: 4vh;
@@ -42,12 +50,14 @@
     background-image: url("../images/search-site-pw2.png");
     background-size: 2.5vw 3.5vh;
     background-position: center;
-    }
-    .perfil{
+}
+
+.perfil {
     text-align: center;
     margin-left: 25%;
-    }
-    header > .perfil > img{
+}
+
+header>.perfil>img {
     position: relative;
     border-radius: 50%;
     min-height: 20px;
@@ -55,4 +65,57 @@
     max-width: 50px;
     max-height: 50px;
     border: black 1px solid;
-    }
+}
+
+/* main */
+main{
+    width: 20vw;
+    height: 60vh;
+    display: inline-block;
+    margin-top: 20vh;
+    margin-left: 35vw;
+    text-align: center;
+}
+main img{
+    height: 40vh;
+    width: 20vw;
+}
+div:not(.perfil, #txtLetras){
+    text-align: center;
+}
+#musicaNome{
+    margin: 1vh;
+    margin-top: 2vh;
+}
+p{
+    display: inline;
+}
+#maximo{
+    margin-left: 13vw;
+}
+progress{
+    width: 20vw;
+    display: block;
+}
+button:not(.btnPesquisa){
+    color: black;
+}
+#btnTocar{
+    height: 7vh;
+    width: 4vw;
+    border-radius: 50%;
+}
+#btnLetras{
+    height: 5vh;
+    width: 15vw;
+    margin-top: 5vh;
+}
+#txtLetras{
+    position: fixed;
+    height: 88vh;
+    background-color: #222;
+    margin-left: 65vw;
+    margin-top: -76vh;
+    padding-top: 10px;
+    z-index: 1;
+}

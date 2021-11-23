@@ -16,7 +16,7 @@ if(isset($_SESSION['USRCODIGO']) == false)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/index.css">
-  <title>Inicio - ACERVO</title>
+  <title>Acervo - Inicio</title>
 </head>
 
 <body>
@@ -46,14 +46,17 @@ $queryGeneros ="SELECT * FROM GENEROS"; //pesquisa de generos no banco de dados
 $qntgeneros2 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT MAX(GNRCODIGO) FROM GENEROS"));
 $c = 1; //contador
 try{
-  while($c < ((int)$qntgeneros2['MAX(GNRCODIGO)']+1)){
-    $queryPop ="SELECT MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO, BDSCODIGO, ARTCODIGO
+  while($c <= ((int)$qntgeneros2['MAX(GNRCODIGO)'])){
+    $queryPop ="SELECT MSCCODIGO, MSCNOME, BDSNOME, ARTNOME, GNRNOME, GNRCODIGO, BDSCODIGO, ARTCODIGO, ALBCAPA 
     FROM MUSICAS 
-    LEFT JOIN GENEROS ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO
-    LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA
-    LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA
-    WHERE MSCGENERO =". $c; //query de musicas
+    LEFT JOIN GENEROS ON GENEROS.GNRCODIGO = MUSICAS.MSCGENERO 
+    LEFT JOIN BANDAS ON BANDAS.BDSCODIGO = MUSICAS.MSCBANDA 
+    LEFT JOIN ARTISTAS ON ARTISTAS.ARTCODIGO = MUSICAS.MSCARTISTA 
+    LEFT JOIN FAIXAS ON FAIXAS.FXSMUSICA = MUSICAS.MSCCODIGO 
+    LEFT JOIN ALBUNS ON ALBUNS.ALBCODIGO = FAIXAS.FXSALBUM 
+    WHERE MSCGENERO = ". $c . " ORDER BY MSCNOME ASC"; //query de musicas
     $consultaPop = mysqli_query($conexao, $queryPop);
+
     if($regPop = mysqli_fetch_assoc($consultaPop)){
       echo "<div class='linha'>";
       echo  "<h2>". $regPop['GNRNOME'] ."</h2>";
@@ -61,12 +64,20 @@ try{
       echo    "<tbody>";
       echo      "<tr>";//cabeçalho do div
 
-    
+      mysqli_free_result($consultaPop);
+      $consultaPop = mysqli_query($conexao, $queryPop);
+
       for($i = 0; $i<=6; $i++){
-        if($regPop = mysqli_fetch_array($consultaPop)){
+        if($regPop = mysqli_fetch_assoc($consultaPop)){
           echo "<td>";
           echo "<div class='album'>";
-          echo   "<a href='../pages/sla.html'><img src='../images/placeholder-de-imagens.png'/>";
+
+          if($regPop['ALBCAPA'] != null){
+            echo   "<a href='../php/musicas.php?musicaid=". $regPop['MSCCODIGO'] ."'><img src='../images/". $regPop['ALBCAPA'] ."'/>";
+          }
+          else{
+            echo   "<a href='../php/musicas.php?musicaid=". $regPop['MSCCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+          }
           echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
           echo "<br/>";
           if ($regPop['BDSNOME'] == NULL){
@@ -87,13 +98,11 @@ try{
     else
     {
       $c++;
-      //mysqli_fetch_assoc($consultaGeneros);
     }
     $c++;
   }
 }
 finally{
-  //mysqli_free_result($consultaGeneros);
   mysqli_close($conexao);
 }
 ?>
