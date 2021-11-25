@@ -20,8 +20,9 @@ if($_POST['TipoInsert'] == 0){ //Album
     else{
         $nome = NULL;
     }
-    // var_dump($_POST["txtAlbum"]);
-    // die();
+    // var_dump($_POST["txtGravadora"]);
+    $txtGravadora = $_POST["txtGravadora"] != -1 ? $_POST["txtGravadora"] : null;
+    $txtGenero = $_POST["txtGenero"] != -1 ? $_POST["txtGenero"] : null;
 
     if($_POST["txtAlbum"] == ""){header('Location: cadastromus.php?s=0$error=1');}
     if($_POST["txtMidia"] == ""){header('Location: cadastromus.php?s=0&error=2');}
@@ -29,8 +30,8 @@ if($_POST['TipoInsert'] == 0){ //Album
         mysqli_stmt_prepare($stmt, "INSERT INTO albuns(ALBNOME, ALBGRAVADORA, ALBGENERO, ALBDTLANCAMENTO, ALBBANDA, ALBMIDIA, ALBCAPA) VALUES (?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "siisiis", 
             $_POST["txtAlbum"], 
-            $_POST["txtGravadora"] != -1 ? $_POST["txtGravadora"] : null,
-            $_POST["txtGenero"] != -1 ? $_POST["txtGenero"] : null,
+            $txtGravadora,
+            $txtGenero,
             $_POST["inpData"],
             $_POST["txtBanda"],
             $_POST["txtMidia"],

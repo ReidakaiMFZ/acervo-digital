@@ -67,7 +67,7 @@ if(mysqli_connect_errno()){
       <label for="GRAVADORA">
         <span>Gravadora</span>
         <select name="txtGravadora" id="txtGravadora" require>
-          <option value="">--Selecionar--</option>
+          <option value="-1">--Selecionar--</option>
           <?php
             $queryGravadora = mysqli_query($conexao, "SELECT GRVCODIGO, GRVNOME FROM GRAVADORAS ORDER BY GRVNOME ASC");
             while($regGravadora = mysqli_fetch_assoc($queryGravadora)){
