@@ -1,6 +1,11 @@
 <?php
 session_start();
+
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if (mysqli_connect_errno()){
+	header('location: ../pages/login.htm?falha=2');
+}
+
 $cSQL = "SELECT USRCODIGO, USRNOME, USRLOGIN" .
         "  FROM USUARIOS" .
 		" WHERE '" . $_GET['txtLogin'] . "' IN (USRLOGIN, USREMAIL)" .

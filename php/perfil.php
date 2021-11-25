@@ -6,7 +6,12 @@ if(isset($_SESSION['USRCODIGO']) == false)
     header('location:../pages/login.htm');
 }
 
-$conexao = mysqli_connect("localhost", "root", "", "acervo");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
+}
+
 $query = mysqli_query($conexao, "SELECT USRCODIGO, USRNOME, USRLOGIN, USREMAIL
     FROM usuarios WHERE USRCODIGO = ". $_SESSION['USRCODIGO']);
 
@@ -47,7 +52,7 @@ $perfil = mysqli_fetch_assoc($query);
     </form>
 
     <div class="perfil">
-      <a href="#"><img src="../images/engrenagem.png"></a>
+      <a href="configuracoes.php"><img src="../images/engrenagem.png"></a>
     </div>
   </header>
   <img id="headerperfil"src="../images/header-background.jpg" alt="">

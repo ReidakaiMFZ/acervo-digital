@@ -4,7 +4,13 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
+
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -400,7 +406,12 @@ $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 <script>
   var params = window.location.search.split('?')[1].split('&');
   var s = params[0].split('=')[1];
-  var errors = params[1].split('=')[1];
+  if(params[1] != undefined){
+    var errors = params[1].split('=')[1];
+  }
+  else{
+    var errors = "none";
+  }
 
   if(s >= 0 && s <=6)
   {

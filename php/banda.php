@@ -8,6 +8,10 @@ if(isset($_SESSION['USRCODIGO']) == false)
 }
 
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
+}
 
 $intId = $_GET['bandaid'];
 $strBandas = "SELECT BDSNOME, ARTNOME, BDSDTINICIO, BDSDTTERMINO, ARTDTINICIO, ARTDTTERMINO, BDSAPRESENTACAO, INSNOME 

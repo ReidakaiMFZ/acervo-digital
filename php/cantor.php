@@ -7,6 +7,10 @@ if(isset($_SESSION['USRCODIGO']) == false)
 }
 
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
+}
 
 $intId = $_GET['artistaid'];
 $consultaArtista = "SELECT ARTNOME,ARTDTINICIO,ARTDTTERMINO,ARTAPRESENTACAO FROM ARTISTAS WHERE ARTCODIGO = ".$intId;

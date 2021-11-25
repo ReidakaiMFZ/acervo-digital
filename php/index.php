@@ -4,10 +4,15 @@ session_start();
 ini_set('display_errors', "On");
 error_reporting(E_ALL);
 
-
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
+}
+
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
 }
 ?>
 <!DOCTYPE html>
@@ -36,12 +41,10 @@ if(isset($_SESSION['USRCODIGO']) == false)
     <h3>
       <a href="perfil.php">perfil</a>
     </h3>
-  </div>    
+  </div>
 </header>
 
 <?php
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO"); //conexão
-
 $queryGeneros ="SELECT * FROM GENEROS"; //pesquisa de generos no banco de dados
 $qntgeneros2 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT MAX(GNRCODIGO) FROM GENEROS"));
 $c = 1; //contador

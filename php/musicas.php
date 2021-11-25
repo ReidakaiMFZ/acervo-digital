@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-ini_set('display_errors', "On");
-error_reporting(E_ALL);
-
-if(isset($_SESSION['USRCODIGO']) == false)
-{
+if(isset($_SESSION['USRCODIGO']) == false){
   header('location:../pages/login.htm');
 }
-$conexao = mysqli_connect("localhost", "root", "", "acervo");
+$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
+}
 
 $queryPop = "SELECT MSCCODIGO, MSCNOME, MSCDURACAO, MSCVIDEO, MSCAUDIO, MSCLETRA, BDSCODIGO, BDSNOME, ARTCODIGO, ARTNOME, ALBCAPA 
               FROM MUSICAS
@@ -17,46 +17,47 @@ $queryPop = "SELECT MSCCODIGO, MSCNOME, MSCDURACAO, MSCVIDEO, MSCAUDIO, MSCLETRA
               LEFT JOIN FAIXAS ON FAIXAS.FXSMUSICA = MUSICAS.MSCCODIGO 
               LEFT JOIN ALBUNS ON ALBUNS.ALBCODIGO = FAIXAS.FXSALBUM  
               WHERE MSCCODIGO = ". $_GET['musicaid'];
-
 $consultaPop = mysqli_query($conexao, $queryPop);
 if(!$regPop = mysqli_fetch_assoc($consultaPop)){
   echo "<h1>Error 404</h1>";
   echo "<label>Not Found</label>";
   die();
 }
+$queryAvaliar = "SELECT CLSNOTA FROM CLASSIFICACAO WHERE CLSUSUARIO = ". $_SESSION['USRCODIGO'] ." AND CLSMUSICA = ". $_GET['musicaid'];
+$consultaAvaliar = mysqli_query($conexao, $queryAvaliar);
+$regAvaliar = mysqli_fetch_assoc($consultaAvaliar);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/musicas.css">
-  <title>Acervo - Musica</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/musicas.css">
+    <title>Acervo - Musica</title>
 </head>
 
 <body>
-  <header>
-    <h3><a href="../php/">Inicio</a></h3>
-    <h3><a href="#">Biblioteca</a></h3>
-    <h3><a href="../php/cadastromus.php">Cadastrar</a></h3>
+    <header>
+        <h3><a href="../php/">Inicio</a></h3>
+        <h3><a href="#">Biblioteca</a></h3>
+        <h3><a href="../php/cadastromus.php">Cadastrar</a></h3>
 
-    <form class="pesquisa" action="../php/search.php" method="get">
-      <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
-      <button type="submit" class="btnPesquisa"></button>
-    </form>
+        <form class="pesquisa" action="../php/search.php" method="get">
+            <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
+            <button type="submit" class="btnPesquisa"></button>
+        </form>
 
-    <div class="perfil">
-      <img src="../images/unknown.ico">
-      <h3>
-        <a href="../php/perfil.php">perfil</a>
-      </h3>
-    </div>
-  </header>
+        <div class="perfil">
+            <img src="../images/unknown.ico">
+            <h3>
+                <a href="../php/perfil.php">perfil</a>
+            </h3>
+        </div>
+    </header>
 
-  <main>
+    <main>
     <?php 
     if($regPop['ALBCAPA'] != null){
       echo   "<img src='../images/". $regPop['ALBCAPA'] ."' alt='musica' />";
@@ -66,22 +67,43 @@ if(!$regPop = mysqli_fetch_assoc($consultaPop)){
     }
     echo "<h3 id='musicaNome'>". $regPop['MSCNOME'] ."</h3>";
     ?>
-    <div>
-      <p id="minimo">00:00</p>
-      <?php
-      echo "<p id='maximo'>". $regPop['MSCDURACAO'] ."</p>";
-      ?>
-      <progress id="musicaProgresso" value="0" max="0"></progress>
-      <button id="btnTocar" onclick="iniciar()">play</button>
-    </div>
-      <button id="btnLetras" onclick="mostraLetras()">letras</button>
+        <nav>
+            <form action="classificacao.php" method="get" id="form1">
+                <input type="hidden" name="txtClassificacao" id="txtClassificacao" value="0"/>
+                <input type="hidden" name="txtMusicaId" id="txtMusicaId" <?php echo "value='". $_GET['musicaid']."'"; ?>/>
+
+                <img class="star" id="star-1"src="../images/star0.webp" alt="star" onclick="avaliar(1), timer()"/>
+                <img class="star" id="star-2"src="../images/star0.webp" alt="star" onclick="avaliar(2), timer()"/>
+                <img class="star" id="star-3"src="../images/star0.webp" alt="star" onclick="avaliar(3), timer()"/>
+                <img class="star" id="star-4"src="../images/star0.webp" alt="star" onclick="avaliar(4), timer()"/>
+                <img class="star" id="star-5"src="../images/star0.webp" alt="star" onclick="avaliar(5), timer()"/>
+            </form>
+        </nav>
+        <div>
+            <p id="minimo">00:00</p>
+            <?php
+              echo "<p id='maximo'>". $regPop['MSCDURACAO'] ."</p>";
+            ?>
+            <progress id="musicaProgresso" value="0" max="0"></progress>
+            <button id="btnTocar" onclick="iniciar()">play</button>
+        </div>
+        <button id="btnLetras" onclick="mostraLetras()">letras</button>
     </main>
     <div id="txtLetras" style="display: none;">
-      <?php
+        <?php
       echo "<p>". $regPop['MSCLETRA'] ."</p>";
       ?>
     </div>
 </body>
-<script src="../js/teste.js"></script>
-
 </html>
+<script src="../js/musicas.js"></script>
+<script>
+  var aval = <?php echo $regAvaliar['CLSNOTA']; ?>;
+  avaliar(aval);
+</script>
+
+<?php
+mysqli_free_result($consultaAvaliar); 
+mysqli_free_result($consultaPop); 
+mysqli_close($conexao);
+?>

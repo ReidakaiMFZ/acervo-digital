@@ -1,40 +1,47 @@
 /*tudo*/
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   color: #fff;
-  }
-  body{
+}
+
+body {
   background-color: #333333;
-  }
-  /*cabeçalho*/
-  header{
-  position:fixed;
-  display:flex;
+}
+
+/*cabeçalho*/
+header {
+  position: fixed;
+  display: flex;
   height: 12vh;
   width: 100vw;
   background-color: #B36EEA;
-  }
-  header > h3{
+}
+
+header>h3 {
   margin-left: 2.5%;
   margin-right: 2.5%;
-  margin-top:2%;
-  }
-  header a{
+  margin-top: 2%;
+}
+
+header a {
   text-decoration: none;
   color: #fff;
-  }
-  .pesquisa{
-  display:flex;
+}
+
+.pesquisa {
+  display: flex;
   height: 4vh;
   margin-top: 1.8%;
-  }
-  .txtPesquisa{
+}
+
+.txtPesquisa {
   width: 30vw;
   border: #000 1px solid;
-  }
-  .btnPesquisa{
+}
+
+.btnPesquisa {
   position: relative;
   width: 3vw;
   height: 4vh;
@@ -42,12 +49,14 @@
   background-image: url("../images/search-site-pw2.png");
   background-size: 2.5vw 3.5vh;
   background-position: center;
-  }
-  .perfil{
+}
+
+.perfil {
   text-align: center;
   margin-left: 25%;
-  }
-  header > .perfil > img{
+}
+
+header>.perfil>img {
   position: relative;
   border-radius: 50%;
   min-height: 20px;
@@ -55,12 +64,14 @@
   max-width: 50px;
   max-height: 50px;
   border: black 1px solid;
-  }
+}
+
 /*musicas*/
-h2{
+h2 {
   color: #fff;
 }
-.linha{
+
+.linha {
   display: inline-block;
   margin-top: 20vh;
   margin-left: 5vw;
@@ -68,7 +79,8 @@ h2{
   max-height: 30vh;
   max-width: 90vw;
 }
-.album{
+
+.album {
   display: table;
   height: 30vh;
   width: 10vw;
@@ -78,26 +90,30 @@ h2{
   font-size: 0.9em;
   margin-top: 0;
 }
-.album label{
+
+.album label {
   display: block;
   text-align: center;
 }
-.album small{
+
+.album small {
   display: block;
   text-align: center;
 }
-.album a{
+
+.album a {
   text-decoration: none;
   color: #fff;
 }
-.album img{
+
+.album img {
   display: inline-block;
   height: 20vh;
   width: 100%;
   border-radius: 10%;
 }
-input{
+
+input {
   color: #000;
   text-indent: 5px;
 }
-

@@ -24,6 +24,9 @@ function atualizaMusica(){
     if(obj.max > document.getElementById("musicaProgresso").value){
         obj.value += 1;
     }
+    else{
+        clearInterval(tmp);
+    }
 }
 function iniciar(){
     if(i == 0){
@@ -46,4 +49,24 @@ function mostraLetras(){
         i2 = 0;
     }
 }
-
+function submitform(){
+    if(confirm("Deseja enviar esta classificação?")){
+        document.getElementById("form1").submit();
+    }
+}
+function avaliar(x){
+    var cont = 1;   
+    while(cont <= 5){
+        if(cont <= x){
+            document.getElementById("star-"+cont).src = "../images/star1.webp";
+        }
+        else{
+            document.getElementById("star-"+cont).src = "../images/star0.webp";
+        }
+        cont++;
+    }
+    document.getElementById("txtClassificacao").value = x;
+}
+function timer(){
+    setTimeout(() =>{submitform()}, 500);
+}

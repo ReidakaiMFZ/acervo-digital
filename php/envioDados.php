@@ -6,6 +6,9 @@ if(isset($_SESSION['USRCODIGO']) == false)
 }
 
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  header("location: cadastromus.php");
+}
 
 if($_POST['TipoInsert'] == 0){ //Album
     mysqli_begin_transaction($conexao);

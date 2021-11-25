@@ -27,8 +27,11 @@ header>h3 {
 }
 
 header a {
-    text-decoration: none;
     color: #fff;
+}
+
+a{
+    text-decoration: none;
 }
 
 .pesquisa {
@@ -76,9 +79,10 @@ main{
     margin-left: 35vw;
     text-align: center;
 }
-main img{
-    height: 40vh;
-    width: 20vw;
+main > img{
+    min-height: 40vh;
+    min-width: 20vw;
+    border: #000 solid 1px;
 }
 div:not(.perfil, #txtLetras){
     text-align: center;
@@ -118,4 +122,11 @@ button:not(.btnPesquisa){
     margin-top: -76vh;
     padding-top: 10px;
     z-index: 1;
+}
+nav{
+    text-align: right;
+}
+.star{
+    height: 2vh;
+    width: 1vw;
 }

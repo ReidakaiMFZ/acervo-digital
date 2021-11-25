@@ -35,5 +35,3 @@ function fnInstrumento(x){
         document.getElementById("lblInstrumento").value = "-1";
     }
 }
-// lblBandaFimArt
-// lblBandaIniArt

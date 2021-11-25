@@ -7,6 +7,11 @@ if(isset($_SESSION['USRCODIGO']) == false)
 }
 
 $conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+if(mysqli_connect_errno()){
+  echo "<h1>Conexão falhou</h1>";
+  die();
+}
+
 $pesquisa = $_GET['txtPesquisa'];
 
 $queryPop ="SELECT MSCCODIGO, MSCNOME, BDSNOME, ARTNOME, BDSCODIGO, ARTCODIGO, ALBCAPA
