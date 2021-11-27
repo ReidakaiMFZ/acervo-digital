@@ -44,7 +44,10 @@ header a {
     width: 30vw;
     border: #000 1px solid;
 }
-
+input {
+    color: #000;
+    text-indent: 5px;
+}
 .btnPesquisa {
     position: relative;
     width: 3vw;
@@ -95,29 +98,52 @@ main span {
     display: block;
 }
 /* nav */
-.album {
-    display: inline-block;
+nav{
+    margin-left: 25em;
+}
+.musica {
+    display: -webkit-inline-box;
     min-height: 30vh;
-    min-width: 10vw;
-    max-height: 30vh;
-    max-width: 10vw;
+    width: 10vw;
+    max-height: 40vh;
+    max-width: 90vw;
+    margin-top: 20vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10%;
-    font-size: 0.9em;
-    margin-top: 2vh;
     text-align: center;
+    font-size: 0.9em;
 }
 
-.album label {
-    word-break: break-all;
+.musica label {
+    display: block;
+    /* position: absolute; */
+    
 }
 
-.album img {
+.musica a {
+    text-decoration: none;
+    color: #fff;
+}
+.musica img:not(.star) {
+    display: inline-block;
     height: 20vh;
     width: 100%;
     border-radius: 10%;
 }
+
 input {
     color: #000;
     text-indent: 5px;
+}
+
+#estrelas{
+    display: contents;
+    text-align: center;
+}
+
+.star{
+    height: 2vh;
+    width: 1vw;
 }

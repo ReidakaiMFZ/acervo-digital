@@ -23,11 +23,13 @@ DATE_FORMAT(ALBDTLANCAMENTO, '%d de %b de %Y') ALBDTLANCAMENTO, ALBCAPA
                 LEFT JOIN MIDIAS ON MDSCODIGO = ALBMIDIA
                 LEFT JOIN GENEROS ON GNRCODIGO = ALBGENERO
                 WHERE ALBCODIGO = ". $_GET['albumid'];
-$queryMusicas = "SELECT MSCNOME, ALBCAPA
-                    FROM ALBUNS
-                    LEFT JOIN FAIXAS ON FXSALBUM = ALBCODIGO
-                    LEFT JOIN MUSICAS ON MSCCODIGO = FXSMUSICA
-                    WHERE ALBCODIGO = ". $_GET['albumid'];
+$queryMusicas = "SELECT MSCCODIGO, MSCNOME, ALBCAPA, CLSNOTA
+                    FROM MUSICAS
+                    LEFT JOIN FAIXAS ON FXSMUSICA = MSCCODIGO
+                    LEFT JOIN ALBUNS ON ALBCODIGO = FXSALBUM
+                    LEFT JOIN CLASSIFICACAO ON CLASSIFICACAO.CLSMUSICA = MUSICAS.MSCCODIGO
+                    WHERE ALBCODIGO = ". $_GET['albumid'] . 
+                    " ORDER BY FXSPOSICAO";
 $consultaMusicas = mysqli_query($conexao, $queryMusicas);
 $consultaAlbum = mysqli_query($conexao, $queryAlbum);
 if(!$regAlbum = mysqli_fetch_assoc($consultaAlbum)){
@@ -87,22 +89,31 @@ if(!$regAlbum = mysqli_fetch_assoc($consultaAlbum)){
     </main>
     <nav>
         <?php
-            echo "<div class='linha'>";
-            echo  "<h2>Musicas</h2>";
-            while($regMusicas = mysqli_fetch_assoc($consultaMusicas)){
-                echo "<div class='album'>";
-                if(isset($regMusicas['ALBCAPA'])){
-                    echo "<img src='../images/". $regMusicas['ALBCAPA'] ."' alt='musica'>";
-                }
-                else{
-                    echo "<img src='../images/placeholder-de-imagens.png' alt='musica'>";
-                }
-                
-                echo "<label>". $regMusicas['MSCNOME'] ."</label>";
-                echo "</div>";
+        while($regMusica = mysqli_fetch_assoc($consultaMusicas)){
+            echo "<div class='musica'>";
+
+            if($regMusica['ALBCAPA'] != null){
+                echo   "<a href='../php/musicas.php?musicaid=". $regMusica['MSCCODIGO'] ."'><img src='../images/". $regMusica['ALBCAPA'] ."'/>";
             }
-            echo "</ul>";
+            else{
+                echo   "<a href='../php/musicas.php?musicaid=". $regMusica['MSCCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+            }
+            echo   "<label>" . $regMusica['MSCNOME'] . "</label></a>";
+            echo "<div id='estrelas'>";
+            
+            $cont = 1;
+            while ($cont <= 5) {
+            if($cont <= round($regMusica['CLSNOTA'])){
+                echo  "<img class='star' id='star-". $cont ."-". $regMusica['MSCCODIGO'] ."' src='../images/star1.webp' alt='star'/>";
+            }
+            else{
+                echo  "<img class='star' id='star-". $cont ."-". $regMusica['MSCCODIGO'] ."' src='../images/star0.webp' alt='star'/>";
+            }
+            $cont++;
+            }
             echo "</div>";
+            echo "</div>";
+        }
         ?>
     </nav>
 </body>

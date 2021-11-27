@@ -55,7 +55,6 @@ $perfil = mysqli_fetch_assoc($query);
       <a href="configuracoes.php"><img src="../images/engrenagem.png"></a>
     </div>
   </header>
-  <img id="headerperfil"src="../images/header-background.jpg" alt="">
   <form method="GET" id="perfilmain">
     <img id="fotoperfil" src="../images/unknown.ico" alt="" />
     <input type="text" id="nomeperfil" name="nomeperfil" value="<?php echo $perfil['USRNOME']?>"/>
