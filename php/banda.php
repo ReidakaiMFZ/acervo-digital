@@ -45,7 +45,7 @@ if(!$regBanda = mysqli_fetch_array($queryBanda)){
         <header>
 
             <h3><a href="../php/">Inicio</a></h3>
-            <h3><a href="#">Biblioteca</a></h3>
+            <h3><a href="biblioteca.php">Biblioteca</a></h3>
             <h3><a href="cadastromus.php">Cadastrar</a></h3>
           
             <form class="pesquisa" action="search.php" method="get">

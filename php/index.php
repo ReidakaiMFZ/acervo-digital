@@ -14,6 +14,7 @@ if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();
 }
+
 ?>
 <!DOCTYPE html>
 
@@ -28,7 +29,7 @@ if(mysqli_connect_errno()){
 
 <header>
   <h3><a href="../php/">Inicio</a></h3>
-  <h3><a href="#">Biblioteca</a></h3>
+  <h3><a href="biblioteca.php">Biblioteca</a></h3>
   <h3><a href="cadastromus.php">Cadastrar</a></h3>
 
   <form class="pesquisa" action="search.php" method="get">
@@ -89,6 +90,23 @@ try{
           else{
             echo "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
           }
+          echo "<div id='estrelas'>";
+          $cont = 1;
+          $queryNotas = "SELECT AVG(CLSNOTA) media FROM CLASSIFICACAO WHERE CLSMUSICA = " . $regPop['MSCCODIGO'];
+          $consultaNotas = mysqli_query($conexao, $queryNotas);
+          $regNotas = mysqli_fetch_assoc($consultaNotas);
+
+          while ($cont <= 5) {
+            if($cont <= round($regNotas['media'])){
+              echo  "<img class='star' id='star-". $cont ."-". $regPop['MSCCODIGO'] ."' src='../images/star1.webp' alt='star'/>";
+            }
+            else{
+              echo  "<img class='star' id='star-". $cont ."-". $regPop['MSCCODIGO'] ."' src='../images/star0.webp' alt='star'/>";
+            }
+            $cont++;
+          }
+          echo "</div>";
+          
           echo "</div>";
           echo "</td>";
         }
@@ -97,6 +115,7 @@ try{
         echo    "</tbody>";
         echo  "</table>";
         echo "</div>";
+        mysqli_free_result($consultaNotas);
     }
     else
     {

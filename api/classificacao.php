@@ -38,5 +38,5 @@ else{
 mysqli_commit($conexao);
 mysqli_close($conexao);
 
-header("location: musicas.php?musicaid=". $_GET['txtMusicaId'])
+header("location: ../php/musicas.php?musicaid=". $_GET['txtMusicaId'])
 ?>

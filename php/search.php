@@ -56,7 +56,7 @@ $consultaAlbum = mysqli_query($conexao, $queryAlbum);
 <header>
 
   <h3><a href="../php/">Inicio</a></h3>
-  <h3><a href="#">Biblioteca</a></h3>
+  <h3><a href="biblioteca.php">Biblioteca</a></h3>
   <h3><a href="cadastromus.php">Cadastrar</a></h3>
 
   <form class="pesquisa" action="search.php" method="get">
@@ -140,7 +140,7 @@ if(mysqli_fetch_assoc($consultaAlbum)){
             {
                 echo "<td>";
                 echo "<div class='album'>";
-                echo   "<a href=''><img src='../images/". $regAlbum['ALBCAPA'] ."'/>";
+                echo   "<a href='album.php?albumid=". $regAlbum['ALBCODIGO'] ."'><img src='../images/". $regAlbum['ALBCAPA'] ."'/>";
                 echo   "<label>" . $regAlbum['ALBNOME'] . "</label></a>";
                 echo "</td>";
                 echo "</div>";

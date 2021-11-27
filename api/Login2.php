@@ -15,7 +15,7 @@ $oUsuarios = mysqli_query($conexao, $cSQL);
 if($vReg = mysqli_fetch_assoc($oUsuarios))
 {
 	$_SESSION['USRCODIGO'] = $vReg['USRCODIGO'];
-	header('location: index.php');
+	header('location: ../php/index.php');
 }
 else
 {

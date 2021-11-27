@@ -41,7 +41,7 @@ $regAvaliar = mysqli_fetch_assoc($consultaAvaliar);
 <body>
     <header>
         <h3><a href="../php/">Inicio</a></h3>
-        <h3><a href="#">Biblioteca</a></h3>
+        <h3><a href="biblioteca.php">Biblioteca</a></h3>
         <h3><a href="../php/cadastromus.php">Cadastrar</a></h3>
 
         <form class="pesquisa" action="../php/search.php" method="get">
@@ -58,17 +58,17 @@ $regAvaliar = mysqli_fetch_assoc($consultaAvaliar);
     </header>
 
     <main>
-    <?php 
-    if($regPop['ALBCAPA'] != null){
-      echo   "<img src='../images/". $regPop['ALBCAPA'] ."' alt='musica' />";
-    }
-    else{
-      echo   "<img src='../images/placeholder-de-imagens.png' alt='musica' />";
-    }
-    echo "<h3 id='musicaNome'>". $regPop['MSCNOME'] ."</h3>";
-    ?>
+      <?php 
+      if($regPop['ALBCAPA'] != null){
+        echo   "<img src='../images/". $regPop['ALBCAPA'] ."' alt='musica' />";
+      }
+      else{
+        echo   "<img src='../images/placeholder-de-imagens.png' alt='musica' />";
+      }
+      echo "<h3 id='musicaNome'>". $regPop['MSCNOME'] ."</h3>";
+      ?>
         <nav>
-            <form action="classificacao.php" method="get" id="form1">
+            <form action="../api/classificacao.php" method="get" id="form1">
                 <input type="hidden" name="txtClassificacao" id="txtClassificacao" value="0"/>
                 <input type="hidden" name="txtMusicaId" id="txtMusicaId" <?php echo "value='". $_GET['musicaid']."'"; ?>/>
 

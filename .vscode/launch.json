@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Launch Program",
-            "program": "${workspaceFolder}/js/teste.js",
+            "program": "${workspaceFolder}/js/classificacaoIndex.js",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"

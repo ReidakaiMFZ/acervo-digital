@@ -27,8 +27,8 @@ if(mysqli_connect_errno()){
 
   <header>
     <h3><a href="../php/">Inicio</a></h3>
-    <h3><a href="#">Biblioteca</a></h3>
-    <h3><a href="#">Cadastrar</a></h3>
+    <h3><a href="biblioteca.php">Biblioteca</a></h3>
+    <h3><a href="cadastromus.php">Cadastrar</a></h3>
 
     <form class="pesquisa" action="search.php" method="get">
       <input name="txtPesquisa" class="txtPesquisa" placeholder="Pesquisar..." />
@@ -55,7 +55,7 @@ if(mysqli_connect_errno()){
   </select>
   <!-- albuns -->
   <div id="insercao00" class="insercao" name="insercao00" style="display: none;">
-    <form action="envioDados.php" method="post" enctype="multipart/form-data">
+    <form action="../api/envioDados.php" method="post" enctype="multipart/form-data">
       <h1>Álbuns</h1>
       <input type="hidden" name="TipoInsert" value="0" />
       <!-- NOME DO ALBUM -->
@@ -161,7 +161,7 @@ if(mysqli_connect_errno()){
   </div>
   <!-- artistas -->
   <div id="insercao01" class="insercao" name="insercao01" style="display: none;">
-    <form action="envioDados.php" method="POST">
+    <form action="../api/envioDados.php" method="POST">
       <input type="hidden" name="TipoInsert" value="1" />
       <h1>Artista</h1>
       <label>
@@ -224,7 +224,7 @@ if(mysqli_connect_errno()){
   </div>
   <!-- bandas -->
   <div id="insercao02" class="insercao" name="insercao02" style="display: none;">
-    <form action="envioDados.php" method="POST">
+    <form action="../api/envioDados.php" method="POST">
       <input type="hidden" name="TipoInsert" value="2" />
       <h1>Banda</h1>
       <label>
@@ -248,7 +248,7 @@ if(mysqli_connect_errno()){
   </div>
   <!-- generos -->
   <div id="insercao03" class="insercao" name="insercao03" style="display: none;">
-    <form action="envioDados.php" method="POST">
+    <form action="../api/envioDados.php" method="POST">
       <input type="hidden" name="TipoInsert" value="3" />
       <h1>Gênero</h1>
       <label>
@@ -264,7 +264,7 @@ if(mysqli_connect_errno()){
   </div>
   <!-- gravadoras -->
   <div id="insercao04" class="insercao" name="insercao04" style="display: none;">
-    <form action="envioDados.php" method="post">
+    <form action="../api/envioDados.php" method="post">
       <input type="hidden" name="TipoInsert" value="4" />
       <h1>Gravadora</h1>
       <label>
@@ -284,7 +284,7 @@ if(mysqli_connect_errno()){
   </div>
   <!-- instrumentos -->
   <div id="insercao05" class="insercao" name="insercao05" style="display: none;">
-    <form action="envioDados.php" method="post">
+    <form action="../api/envioDados.php" method="post">
       <input type="hidden" name="TipoInsert" value="5"/>
       <h1>instrumento</h1>
       <label>
@@ -303,7 +303,7 @@ if(mysqli_connect_errno()){
   <!-- musicas -->
   <div id="insercao06" class="insercao" name="insercao06" style="display: none;">
     <!-- musica -->
-    <form action="envioDados.php" method="post">
+    <form action="../api/envioDados.php" method="post">
       <input type="hidden" name="TipoInsert" value="6">
       <h1>Música</h1>
       <label>

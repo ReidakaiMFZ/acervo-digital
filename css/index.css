@@ -106,7 +106,7 @@ h2 {
   color: #fff;
 }
 
-.album img {
+.album img:not(.star) {
   display: inline-block;
   height: 20vh;
   width: 100%;
@@ -116,4 +116,13 @@ h2 {
 input {
   color: #000;
   text-indent: 5px;
+}
+
+#estrelas{
+  text-align: center;
+}
+
+.star{
+  height: 2vh;
+  width: 1vw;
 }

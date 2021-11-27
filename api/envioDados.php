@@ -276,5 +276,5 @@ else if($_POST['TipoInsert']== 6){ //Musicas
     mysqli_close($conexao);
 }
 
-header('Location: cadastromus.php?s=' . (int)$_POST['TipoInsert']);
+header('Location: ../php/cadastromus.php?s=' . (int)$_POST['TipoInsert']);
 ?>
