@@ -49,6 +49,7 @@ $perfil = mysqli_fetch_assoc($query);
     </header>
     <div>
         <span>mudar senha:</span>
+        <button type="submit"></button>
     </div>
     <button>Sair</button>
 </body>

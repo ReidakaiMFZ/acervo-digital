@@ -102,11 +102,11 @@ if(mysqli_fetch_assoc($consultaPop)){
                 echo "<br/>";
                 if ($regPop['BDSNOME'] == null)
                 {
-                    echo   "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+                    echo   "<a href='cantorPes.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
                 }
                 else
                 {
-                    echo   "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+                    echo   "<a href='bandaPes.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
                 }
                 echo "</td>";
                 echo "</div>";
@@ -173,7 +173,7 @@ if(mysqli_fetch_assoc($consultaBanda)){
             {
                 echo "<td>";
                 echo "<div class='album'>";
-                echo   "<a href='banda.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<a href='bandaPes.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
                 echo   "<label>" . $regBanda['BDSNOME'] . "</label></a>";
                 echo "</td>";
                 echo "</div>";
@@ -207,7 +207,7 @@ if(mysqli_fetch_assoc($consultaCantor)){
             {
                 echo "<td>";
                 echo "<div class='album'>";
-                echo   "<a href='cantor.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<a href='cantorPes.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
                 echo   "<label>" . $regCantor['ARTNOME'] . "</label></a>";
                 echo "</td>";
                 echo "</div>";

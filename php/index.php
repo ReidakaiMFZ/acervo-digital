@@ -85,10 +85,10 @@ try{
           echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
           echo "<br/>";
           if ($regPop['BDSNOME'] == NULL){
-            echo "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+            echo "<a href='cantorPes.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
           }
           else{
-            echo "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+            echo "<a href='bandaPes.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
           }
           echo "<div id='estrelas'>";
           $cont = 1;
