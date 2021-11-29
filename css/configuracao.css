@@ -29,7 +29,6 @@ header>h3 {
 
 header a {
     text-decoration: none;
-    color: #fff;
 }
 
 .pesquisa {
@@ -67,4 +66,30 @@ header > .perfil > img {
     max-width: 50px;
     max-height: 50px;
     border: black 1px solid;
+}
+/* main */
+main{
+    display: inline-block;
+    margin-top: 20vh;
+}
+div:not(.perfil){
+    border-bottom: #4F4F4F 2px solid;
+    width: 100vw;
+}
+div h2{
+    margin-left: 5vw;
+}
+span, input:not(.txtPesquisa){
+    margin-left: 10vw;
+    display: block;
+}
+main button{
+    background-color: #000;
+    margin-top: 10vh;
+    margin-left: 2vw;
+    height: 5vh;
+    width: 10vw;
+}
+#txtSenha{
+    color: #000;
 }

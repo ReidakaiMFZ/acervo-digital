@@ -88,7 +88,7 @@ header > .perfil > img{
   font-size: 0.9em;
   margin-top: 0;
 }
-.album img{
+.album img:not(.star){
   display: inline-block;
   height: 20vh;
   width: 100%;
@@ -108,6 +108,15 @@ header > .perfil > img{
   text-decoration: none;
   color: #fff;
 }
+#estrelas{
+  text-align: center;
+}
+
+.star{
+  height: 1em;
+  width: 1em;
+}
+
 
 /* Next & previous buttons */
 .prev{ 

@@ -108,6 +108,22 @@ if(mysqli_fetch_assoc($consultaPop)){
                 {
                     echo   "<a href='bandaPes.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
                 }
+                echo "<div id='estrelas'>";
+                $cont = 1;
+                $queryNotas = "SELECT AVG(CLSNOTA) media FROM CLASSIFICACAO WHERE CLSMUSICA = " . $regPop['MSCCODIGO'];
+                $consultaNotas = mysqli_query($conexao, $queryNotas);
+                $regNotas = mysqli_fetch_assoc($consultaNotas);
+      
+                while ($cont <= 5) {
+                  if($cont <= round($regNotas['media'])){
+                    echo  "<img class='star' id='star-". $cont ."-". $regPop['MSCCODIGO'] ."' src='../images/star1.webp' alt='star'/>";
+                  }
+                  else{
+                    echo  "<img class='star' id='star-". $cont ."-". $regPop['MSCCODIGO'] ."' src='../images/star0.webp' alt='star'/>";
+                  }
+                  $cont++;
+                }
+                echo "</div>";
                 echo "</td>";
                 echo "</div>";
                 $regPop = mysqli_fetch_assoc($consultaPop);

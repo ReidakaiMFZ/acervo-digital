@@ -12,11 +12,16 @@ if(mysqli_connect_errno()){
   die();
 }
 $query = mysqli_query($conexao, 
-   "SELECT USRCODIGO, USRNOME, USRLOGIN, USREMAIL
-    FROM usuarios 
+   "SELECT USRCODIGO, USRNOME, USRLOGIN, USREMAIL, USRSENHA
+    FROM USUARIOS 
     WHERE USRCODIGO = ". $_SESSION['USRCODIGO']
 );
 $perfil = mysqli_fetch_assoc($query);
+
+if(isset($_GET['a'])){
+    session_destroy();
+    header("location: ../pages/login.htm");
+}
 ?>
 
 <html lang="pt-br">
@@ -26,7 +31,7 @@ $perfil = mysqli_fetch_assoc($query);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/configuracao.css">
-    <title>Acervo - Perfil</title>
+    <title>Acervo - Configurações</title>
 </head>
 
 <body>
@@ -47,11 +52,32 @@ $perfil = mysqli_fetch_assoc($query);
             </h3>
         </div>
     </header>
-    <div>
-        <span>mudar senha:</span>
-        <button type="submit"></button>
-    </div>
-    <button>Sair</button>
+    <main>
+        <div id='conta'>
+            <h2>Conta</h2>
+            <?php echo "<span>email: ". $perfil['USREMAIL'] ."</span>";?>
+            <input type="text" name="txtSenha" id="txtSenha" value="<?php echo $perfil['USRSENHA']; ?>"/>
+            <span><a href="configuracoes.php">Redefinir senha</a></span>
+        </div>
+        <div id="lorem">
+            <h2>Lorem ipsum</h2>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+        </div>
+        <div id="ipsum">
+            <h2>Lorem ipsum</h2>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+        </div>
+        <form action="configuracoes.php" method="get">
+            <input type="hidden" name="a" value='1'/>
+            <button>Sair</button>
+        </form>
+    </main>
 </body>
 
 </html>
