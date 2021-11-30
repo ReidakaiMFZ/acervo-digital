@@ -78,7 +78,6 @@ header>.perfil>img {
 }
 
 .album {
-  display: -webkit-inline-box;
   height: 16em;
   width: 9.5em;
   margin-right: 2em;

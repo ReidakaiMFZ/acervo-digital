@@ -91,9 +91,12 @@ $regAvaliar = mysqli_fetch_assoc($consultaAvaliar);
         <button id="btnLetras" onclick="mostraLetras()">letras</button>
     </main>
     <div id="txtLetras" style="display: none;">
+      <div>
         <?php
-      echo "<p>". $regPop['MSCLETRA'] ."</p>";
-      ?>
+        $letras = nl2br(htmlentities($regPop['MSCLETRA'], ENT_QUOTES, 'UTF-8'));
+        echo "<p>". $letras ."</p>";
+        ?>
+      </div>
     </div>
 </body>
 </html>

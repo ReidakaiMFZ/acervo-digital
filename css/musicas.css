@@ -84,14 +84,14 @@ main > img{
     max-width: 20vw;
     border: #000 solid 1px;
 }
-div:not(.perfil, #txtLetras){
+div:not(.perfil, #txtLetras, #txtLetras div){
     text-align: center;
 }
 #musicaNome{
     margin: 1vh;
     margin-top: 2vh;
 }
-p{
+p:not(#txtLetras p){
     display: inline;
 }
 #maximo{
@@ -120,13 +120,18 @@ button:not(.btnPesquisa){
 }
 #txtLetras{
     position: fixed;
-    min-height: 88vh;
+    min-height: 100vh;
     min-width: 40vw;
     background-color: #222;
     margin-left: 65vw;
-    margin-top: -80vh;
+    margin-top: -90vh;
     padding-top: 10px;
     z-index: 1;
+}
+#txtLetras div{
+    margin-left: 3vw;
+    margin-top: 12vh;
+    font-size: 18px;
 }
 nav{
     text-align: right;
