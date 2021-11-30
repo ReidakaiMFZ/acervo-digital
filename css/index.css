@@ -39,6 +39,7 @@ header a {
   width: 30em;
   border: black 1px solid;
   border-right: none;
+  text-indent: 5px;
 }
 
 .btnPesquisa {
@@ -77,14 +78,15 @@ header>.perfil>img {
 }
 
 .album {
-  display: table;
-  height: 15em;
+  display: -webkit-inline-box;
+  height: 16em;
   width: 9.5em;
   margin-right: 2em;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10%;
   font-size: 0.9em;
   margin-top: 0;
+  text-align: center;
 }
 
 .album label {
@@ -108,13 +110,8 @@ header>.perfil>img {
   width: 100%;
   border-radius: 10%;
 }
-
-input {
-  color: #000;
-  text-indent: 5px;
-}
-
 #estrelas{
+  display: contents;
   text-align: center;
 }
 

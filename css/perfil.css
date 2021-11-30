@@ -1,58 +1,69 @@
-*{
+/*tudo*/
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     color: #fff;
 }
-body{
-    background-image: linear-gradient(to bottom, #000000, #121212, #1d1d1d, #282828, #333333);
+
+body {
+    background-color: #333333;
 }
+
 /*cabeçalho*/
-header{
-    position:fixed;
-    display:flex;
-    height: 12vh;
-    width: 100vw;
+header {
+    position: fixed;
+    display: flex;
+    height: 5em;
+    width: 90em;
     background-color: #B36EEA;
-    z-index: 3;
 }
-header > h3{
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top:2%;
+
+header>h3 {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 1.5em;
 }
-header a{
+
+header a {
     text-decoration: none;
-    color: #fff;
 }
-.pesquisa{
-    display:flex;
-    height: 4vh;
-    margin-top: 1.8%;
+
+.pesquisa {
+    display: flex;
+    height: 1.6em;
+    margin-top: 1.7em;
 }
-.txtPesquisa{
-    width: 30vw;
-    border: #000 1px solid;
+
+.txtPesquisa {
+    width: 30em;
+    border: black 1px solid;
+    border-right: none;
+    text-indent: 5px;
 }
-.btnPesquisa{
+
+.btnPesquisa {
     position: relative;
-    width: 3vw;
-    height: 4vh;
+    width: 3em;
+    height: 1.9em;
     border: #000 1px solid;
-    background-image: url("../images/search-site-pw2.png");
-    background-size: 2.5vw 3.5vh;
+    background-image: url(../images/search-site-pw2.png);
+    background-size: 2.4em 1.9em;
     background-position: center;
 }
-.perfil{
+
+.perfil {
     text-align: center;
-    margin-left: 28%;
-    margin-top: 2vh;
+    margin-left: 21em;
 }
-header > .perfil > a > img{
+
+header>.perfil img {
     position: relative;
-    width: 50px;
-    height: 50px;
+    height: 4.5em;
+    width: 4.5em;
+    margin-top: 0.3em;
 }
+/* main */
 #perfilmain{
     margin-top: 25vh;
     margin-left: 38vw;

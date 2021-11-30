@@ -61,7 +61,7 @@ $consultaAlbum = mysqli_query($conexao, $queryAlbum);
 
   <form class="pesquisa" action="search.php" method="get">
     <?php echo"<input type='text' name='txtPesquisa' class='txtPesquisa' placeholder='Pesquisar...' value='". $pesquisa."'/>";?>
-    <button type="submit" class="btnPesquisa"><img src="../images/search-site-pw2.png" alt=""/></button>
+    <button type="submit" class="btnPesquisa"></button>
   </form>
 
   <div class="perfil">

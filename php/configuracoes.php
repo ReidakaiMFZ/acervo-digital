@@ -56,8 +56,9 @@ if(isset($_GET['a'])){
         <div id='conta'>
             <h2>Conta</h2>
             <?php echo "<span>email: ". $perfil['USREMAIL'] ."</span>";?>
-            <input type="text" name="txtSenha" id="txtSenha" value="<?php echo $perfil['USRSENHA']; ?>"/>
-            <span><a href="configuracoes.php">Redefinir senha</a></span>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
+            <span>Lorem ipsum</span>
         </div>
         <div id="lorem">
             <h2>Lorem ipsum</h2>
