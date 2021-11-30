@@ -22,6 +22,7 @@ if(mysqli_connect_errno()){
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/index.css">
+  <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
   <title>Acervo - Inicio</title>
 </head>
 

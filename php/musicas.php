@@ -35,6 +35,7 @@ $regAvaliar = mysqli_fetch_assoc($consultaAvaliar);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/musicas.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <title>Acervo - Musica</title>
 </head>
 
@@ -85,7 +86,7 @@ $regAvaliar = mysqli_fetch_assoc($consultaAvaliar);
               echo "<p id='maximo'>". $regPop['MSCDURACAO'] ."</p>";
             ?>
             <progress id="musicaProgresso" value="0" max="0"></progress>
-            <button id="btnTocar" onclick="iniciar()">play</button>
+            <button id="btnTocar" onclick="iniciar()"></button>
         </div>
         <button id="btnLetras" onclick="mostraLetras()">letras</button>
     </main>

@@ -32,6 +32,7 @@ if(!$regArtista = mysqli_fetch_assoc($consultaArtista)){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="../css/cantorPes.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <title>Acervo - <?php echo $regArtista['ARTNOME'];?></title>
 </head>
 

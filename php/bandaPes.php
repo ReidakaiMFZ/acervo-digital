@@ -32,6 +32,7 @@ if(!$regBanda = mysqli_fetch_assoc($consultaBanda)){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="../css/bandaPes.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <title>Acervo - <?php echo $regBanda['BDSNOME'];?></title>
 </head>
 

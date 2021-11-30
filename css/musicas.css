@@ -107,6 +107,10 @@ button:not(.btnPesquisa){
 #btnTocar{
     height: 7vh;
     width: 4vw;
+    background-image: url("../images/playbutton.png");
+    background-size: 4vw 7vh;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 50%;
 }
 #btnLetras{
@@ -130,4 +134,7 @@ nav{
 .star{
     height: 2vh;
     width: 1vw;
+}
+input{
+    color: #000;
 }

@@ -44,6 +44,7 @@ if(!$regAlbum = mysqli_fetch_assoc($consultaAlbum)){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="../css/album.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <title>Acervo - <?php echo $regAlbum['ALBNOME'];?></title>
 </head>
 
