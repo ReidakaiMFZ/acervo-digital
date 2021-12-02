@@ -55,37 +55,44 @@ $consultaFav = mysqli_query($conexao, $queryFav);
     </header>
 
     <?php
-    while($regFav = mysqli_fetch_assoc($consultaFav)){
-        echo "<div class='musica'>";
-
-        if($regFav['ALBCAPA'] != null){
-            echo   "<a href='../php/musicas.php?musicaid=". $regFav['MSCCODIGO'] ."'><img src='../images/". $regFav['ALBCAPA'] ."'/>";
+    if(mysqli_fetch_assoc($consultaFav)){
+        mysqli_free_result($consultaFav);
+        $consultaFav = mysqli_query($conexao, $queryFav);
+        while($regFav = mysqli_fetch_assoc($consultaFav)){
+            echo "<div class='musica'>";
+    
+            if($regFav['ALBCAPA'] != null){
+                echo   "<a href='../php/musicas.php?musicaid=". $regFav['MSCCODIGO'] ."'><img src='../images/". $regFav['ALBCAPA'] ."'/>";
+            }
+            else{
+                echo   "<a href='../php/musicas.php?musicaid=". $regFav['MSCCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+            }
+            echo   "<label>" . $regFav['MSCNOME'] . "</label></a>";
+            echo "<br/>";
+            if ($regFav['BDSNOME'] == NULL){
+                echo "<a href='cantor.php?artistaid=". $regFav['ARTCODIGO']."'><small>" . $regFav['ARTNOME'] . "</small></a>";
+            }
+            else{
+                echo "<a href='banda.php?bandaid=". $regFav['BDSCODIGO']."'><small>" . $regFav['BDSNOME'] . "</small></a>";
+            }
+            echo "<div id='estrelas'>";
+            
+            $cont = 1;
+            while ($cont <= 5) {
+            if($cont <= round($regFav['CLSNOTA'])){
+                echo  "<img class='star' id='star-". $cont ."-". $regFav['MSCCODIGO'] ."' src='../images/star1.webp' alt='star'/>";
+            }
+            else{
+                echo  "<img class='star' id='star-". $cont ."-". $regFav['MSCCODIGO'] ."' src='../images/star0.webp' alt='star'/>";
+            }
+            $cont++;
+            }
+            echo "</div>";
+            echo "</div>";
         }
-        else{
-            echo   "<a href='../php/musicas.php?musicaid=". $regFav['MSCCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
-        }
-        echo   "<label>" . $regFav['MSCNOME'] . "</label></a>";
-        echo "<br/>";
-        if ($regFav['BDSNOME'] == NULL){
-            echo "<a href='cantor.php?artistaid=". $regFav['ARTCODIGO']."'><small>" . $regFav['ARTNOME'] . "</small></a>";
-        }
-        else{
-            echo "<a href='banda.php?bandaid=". $regFav['BDSCODIGO']."'><small>" . $regFav['BDSNOME'] . "</small></a>";
-        }
-        echo "<div id='estrelas'>";
-        
-        $cont = 1;
-        while ($cont <= 5) {
-        if($cont <= round($regFav['CLSNOTA'])){
-            echo  "<img class='star' id='star-". $cont ."-". $regFav['MSCCODIGO'] ."' src='../images/star1.webp' alt='star'/>";
-        }
-        else{
-            echo  "<img class='star' id='star-". $cont ."-". $regFav['MSCCODIGO'] ."' src='../images/star0.webp' alt='star'/>";
-        }
-        $cont++;
-        }
-        echo "</div>";
-        echo "</div>";
+    }
+    else{
+        echo "<h1 id='nenhumaMusica'>Curta alguma musica com 3 estrelas ou mais para encontra-lá em sua biblioteca.</h1>";
     }
     ?>
 </body>

@@ -17,6 +17,7 @@ header {
     height: 5em;
     width: 90em;
     background-color: #B36EEA;
+    top: 0;
 }
 
 header>h3 {
@@ -118,4 +119,9 @@ input {
 .star{
     height: 2vh;
     width: 1vw;
+}
+#nenhumaMusica{
+    margin-top: 20vh;
+    font-size: 24px;
+    margin-left:1vw;
 }
