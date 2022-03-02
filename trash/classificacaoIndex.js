@@ -1,4 +1,4 @@
-function mediaNota(x) {
+const mediaNota = (x)=> {
     var dados = new XMLHttpRequest();
     dados.open("GET", "../api/apiClassificacao.php?musicaid=" + x);
     dados.send();
