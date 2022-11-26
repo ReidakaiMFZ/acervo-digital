@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'config.php';
 
 ini_set('display_errors', "On");
 error_reporting(E_ALL);
@@ -8,8 +9,6 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();
@@ -22,6 +21,7 @@ if(mysqli_connect_errno()){
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/index.css">
+  <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
   <title>Acervo - Inicio</title>
 </head>
 
@@ -85,10 +85,10 @@ try{
           echo   "<label>" . $regPop['MSCNOME'] . "</label></a>";
           echo "<br/>";
           if ($regPop['BDSNOME'] == NULL){
-            echo "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+            echo "<a href='cantorPes.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
           }
           else{
-            echo "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+            echo "<a href='bandaPes.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
           }
           echo "<div id='estrelas'>";
           $cont = 1;

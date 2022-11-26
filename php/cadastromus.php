@@ -1,11 +1,10 @@
 <?php
 session_start();
+include 'config.php';
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();
@@ -19,6 +18,7 @@ if(mysqli_connect_errno()){
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/cadastromus.css">
+  <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
   <title>Acervo - Inserir</title>
 </head>
 <script src="../js/fnRadioButton.js"></script>
@@ -390,12 +390,12 @@ if(mysqli_connect_errno()){
       <!-- link do video -->
       <label>
         <span>Link do vídeo</span>
-        <input type="url" name="txtUrlMusica" id="txtUrlMusica"  required/>
+        <input type="url" name="txtUrlMusica" id="txtUrlMusica" />
       </label>
       <!-- link do audio -->
       <label>
         <span>Link do áudio</span>
-        <input type="url" name="txtUrlSomMusica" id="txtUrlSomMusica"  required/>
+        <input type="url" name="txtUrlSomMusica" id="txtUrlSomMusica" />
       </label>
       <button type="submit">Enviar</button>
     </form>
@@ -404,29 +404,74 @@ if(mysqli_connect_errno()){
 </body>
 <?php mysqli_close($conexao);?>
 <script>
+  // receive parameters of url
   var params = window.location.search.split('?')[1].split('&');
   var s = params[0].split('=')[1];
   if(params[1] != undefined){
     var errors = params[1].split('=')[1];
-  }
-  else{
+  } else{
     var errors = "none";
   }
-
-  if(s >= 0 && s <=6)
-  {
+  //feature of return to this page 
+  if(s >= 0 && s <=6){
     document.getElementById('escolheInsercao').value = parseInt(s);
     escolha();
-  }
-  else{
+  } else{
     document.getElementById('escolheInsercao').value = -1;
   }
+  // albuns
   if(s == 0 && errors == 1){
     alert("O nome do album não pode ser vazio!!");
-  }
-  else if(s == 0 && errors == 2){
+  } else if(s == 0 && errors == 2){
     alert("Escolha o tipo de Midia!!");
   }
-
+  // artistas
+  if(s == 1 && errors == 1){
+    alert("O nome do Artista não pode ser vazio!!");
+  } else if(s == 1 && errors == 2){
+    alert("Escolha a data de inicio do artista!!");
+  } else if(s == 1 && errors == 3){
+    alert("Apresente o artista!!");
+  }
+  // bandas
+  if(s == 2 && errors == 1){
+    alert("O nome da banda não pode ser vazio!!");
+  } else if(s == 2 && errors == 2){
+    alert("Escolha a data de inicio da banda!!");
+  } else if(s == 2 && errors == 3){
+    alert("Apresente a banda!!");
+  }
+  // generos
+  if(s == 3 && errors == 1){
+    alert("O nome do gênero não pode ser vazio!!");
+  } else if(s == 3 && errors == 2){
+    alert("Apresente o gênero!!");
+  }
+  // gravadora
+  if(s == 4 && errors == 1){
+    alert("O nome da gravadora não pode ser vazio!!");
+  } else if(s == 4 && errors == 2){
+    alert("Apresente a gravadora!!");
+  }
+  // instrumento
+  if(s == 5 && errors == 1){
+    alert("O nome do instrumento não pode ser vazio!!");
+  }
+  // musicas
+  if(s == 6 && errors == 1){
+    alert("O nome da música não pode ser vazio!!");
+  } else if(s == 6 && errors == 2){
+    alert("Digite a duração da música!!");
+  } else if(s == 6 && errors == 3){
+    alert("Escolha o gênero da música!!");
+  } else if(s == 6 && errors == 4){
+    alert("Escreva o link do video!!");
+  } else if(s == 6 && errors == 5){
+    alert("Escreva o link do áudio!!");
+  } else if(s == 6 && errors == 6){
+    alert("Escolha a banda ou artista da música!!");
+  }else if(s == 6 && errors == 7){
+    alert("Digite a letra da música!!");
+  }
 </script>
 </html>

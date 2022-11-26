@@ -26,7 +26,7 @@ function atualizaMusica(){
     }
     else{
         clearInterval(tmp);
-    }
+    } 
 }
 function iniciar(){
     if(i == 0){

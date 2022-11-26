@@ -8,63 +8,98 @@
 
 body {
     background-color: #333333;
-    line-height: 1.6;
 }
 
 /*cabeçalho*/
 header {
     position: fixed;
     display: flex;
-    height: 12vh;
-    width: 100vw;
+    height: 5em;
+    width: 90em;
     background-color: #B36EEA;
-    line-height: 1.2;
 }
 
 header>h3 {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 2%;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 1.5em;
 }
 
 header a {
     text-decoration: none;
-    color: #fff;
 }
 
 .pesquisa {
     display: flex;
-    height: 4vh;
-    margin-top: 1.8%;
+    height: 1.6em;
+    margin-top: 1.7em;
 }
 
 .txtPesquisa {
-    width: 30.1vw;
-    border: #000 1px solid;
+    width: 30em;
+    border: black 1px solid;
+    border-right: none;
+    text-indent: 5px;
 }
 
 .btnPesquisa {
     position: relative;
-    width: 3vw;
-    height: 4vh;
+    width: 3em;
+    height: 1.9em;
     border: #000 1px solid;
-    background-image: url("../images/search-site-pw2.png");
-    background-size: 2.5vw 3.5vh;
+    background-image: url(../images/search-site-pw2.png);
+    background-size: 2.5em 2em;
     background-position: center;
 }
 
 .perfil {
     text-align: center;
-    margin-left: 25.1%;
+    margin-left: 21em;
+}
+
+header>.perfil>img {
+    position: relative;
+    border-radius: 50%;
+    min-height: 3.2em;
+    min-width: 3.2em;
+    max-width: 3.2em;
+    max-height: 3.2em;
+    border: black 1px solid;
+}
+
+/* main */
+main {
+    display: inline-block;
+    margin-top: 20vh;
     line-height: 1.6;
 }
 
-header > .perfil > img {
-    position: relative;
-    border-radius: 50%;
-    min-height: 20px;
-    min-width: 20px;
-    max-width: 50px;
-    max-height: 50px;
-    border: black 1px solid;
+div:not(.perfil) {
+    border-bottom: #4F4F4F 2px solid;
+    width: 100vw;
+}
+
+div h2 {
+    margin-left: 5vw;
+}
+
+span,
+input:not(.txtPesquisa) {
+    margin-left: 10vw;
+    display: block;
+}
+
+main button {
+    background-color: #000;
+    margin-top: 5vh;
+    margin-left: 2vw;
+    height: 5vh;
+    width: 10vw;
+}
+
+#txtSenha {
+    color: #000;
+}
+input{
+    color: #000;
 }

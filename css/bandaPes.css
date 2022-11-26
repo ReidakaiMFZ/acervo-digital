@@ -69,77 +69,82 @@ header>.perfil>img {
 }
 
 /* main */
-main{
-    width: 20vw;
-    height: 60vh;
+main {
     display: inline-block;
-    margin-top: 20vh;
-    margin-left: 35vw;
+    position: fixed;
+    width: 25vw;
+    height: 89vh;
+    margin-top: 12.1vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
     text-align: center;
 }
-main > img{
+
+main img {
+    max-height: 40vh;
     min-height: 40vh;
     min-width: 20vw;
-    max-height: 40vh;
     max-width: 20vw;
-    border: #000 solid 1px;
+    margin-top: 2vh;
+    border: #000 2px solid;
 }
-div:not(.perfil, #txtLetras, #txtLetras div){
+main span{
+    display: inline-block;
+}
+main a > span{
+    margin-left: 1vw;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* nav */
+nav{
+    margin-left: 25em;
+}
+.musica {
+    display: -webkit-inline-box;
+    min-height: 30vh;
+    width: 10vw;
+    max-height: 40vh;
+    max-width: 90vw;
+    margin-top: 20vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10%;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.musica label {
+    display: block;
+    /* position: absolute; */
+    
+}
+
+.musica a {
+    text-decoration: none;
+    color: #fff;
+}
+.musica img:not(.star) {
+    display: inline-block;
+    height: 20vh;
+    width: 100%;
+    border-radius: 10%;
+}
+
+input {
+    color: #000;
+    text-indent: 5px;
+}
+
+#estrelas{
+    display: contents;
     text-align: center;
 }
-#musicaNome{
-    margin: 1vh;
-    margin-top: 2vh;
-}
-p:not(#txtLetras p){
-    display: inline;
-}
-#maximo{
-    margin-left: 13vw;
-}
-progress{
-    width: 20vw;
-    display: block;
-}
-button:not(.btnPesquisa){
-    color: black;
-}
-#btnTocar{
-    height: 7vh;
-    width: 4vw;
-    background-image: url("../images/playbutton.png");
-    background-size: 4vw 7vh;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-}
-#btnLetras{
-    height: 5vh;
-    width: 15vw;
-    margin-top: 5vh;
-}
-#txtLetras{
-    position: fixed;
-    min-height: 100vh;
-    min-width: 40vw;
-    background-color: #222;
-    margin-left: 65vw;
-    margin-top: -90vh;
-    padding-top: 10px;
-    z-index: 1;
-}
-#txtLetras div{
-    margin-left: 3vw;
-    margin-top: 12vh;
-    font-size: 18px;
-}
-nav{
-    text-align: right;
-}
+
 .star{
     height: 2vh;
     width: 1vw;
-}
-input{
-    color: #000;
 }

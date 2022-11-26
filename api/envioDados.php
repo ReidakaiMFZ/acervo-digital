@@ -1,11 +1,10 @@
 <?php
 session_start();
+include '../php/config.php';
 if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   header("location: cadastromus.php");
 }
@@ -13,19 +12,18 @@ if(mysqli_connect_errno()){
 if($_POST['TipoInsert'] == 0){ //Album
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
-
     if($_FILES['inpCapa']['name'] != ""){
         $nome = pathinfo($_FILES['inpCapa']['name'], PATHINFO_FILENAME) . date("Ymd", time()) . "." . pathinfo($_FILES['inpCapa']['name'], PATHINFO_EXTENSION);
     }
     else{
         $nome = NULL;
     }
-    // var_dump($_POST["txtGravadora"]);
     $txtGravadora = $_POST["txtGravadora"] != -1 ? $_POST["txtGravadora"] : null;
     $txtGenero = $_POST["txtGenero"] != -1 ? $_POST["txtGenero"] : null;
 
-    if($_POST["txtAlbum"] == ""){header('Location: cadastromus.php?s=0$error=1');}
-    if($_POST["txtMidia"] == ""){header('Location: cadastromus.php?s=0&error=2');}
+    if($_POST["txtAlbum"] == ""){header('Location: ../php/cadastromus.php?s=0&error=1'); die();}
+    else if($_POST["txtMidia"] == ""){header('Location: ../php/cadastromus.php?s=0&error=2'); die();}
+
     if($_POST["txtBanda"] != -1){
         mysqli_stmt_prepare($stmt, "INSERT INTO albuns(ALBNOME, ALBGRAVADORA, ALBGENERO, ALBDTLANCAMENTO, ALBBANDA, ALBMIDIA, ALBCAPA) VALUES (?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "siisiis", 
@@ -42,8 +40,8 @@ if($_POST['TipoInsert'] == 0){ //Album
         mysqli_stmt_prepare($stmt, "INSERT INTO albuns(ALBNOME, ALBGRAVADORA, ALBGENERO, ALBDTLANCAMENTO, ALBARTISTA, ALBMIDIA, ALBCAPA) VALUES (?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "siisiis", 
             $_POST["txtAlbum"], 
-            $_POST["txtGravadora"] != -1 ? $_POST["txtGravadora"] : null, 
-            $_POST["txtGenero"] != -1 ? $_POST["txtGenero"] : null, 
+            $txtGravadora, 
+            $txtGenero, 
             $_POST["inpData"], 
             $_POST["txtArtista"], 
             $_POST["txtMidia"],
@@ -64,7 +62,11 @@ else if($_POST['TipoInsert'] == 1){ //Artistas
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
 
-    if($_POST["txtDtTerminoArt"] != ""){
+    if($_POST['txtArtista']){header("location: ../php/cadastromus.php?s=1&errors=1"); die();}
+    else if($_POST['txtDtInicioArt']){header("location: ../php/cadastromus.php?s=1&errors=2"); die();}
+    else if($_POST['txtArtistaApres']){header("location: ../php/cadastromus.php?s=1&errors=3"); die();}
+
+    if($_POST["txtDtInicioArt"] != ""){
         mysqli_stmt_prepare($stmt, "INSERT INTO artistas(ARTNOME, ARTDTINICIO, ARTDTTERMINO, ARTAPRESENTACAO) VALUES (?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "ssss", 
             $_POST['txtArtista'], 
@@ -120,7 +122,11 @@ else if($_POST['TipoInsert'] == 1){ //Artistas
 else if($_POST['TipoInsert'] == 2){ //bandas
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
-    
+
+    if($_POST['txtBanda'] == ""){header('location: ../php/cadastromus.php?s=2&errors=1'); die();}
+    else if($_POST['txtDtInicioBnd'] == ""){header('location: ../php/cadastromus.php?s=2&errors=2'); die();}
+    else if($_POST['txtBandaApres'] == ""){header('location: ../php/cadastromus.php?s=2&errors=3'); die();}
+
     if($_POST["txtDtTerminoBnd"] != ""){
         mysqli_stmt_prepare($stmt, "INSERT INTO bandas(BDSNOME, BDSDTINICIO, BDSDTTERMINO, BDSAPRESENTACAO) VALUES  (?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "ssss", 
@@ -148,6 +154,9 @@ else if($_POST['TipoInsert'] == 3){ //generos
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
 
+    if($_POST['txtGenero'] == ""){header('location: ../php/cadastromus.php?s=3&errors=1'); die();}
+    else if($_POST['txtGeneroApres'] == ""){header('location: ../php/cadastromus.php?s=3&errors=2'); die();}
+
     mysqli_stmt_prepare($stmt, "INSERT INTO generos(GNRNOME, GNRDESCRICAO) VALUES (?, ?)");
     mysqli_stmt_bind_param($stmt, "ss", 
         $_POST["txtGenero"], 
@@ -164,6 +173,9 @@ else if($_POST['TipoInsert'] == 4){ //gravadoras
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
     
+    if($_POST['txtGravadora'] == ""){header('location: ../php/cadastromus.php?s=4&errors=1'); die();}
+    else if($_POST['txtFundDt'] == ""){header('location: ../php/cadastromus.php?s=4&errors=2'); die();}
+
     if($_POST["txtFalenDt"] != ""){
         mysqli_stmt_prepare($stmt, "INSERT INTO gravadoras(GRVNOME, GRVDTFUNDACAO, GRVDTFALENCIA) VALUES  (?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "sss", 
@@ -189,8 +201,14 @@ else if($_POST['TipoInsert']== 5){ //instrumentos
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
 
-    mysqli_stmt_prepare($stmt, "INSERT INTO instrumentos(INSNOME) VALUES (?)");
-    mysqli_stmt_bind_param($stmt, "s", $_POST['txtInstrumento']);        
+    if($_POST['txtInstrumento'] != ""){
+        mysqli_stmt_prepare($stmt, "INSERT INTO instrumentos(INSNOME) VALUES (?)");
+        mysqli_stmt_bind_param($stmt, "s", $_POST['txtInstrumento']);
+    }
+    else{
+        header('location: ../php/cadastromus.php?s=5&errors=1');
+        die();
+    }
     
     mysqli_stmt_execute($stmt);
     mysqli_commit($conexao);
@@ -201,6 +219,32 @@ else if($_POST['TipoInsert']== 5){ //instrumentos
 else if($_POST['TipoInsert']== 6){ //Musicas
     mysqli_begin_transaction($conexao);
     $stmt = mysqli_stmt_init($conexao);
+
+    if($_POST['txtMusica'] == ""){
+        header('location: ../php/cadastromus.php?s=6&errors=1');
+        die();
+    }
+    else if($_POST['txtTempoMus'] == ""){
+        header('location: ../php/cadastromus.php?s=6&errors=2');
+        die();
+    }
+    else if($_POST['cmbGenero'] == "-1"){
+        header('location: ../php/cadastromus.php?s=6&errors=3');
+        die();
+    }
+    else if($_POST['txtUrlMusica'] == ""){
+        header('location: ../php/cadastromus.php?s=6&errors=4');
+        die();
+    }
+    else if($_POST['txtUrlSomMusica'] == ""){
+        header('location: ../php/cadastromus.php?s=6&errors=5');
+        die();
+    }
+    else if($_POST['txtLetraMus'] == ""){
+        header('location: ../php/cadastromus.php?s=6&errors=7');
+        die();
+    }
+    
 
     if($_POST['cmbArtista'] != -1){
         if(isset($_POST['txtLetraMus'])){
@@ -252,6 +296,9 @@ else if($_POST['TipoInsert']== 6){ //Musicas
             );
         }
     }
+    else{
+        header('location: ../php/cadastromus.php?s=6&errors=6');
+    }
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -274,6 +321,10 @@ else if($_POST['TipoInsert']== 6){ //Musicas
     
     mysqli_commit($conexao);
     mysqli_close($conexao);
+}
+else{
+    header('Location: ../php/cadastromus.php');
+    die();
 }
 
 header('Location: ../php/cadastromus.php?s=' . (int)$_POST['TipoInsert']);

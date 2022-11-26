@@ -1,12 +1,10 @@
 <?php
 session_start();
-
+include 'config.php';
 if(isset($_SESSION['USRCODIGO']) == false)
 {
     header('location:../pages/login.htm');
 }
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();
@@ -37,6 +35,7 @@ $perfil = mysqli_fetch_assoc($query);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <title>Acervo - Perfil</title>
 </head>
 

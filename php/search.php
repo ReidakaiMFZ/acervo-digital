@@ -1,12 +1,10 @@
 <?php
 session_start();
-
+include 'config.php';
 if(isset($_SESSION['USRCODIGO']) == false)
 {
     header('location:../pages/login.htm');
 }
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();
@@ -47,6 +45,7 @@ $consultaAlbum = mysqli_query($conexao, $queryAlbum);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/search.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <script src="../js/search.js"></script>
     <title>Acervo - Search</title>
 </head>
@@ -61,7 +60,7 @@ $consultaAlbum = mysqli_query($conexao, $queryAlbum);
 
   <form class="pesquisa" action="search.php" method="get">
     <?php echo"<input type='text' name='txtPesquisa' class='txtPesquisa' placeholder='Pesquisar...' value='". $pesquisa."'/>";?>
-    <button type="submit" class="btnPesquisa"><img src="../images/search-site-pw2.png" alt=""/></button>
+    <button type="submit" class="btnPesquisa"></button>
   </form>
 
   <div class="perfil">
@@ -102,12 +101,28 @@ if(mysqli_fetch_assoc($consultaPop)){
                 echo "<br/>";
                 if ($regPop['BDSNOME'] == null)
                 {
-                    echo   "<a href='cantor.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
+                    echo   "<a href='cantorPes.php?artistaid=". $regPop['ARTCODIGO']."'><small>" . $regPop['ARTNOME'] . "</small></a>";
                 }
                 else
                 {
-                    echo   "<a href='banda.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
+                    echo   "<a href='bandaPes.php?bandaid=". $regPop['BDSCODIGO']."'><small>" . $regPop['BDSNOME'] . "</small></a>";
                 }
+                echo "<div id='estrelas'>";
+                $cont = 1;
+                $queryNotas = "SELECT AVG(CLSNOTA) media FROM CLASSIFICACAO WHERE CLSMUSICA = " . $regPop['MSCCODIGO'];
+                $consultaNotas = mysqli_query($conexao, $queryNotas);
+                $regNotas = mysqli_fetch_assoc($consultaNotas);
+      
+                while ($cont <= 5) {
+                  if($cont <= round($regNotas['media'])){
+                    echo  "<img class='star' id='star-". $cont ."-". $regPop['MSCCODIGO'] ."' src='../images/star1.webp' alt='star'/>";
+                  }
+                  else{
+                    echo  "<img class='star' id='star-". $cont ."-". $regPop['MSCCODIGO'] ."' src='../images/star0.webp' alt='star'/>";
+                  }
+                  $cont++;
+                }
+                echo "</div>";
                 echo "</td>";
                 echo "</div>";
                 $regPop = mysqli_fetch_assoc($consultaPop);
@@ -173,7 +188,7 @@ if(mysqli_fetch_assoc($consultaBanda)){
             {
                 echo "<td>";
                 echo "<div class='album'>";
-                echo   "<a href='banda.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<a href='bandaPes.php?bandaid=". $regBanda['BDSCODIGO']."'><img src='../images/placeholder-de-imagens.png'/>";
                 echo   "<label>" . $regBanda['BDSNOME'] . "</label></a>";
                 echo "</td>";
                 echo "</div>";
@@ -207,7 +222,7 @@ if(mysqli_fetch_assoc($consultaCantor)){
             {
                 echo "<td>";
                 echo "<div class='album'>";
-                echo   "<a href='cantor.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
+                echo   "<a href='cantorPes.php?artistaid=". $regCantor['ARTCODIGO'] ."'><img src='../images/placeholder-de-imagens.png'/>";
                 echo   "<label>" . $regCantor['ARTNOME'] . "</label></a>";
                 echo "</td>";
                 echo "</div>";

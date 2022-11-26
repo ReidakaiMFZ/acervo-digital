@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include 'config.php';
 ini_set('display_errors', "On");
 error_reporting(E_ALL);
 
@@ -8,8 +8,6 @@ if(isset($_SESSION['USRCODIGO']) == false)
 {
   header('location:../pages/login.htm');
 }
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();
@@ -44,6 +42,7 @@ if(!$regAlbum = mysqli_fetch_assoc($consultaAlbum)){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="../css/album.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo-etec.png">
     <title>Acervo - <?php echo $regAlbum['ALBNOME'];?></title>
 </head>
 
