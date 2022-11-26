@@ -6,7 +6,7 @@ Este é um projeto escolar de um site de musica, onde o usuário pode ouvir as m
 
 ## 2. Objetivos
 
-O site tem como objetivo principal a reprodução de musicas, além de permitir que o usuário crie uma conta e faça login, para que possa ouvir as musicas. O site também permite a classificação de musicas onde o usuário pode dar uma nota de 1 a 5 para as musicas, e se a nota for maior que 3, a musica é adicionada a uma playlist de musicas favoritas. Ele também pode editar seu nome a qualquer momento.
+O site tem como objetivo principal a reprodução de musicas, além de permitir que o usuário crie uma conta e faça login, para que possa ouvir as musicas e ver suas letras. O site também permite a classificação de musicas onde o usuário pode dar uma nota de 1 a 5 para as musicas, e se a nota for maior que 3, a musica é adicionada a uma playlist de musicas favoritas. Ele também pode editar seu nome a qualquer momento.
 
 ## 3. Requisitos
 
