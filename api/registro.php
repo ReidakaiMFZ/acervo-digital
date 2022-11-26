@@ -1,6 +1,5 @@
 <?php
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+include '../php/config.php';
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();

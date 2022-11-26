@@ -1,12 +1,11 @@
 <?php
 session_start();
-
+include 'config.php';
 if(isset($_SESSION['USRCODIGO']) == false)
 {
     header('location:../pages/login.htm');
 }
 
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
 if(mysqli_connect_errno()){
   echo "<h1>Conexão falhou</h1>";
   die();

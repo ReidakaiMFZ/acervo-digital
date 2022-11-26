@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-$conexao = mysqli_connect("localhost", "root", "", "ACERVO");
+include '../php/config.php';
 if (mysqli_connect_errno()){
 	header('location: ../pages/login.htm?falha=2');
 }
