@@ -15,7 +15,7 @@ O site tem como objetivo principal a reprodução de musicas, além de permitir 
 - Xampp 8.0.3 <img src="https://seeklogo.com/images/X/xampp-logo-1C1A9E3689-seeklogo.com.png"  style="height: 20px; width:20px;"/>
 
 
-## 5. Instalação
+## 4. Instalação
 
 1. Baixe o Xampp e instale-o em seu computador.
 2. Baixe o projeto com:
@@ -34,15 +34,15 @@ php -S localhost:8000
 8. Abra o navegador e digite localhost:8000.
 9. Pronto, o site está funcionando.
 
-## 7. Licença
+## 5. Licença
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## 8. Agradecimentos
+## 6. Agradecimentos
 
 - [Etec Jaraguá](https://www.etecjaragua.com)
 - [Prof. Sidney Paixão](https://www.linkedin.com/in/sidneipaixao/)
 
-## 10. Autores
+## 7. Autores
 
 - [Richard Sanches](https://github.com/ReidakaiMFZ)
