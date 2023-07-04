@@ -10,8 +10,8 @@ O site tem como objetivo principal a reprodução de musicas, além de permitir 
 
 ## 3. Requisitos
 
-- PHP 7.4.3 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg"  style="height: 30px; width:30px;"/>
-- MySQL 8.0.23 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg"  style="height: 30px; width:30px;"/>
+- PHP 7.4.3 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg"  style="height: 20px; width:20px;"/>
+- MySQL 8.0.23 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg"  style="height: 20px; width:20px;"/>
 - Xampp 8.0.3 <img src="https://seeklogo.com/images/X/xampp-logo-1C1A9E3689-seeklogo.com.png"  style="height: 20px; width:20px;"/>
 
 
@@ -45,4 +45,4 @@ php -S localhost:8000
 
 ## 7. Autores
 
-- [Richard Sanches](https://github.com/ReidakaiMFZ)
+- [Richard Sanches](https://github.com/Richardsan1)
